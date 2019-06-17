@@ -12,6 +12,10 @@
 !/pack
 !/pack/**/*.vim
 
+### ftplugin
+!/ftplugin
+!/ftplugin/*.vim
+
 ### vim-plug
 !/vim-plug
 /vim-plug/*
