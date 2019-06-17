@@ -1,10 +1,10 @@
 scriptencoding utf-8
 
 "   Hymnala assembler
-let s:hymnalaDir = '~/Documents/pdf/hymnala'
+let s:hymnalaPath = g:hymnalaPath
 
 function! s:hymnalaAssemble() abort
-	exec 'cd '.s:hymnalaDir
+	exec 'cd '.s:hymnalaPath
 	let bookOrder = split(matchstr(getline(1),'#\s*\zs.*'), '\s\?[\.,]\s\?')
 
 	if len(bookOrder) > 0
