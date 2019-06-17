@@ -131,12 +131,12 @@ if has('autocmd')
 	augroup END
 endif
 
-" netrwPlugin.vim用
-let g:netrw_liststyle = 1
-let g:netrw_mousemaps = 0
-
-" 他のファイル読まないように…
+" 起動時だけ読むやつ
 if !exists('g:isReload') || g:isReload == 0
+
+" netrwPlugin.vim用
+	let g:netrw_liststyle = 1
+	let g:netrw_mousemaps = 0
 
 " 認証情報
 	if filereadable($VIMFILES.'/.private.vim')
@@ -149,6 +149,9 @@ if !exists('g:isReload') || g:isReload == 0
 
 " vim-plug
 	source $VIMFILES/vim-plug/vim-plug.conf.vim
+
+" リマップ分割によりマップリーダーのトラブル頻発中
+	let g:mapleader = "\<space>"
 
 	let g:isReload = 1
 endif

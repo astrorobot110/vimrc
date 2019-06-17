@@ -1,8 +1,5 @@
 scriptencoding utf-8
 
-" 試しにリーダーキーを変えてみる
-let g:mapleader = "\<space>"
-
 " 甘えるな、hjklを使え
 noremap <Left> <Nop>
 noremap <Down> <Nop>
@@ -59,10 +56,6 @@ noremap <Leader>md :<C-u>set ft=markdown<CR>
 " 移動関係
 noremap <Leader>ee :<C-u>e %:h<CR>
 noremap <Leader>EE :<C-u>e! %:h<CR>
-
-" 設定群への移動専用
-nnoremap <Leader>v :<C-u>e v
-nnoremap <Leader>V :<C-u>e! v
 
 " 関数リストよく見るので
 nnoremap <Leader>ff :<C-u>vert bo help function-list<CR>

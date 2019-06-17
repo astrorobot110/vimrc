@@ -13,12 +13,6 @@
 /plugin/*
 !/plugin/*.vim
 
-### autoload
-!/autoload
-/autoload/*
-!/autoload/*.vim
-/autoload/plug.vim*
-
 ### pack
 !/pack/myplug/opt
 /pack/myplug/opt/**/*
