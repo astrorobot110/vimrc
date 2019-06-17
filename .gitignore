@@ -10,10 +10,12 @@
 
 ### プラグインディレクトリ
 !/pack
+/pack/**/*
 !/pack/**/*.vim
 
 ### ftplugin
 !/ftplugin
+/ftplugin/*
 !/ftplugin/*.vim
 
 ### vim-plug
