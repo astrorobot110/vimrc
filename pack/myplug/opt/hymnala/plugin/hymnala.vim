@@ -25,4 +25,4 @@ function! s:hymnalaAssemble() abort
 	cd -
 endfunction
 
-command! -nargs=0 AssembleHymn call s:hymnalaAssemble()
+command! -nargs=0 Hymnala call s:hymnalaAssemble()

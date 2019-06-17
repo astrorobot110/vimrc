@@ -1,13 +1,13 @@
 scriptencoding utf-8
 
-if isdirectory(expand(g:drWorkPath))
+if exists('g:drWorkPath') && isdirectory(expand(g:drWorkPath))
 	packadd dailyreading
 endif
 
-if executable('qiitactl') && exists('$QIITA_ACCESS_TOKEN')
+if executable(g:qcExe) && exists('$QIITA_ACCESS_TOKEN') && isdirectory(expand(g:qcPath))
 	packadd qiitactl
 endif
 
-if exists(g:hymnalaPath) && isdirectory(expand(g:hymnalaPath))
+if exists('g:hymnalaPath') && isdirectory(expand(g:hymnalaPath))
 	packadd hymnala
 endif
