@@ -82,7 +82,7 @@ set ambiwidth=double
 
 " ステータスライン関係
 " デフォルト -> set statusline=%f\ %h%w%m%r%=%-14.(%l,%c%V%)\ %P
-set statusline=\ %n:\ %f\ %<%h%w%m%r[%{&ff}]%=%-14.(%l,%c%V%)\ %P\ 
+set statusline=\ %n:\ %f\ %<[%{&ff}]%h%w%m%r%=%-14.(%l,%c%V%)\ %P\ 
 if $VIMDEVICE !~? '_mobile$'
 	set laststatus=2
 endif
