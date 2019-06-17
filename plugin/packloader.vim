@@ -8,6 +8,6 @@ if executable('qiitactl') && exists('$QIITA_ACCESS_TOKEN')
 	packadd qiitactl
 endif
 
-if exista(g:hymnalaPath) && isdirectory(expand(g:hymnalaPath))
+if exists(g:hymnalaPath) && isdirectory(expand(g:hymnalaPath))
 	packadd hymnala
 endif
