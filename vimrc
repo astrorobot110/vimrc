@@ -149,5 +149,8 @@ if !exists('g:isReload') || g:isReload == 0
 " リマップ分割によりマップリーダーのトラブル頻発中
 	let g:mapleader = "\<space>"
 
+" droidVim専用
+	let g:imctrl_normal = 53
+
 	let g:isReload = 1
 endif

@@ -11,3 +11,10 @@ endif
 if exists('g:hymnalaPath')
 	packadd hymnala
 endif
+
+if exists('g:browser')
+	packadd toBrowser
+endif
+
+let g:packLoaded = 1
+source $VIMFILES/plugin/remap.pack.vim
