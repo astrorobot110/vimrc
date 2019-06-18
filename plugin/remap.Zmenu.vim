@@ -10,6 +10,3 @@ vnoremap Zc :Chords<CR>
 nnoremap ZC :<C-u>3,$Chords<CR>
 nnoremap Zd :lcd %:p:h<CR>
 nnoremap ZD :cd %:p:h<CR>
-nnoremap Zx :<C-u>silent Browse<CR>
-nnoremap ZX "vyiW:<C-u>silent Browse <C-r>v<CR>
-vnoremap ZX "vy:silent Browse <C-r>v<CR>
