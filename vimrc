@@ -143,10 +143,6 @@ if !exists('g:isReload') || g:isReload == 0
 		source $VIMFILES/.private.vim
 	endif
 
-	if !exists('g:browser')
-		let g:browser = ''
-	endif
-
 " vim-plug
 	source $VIMFILES/vim-plug/vim-plug.conf.vim
 
