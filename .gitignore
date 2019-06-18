@@ -14,7 +14,7 @@
 !/plugin/*.vim
 
 ### pack
-!/pack/myplug/opt/**/*
+!/pack/myplug/opt/*/plugin/*
 
 ### ftplugin
 !/ftplugin
