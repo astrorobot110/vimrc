@@ -1,6 +1,6 @@
 scriptencoding utf-8
 
-if exists('g:packLoaded') && g:packloaded
+if exists('g:packLoaded') && g:packLoaded
 	if exists(':OpenReading') == 2
 		nnoremap Zr :<C-u>OpenReading
 		nnoremap ZR :<C-u>OpenReading!
