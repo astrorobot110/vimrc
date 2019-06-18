@@ -11,3 +11,7 @@ endif
 if exists('g:hymnalaPath')
 	packadd hymnala
 endif
+
+if exists('g:browser')
+	packadd toBrowser
+endif
