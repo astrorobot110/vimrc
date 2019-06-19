@@ -11,8 +11,8 @@ if exists('g:packLoaded') && g:packLoaded
 	endif
 
 	if exists(':Browse') == 2
-		nnoremap Zx :<C-u>silent Browse<CR>
-		nnoremap ZX "vyiW:<C-u>silent Browse <C-r>v<CR>
-		vnoremap ZX "vy:silent Browse <C-r>v<CR>
+		nnoremap Zx "byiW:<C-u>silent Browse <C-r>b<CR>
+		nnoremap ZX :<C-u>silent Browse<CR>
+		vnoremap Zx "by:silent Browse <C-r>b<CR>
 	endif
 endif

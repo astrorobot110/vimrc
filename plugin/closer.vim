@@ -33,6 +33,7 @@ function! Closer() abort
     call setpos('.', pos)
     return isFound ? bracketList.close[match(bracketList.open, foundBracket)] : ''
 endfunction
+
 function! s:closeFromNormal(isBang) abort
     let @c = Closer()
     if @c !=# '' && a:isBang ==# '!'
