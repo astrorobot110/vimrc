@@ -57,10 +57,6 @@ noremap <Leader>md :<C-u>set ft=markdown<CR>
 noremap <Leader>ee :<C-u>e %:h<CR>
 noremap <Leader>EE :<C-u>e! %:h<CR>
 
-" 関数リストよく見るので
-nnoremap <Leader>ff :<C-u>vert bo help function-list<CR>
-nnoremap <Leader>FF :<C-u>bel help function-list<CR>
-
 " エクスプローラーを開く用
 if has('win32')
 	noremap <silent> <Leader>xx :<C-u>silent !explorer "%:h"<CR>

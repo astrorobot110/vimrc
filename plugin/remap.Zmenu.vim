@@ -10,3 +10,5 @@ vnoremap Zc :Chords<CR>
 nnoremap ZC :<C-u>3,$Chords<CR>
 nnoremap Zd :lcd %:p:h<CR>
 nnoremap ZD :cd %:p:h<CR>
+nnoremap Zf :<C-u>vert bo help function-list<CR>
+nnoremap ZF :<C-u>bel help function-list<CR>

@@ -3,17 +3,6 @@ scriptencoding utf-8
 " 文字入力に関わるやつ
 " キーマップが長いやつはsnipet.vimに書くように
 
-" 一応明示的に書いておくやつ
-set iminsert=0
-set imsearch=-1
-
-" IM操作用
-augroup autoim
-	autocmd!
-	autocmd InsertLeave * set iminsert=0
-	autocmd CmdlineLeave * set iminsert=0
-augroup END
-
 " インサートモード中の^hに対応して^lで<del>させる様に
 inoremap <C-l> <del>
 
