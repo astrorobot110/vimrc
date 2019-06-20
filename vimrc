@@ -63,6 +63,7 @@ set autoindent
 set backspace=indent,eol,start
 set wildmenu
 set clipboard^=unnamed
+set formatoptions+=mMj
 
 " 画面表示
 set tabstop=4
@@ -79,10 +80,11 @@ set cursorline
 set equalalways
 set scrolloff=8
 set ambiwidth=double
+set display+=lastline
 
 " ステータスライン関係
 " デフォルト -> set statusline=%f\ %h%w%m%r%=%-14.(%l,%c%V%)\ %P
-set statusline=%4(%n%):\ %f\ %<[%{&ff}]%h%w%m%r%=%l,%-7.(%c%V%)\ [%4(%P%)]\ 
+set statusline=%4(%n%):\ %<%f\ [%{&fenc.'/'.&ff}]%h%w%m%r%=\ %l,%-7.(%c%V%)\ [%4(%P%)]\ 
 if $VIMDEVICE !~? '_mobile$'
 	set laststatus=2
 endif

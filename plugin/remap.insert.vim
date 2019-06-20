@@ -11,6 +11,7 @@ set imsearch=-1
 augroup autoim
 	autocmd!
 	autocmd InsertLeave * set iminsert=0
+	autocmd CmdlineLeave * set iminsert=0
 augroup END
 
 " インサートモード中の^hに対応して^lで<del>させる様に
