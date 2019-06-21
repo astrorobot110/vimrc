@@ -23,10 +23,9 @@ function! s:qcFetch() abort
 	cd -
 endfunction
 
-function! s:qcGenerate(...) abort
-	let args = "'".join(a:000)."'"
+function! s:qcGenerate(filename) abort
 	exec 'cd' s:qcPath
-	let qcCmd = system(s:qcExe.' generate file '.args)
+	let qcCmd = system(s:qcExe.' generate file '.a:filename)
 	exec 'new '.join([s:qcPath, qcCmd], '/')
 	exec '%s/\v%(tags:)@<=\s+\[\]/\r- Vim/g'
 	call cursor(line('$'), 1)
@@ -55,7 +54,7 @@ function! s:qcUpdate() abort
 endfunction
 
 command! QiitaFetch call s:qcFetch()
-command! -nargs=+ QiitaGenerate call s:qcGenerate(<f-args>)
+command! -nargs=1 QiitaGenerate call s:qcGenerate(<f-args>)
 command! QiitaCreate call s:qcCreate()
 command! QiitaUpdate call s:qcUpdate()
 
