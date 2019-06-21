@@ -3,6 +3,8 @@ scriptencoding utf-8
 " Zから始まるメニュー諸々
 " 使いそうで使わないちょっと使うプラグインコマンドなどに
 
+" :Packer 関連は $VIMFILES/plugin/remap.pack.vim に
+
 nnoremap Zp :<C-u>PlugInstall<CR>
 nnoremap Zs :<C-u>source %<CR>
 nnoremap Zc :Chords<CR>

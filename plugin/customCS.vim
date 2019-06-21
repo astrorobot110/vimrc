@@ -1,6 +1,6 @@
 scriptencoding utf-8
 
-" カスタムしたカラースキームは $VIMFILES/autoload/colorscheme.vim へ
+" カスタムしたカラースキームは $VIMFILES/autoload/ へ
 
 " トリガー引く用
 function! s:customCSLoader(name) abort

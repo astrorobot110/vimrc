@@ -85,6 +85,7 @@ set display+=lastline
 " PowerShell上の問題
 set t_Co=256
 
+" vim-plugとの関係でややこしい書き方になってもうた…
 try
 	colorscheme janah
 catch /E185/

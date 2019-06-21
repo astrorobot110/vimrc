@@ -35,21 +35,4 @@ cabbrev vV= $VIMFILES/vimrc
 cabbrev vs= $VIMFILES/plugin
 cabbrev vS= $VIMFILES/pack/myplug/opt
 cabbrev vp= $VIMFILES/vim-plug
-
-" 汎用アドレス
-let s:pathDict = {
-	\ 'hymn': '~/Documents/pdf/hymnala',
-	\ 'chtw': '~/cloud/gdrive/christ/twitter',
-	\ 'some': '~/Documents/sometext',
-	\ 'python': '~/Share/python'
-\ }
-
-" ドキュメントフォルダだけややこしいのよね
-let s:pathDict['doc'] = g:isDroid ? '$INTERNAL_STORAGE/Documents' : '~/Documents'
-
-for c in keys(s:pathDict)
-	if isdirectory(expand(s:pathDict[c]))
-		call execute(printf('cabbrev %s= %s', c, s:pathDict[c]))
-	endif
-endfor
 cabbrev vP= $VIMFILES/vim-plug/vim-plug.conf.vim
