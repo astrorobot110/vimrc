@@ -85,9 +85,11 @@ set display+=lastline
 " PowerShell上の問題
 set t_Co=256
 
-if isdirectory($VIMFILES.'/pack/colorschemes/start')
+try
 	colorscheme janah
-endif
+catch /E185/
+	let g:colors_name = substitute(v:exception, '\v.+E185.+''(.+)''.+', '\1', '')
+endtry
 
 " ステータスライン関係
 " デフォルト -> set statusline=%f\ %h%w%m%r%=%-14.(%l,%c%V%)\ %P
