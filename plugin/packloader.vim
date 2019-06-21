@@ -16,5 +16,5 @@ if exists('g:browser')
 	packadd toBrowser
 endif
 
-let g:packLoaded = 1
+let g:isPackLoaded = 0
 source $VIMFILES/plugin/remap.pack.vim

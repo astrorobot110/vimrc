@@ -1,6 +1,6 @@
 scriptencoding utf-8
 
-if exists('g:packLoaded') && g:packLoaded
+if exists('g:isPackLoaded')
 	if exists(':OpenReading') == 2
 		nnoremap Zr :<C-u>OpenReading
 		nnoremap ZR :<C-u>OpenReading!
@@ -15,4 +15,6 @@ if exists('g:packLoaded') && g:packLoaded
 		nnoremap ZX :<C-u>silent Browse<CR>
 		vnoremap Zx "by:silent Browse <C-r>b<CR>
 	endif
+
+	let g:isPackLoaded = 1
 endif

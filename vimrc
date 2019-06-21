@@ -82,6 +82,9 @@ set scrolloff=8
 set ambiwidth=double
 set display+=lastline
 
+" PowerShell上の問題
+set t_Co=256
+
 " ステータスライン関係
 " デフォルト -> set statusline=%f\ %h%w%m%r%=%-14.(%l,%c%V%)\ %P
 set statusline=%4(%n%):\ %<%f\ [%{&fenc.'/'.&ff}]%h%w%m%r%=\ %l,%-7.(%c%V%)\ [%4(%P%)]\ 
@@ -89,7 +92,6 @@ if $VIMDEVICE !~? '_mobile$'
 	set laststatus=2
 endif
 
-" カラースキーム設定はvim-plugのあとに行きました。
 " android用調整
 let &cmdheight = g:isDroid ? 1 : 2
 
@@ -134,8 +136,7 @@ if has('autocmd')
 endif
 
 " 起動時だけ読むやつ
-if !exists('g:isReload') || g:isReload == 0
-
+if !exists('g:isFirstLoad') || g:isFirstLoad
 " netrwPlugin.vim用
 	let g:netrw_liststyle = 1
 	let g:netrw_mousemaps = 0
@@ -147,6 +148,7 @@ if !exists('g:isReload') || g:isReload == 0
 
 " vim-plug
 	source $VIMFILES/vim-plug/vim-plug.conf.vim
+	let g:isVimplugLoaded = 1
 
 " リマップ分割によりマップリーダーのトラブル頻発中
 	let g:mapleader = "\<space>"
@@ -154,5 +156,5 @@ if !exists('g:isReload') || g:isReload == 0
 " droidVim専用
 	let g:imctrl_normal = 53
 
-	let g:isReload = 1
+	let g:isFirstLoad = 0
 endif

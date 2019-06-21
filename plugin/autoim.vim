@@ -4,7 +4,7 @@ scriptencoding utf-8
 set iminsert=0
 set imsearch=-1
 
-" iM操作用
+" IM操作用
 if has('multi_byte_ime')
 	augroup autoIM
 		autocmd!
