@@ -88,7 +88,7 @@ set t_Co=256
 try
 	colorscheme janah
 catch /E185/
-	let g:colors_name = substitute(v:exception, '\v.+E185.+''(.+)''.+', '\1', '')
+	let g:colors_name = substitute(v:exception, '\v.*E185.*''(.+)''.*', '\1', '')
 endtry
 
 " ステータスライン関係
