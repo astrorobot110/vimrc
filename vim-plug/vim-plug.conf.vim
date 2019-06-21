@@ -26,7 +26,10 @@ call plug#end()
 " vimdoc-ja
 set helplang=ja,en
 
-call execute('colorscheme '.g:colors_name)
+" 無理やりvimrcにカラースキームを書いたので失敗した時用
+if execute('colorscheme') !=# g:colors_name
+	call execute('colorscheme '.g:colors_name)
+endif
 
 if !g:isDroid
 	" win固有

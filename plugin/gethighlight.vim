@@ -32,4 +32,4 @@ function! GetHl(name, ...) abort
 	return hlDict
 endfunction
 
-command -nargs=1 -bang -complete=highlight HlGet call GetHl(<q-args>, '<bang>')
+command -nargs=1 -bang -complete=highlight GetHl call GetHl(<q-args>, '<bang>')

@@ -5,6 +5,8 @@ set encoding=utf-8
 set fileencoding=utf-8
 set fileencodings=ucs-bom,utf-8,utf-16,cp932,iso-2022-jp,euc-jisx0213,euc-jp
 
+scriptencoding utf-8
+
 " シェル設定
 if has('win32')
 	set shell=pwsh
@@ -15,7 +17,7 @@ endif
 
 let $VIMFILES = split(&runtimepath, ',')[0]
 
-let g:isDroid = $VIMFILES =~? 'droidvim' ? v:true : v:false
+let g:isDroid = $VIMFILES =~? 'droidvim'
 
 if !g:isDroid
 	if has('win32')
@@ -33,30 +35,23 @@ elseif has('unix')
 	set fileformats=unix,dos,mac
 endif
 
-scriptencoding utf-8
-
 " 検索周り
 set ignorecase smartcase
 set hlsearch
 
-" diff関連
-if has('win32')
-	function! MyDiff()
-		let diffExec = $VIM.'\vim81\diff.exe'
-		let opt = ''
-		if &diffopt =~# 'icase'
-			let opt = opt . ' -i'
-		endif
-		if &diffopt =~# 'iwhite'
-			let opt = opt . ' -b'
-		endif
-		call writefile(systemlist(printf('%s -a --binary %s %s %s', diffExec, opt, v:fname_in, v:fname_new)), v:fname_out)
-	endfunction
+set diffopt=filler
 
-	set diffexpr=MyDiff()
+if !g:isDroid
+	set diffopt+=vertical
 endif
 
-set diffopt=filler,vertical
+if has('win32')
+	if has('patch-8.1.360')
+		set diffopt+=internal
+	else
+		set diffexpr=mydiff#main()
+	endif
+endif
 
 " 編集関係
 set autoindent
@@ -117,14 +112,10 @@ set undofile
 set viewdir=$VIMFILES/view
 
 " viminfo
-if has('patch-8.0.716')
-	if !g:isDroid
-		set viminfofile=$VIMFILES/viminfo
-	else
-		set viminfofile=$HOME/.viminfo
-	endif
-else
+if !g:isDroid
 	set viminfo+=n$VIMFILES/viminfo
+else
+	set viminfo+=n$HOME/.viminfo
 endif
 
 " リマップ分割によりマップリーダーのトラブル頻発中
@@ -147,15 +138,13 @@ set matchpairs+=（:）,〔:〕,［:］,｛:｝,〈:〉,《:》,「:」,『:』,
 
 " 脱初心者を目指すVimmerにオススメしたいVimプラグインや.vimrcの設定
 " https://qiita.com/jnchito/items/5141b3b01bced9f7f48f#最後のカーソル位置を復元する
-if has('autocmd')
-	augroup lastCursor
-		autocmd!
-		autocmd BufReadPost *
-		\ if line("'\"") > 0 && line ("'\"") <= line("$") |
-		\	 exe "normal! g'\"" |
-		\ endif
-	augroup END
-endif
+augroup lastCursor
+	autocmd!
+	autocmd BufReadPost *
+	\ if line("'\"") > 0 && line ("'\"") <= line("$") |
+	\	 exe "normal! g'\"" |
+	\ endif
+augroup END
 
 " 起動時だけ読むやつ
 function! s:loadConfigOnce() abort

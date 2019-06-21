@@ -9,22 +9,12 @@ function! Eatchar(pat)
 	return (c =~ a:pat) ? '' : c
 endfunction
 
-" インサートモードでの短縮入力
-
-inoremap <expr> <C-]>charm '/.*^$]~\'
-inoremap <expr> <C-]>regurl 'https\?:\/\/[0-9A-Za-z_\/:%#\$&?()\~\.=+-]\+'
+" たまーに使うやつ
+cabbrev charm= '/.*^$]~\'
+cabbrev regurl= 'https\?:\/\/[0-9A-Za-z_\/:%#\$&?()\~\.=+-]\+'
 
 " コマンドモードでの短縮入力
 cabbrev H vert bo h
-cabbrev readhelp help \| on<left><left><left><left><left>
-
-" 手抜き用
-cabbrev cd= %:p:h
-cabbrev put= new +setlocal\ bt=nofile\|put=
-cabbrev putexec= new +setlocal\ bt=nofile\|put=execute('')<left><left>
-
-" アドレス用
-" vimの設定群
 
 " 設定群への移動専用
 nnoremap <Leader>v :<C-u>e v

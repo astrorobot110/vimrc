@@ -31,15 +31,9 @@ noremap! <MiddleMouse> <Nop>
 noremap <ESC><ESC> :<C-u>noh<CR>
 
 " :term のバインドひどくね？
-if has('patch-8.0.1108')
+if has(':tnoremap')
 	tnoremap <ESC> <C-w>n
 endif
-
-" バッファ辿る用
-noremap <Leader>HH :br<CR>
-noremap <Leader>hh :bp<CR>
-noremap <Leader>ll :bn<CR>
-noremap <Leader>LL :bl<CR>
 
 " args辿る用
 noremap <Leader>PP :first<CR>
@@ -51,7 +45,7 @@ noremap <Leader>NN :last<CR>
 nnoremap g= g+
 
 " markdownをよく使うようになったので
-noremap <Leader>md :<C-u>set ft=markdown<CR>
+noremap <Leader>md :<C-u>setlocal ft=markdown<CR>
 
 " 移動関係
 noremap <Leader>ee :<C-u>e %:h<CR>
