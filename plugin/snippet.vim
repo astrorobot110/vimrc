@@ -16,6 +16,10 @@ cabbrev regurl= 'https\?:\/\/[0-9A-Za-z_\/:%#\$&?()\~\.=+-]\+'
 " コマンドモードでの短縮入力
 cabbrev H vert bo h
 
+cabbrev gitadd !git add .
+cabbrev gitcommit !git commit -m ""<left>
+cabbrev gitpush !git push origin master
+
 " 設定群への移動専用
 nnoremap <Leader>v :<C-u>e v
 nnoremap <Leader>V :<C-u>e! v
