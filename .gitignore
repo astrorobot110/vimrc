@@ -21,6 +21,7 @@
 
 ### pack
 !/pack/myplug/opt/*/plugin/*
+!/pack/colorscheme/start/
 
 ### ftplugin
 !/ftplugin

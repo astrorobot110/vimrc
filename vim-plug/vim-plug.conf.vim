@@ -5,7 +5,6 @@ call plug#begin($VIMFILES.'/vim-plug')
 	Plug 'vim-jp/vimdoc-ja'
 	Plug 'deton/jasegment.vim'
 	Plug 'deton/jasentence.vim'
-	Plug 'arzg/vim-wizard'
 
 	if !g:isDroid
 		if has('python3')
@@ -31,9 +30,6 @@ if !g:isDroid
 		" ale
 		let g:ale_sign_column_always = 1
 	endif
-
-" カラースキームはどうしてもここになる模様
-colorscheme apprentice8
 
 if exists('*colorscheme#{g:colors_name}')
 	call colorscheme#{g:colors_name}()

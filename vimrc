@@ -85,6 +85,10 @@ set display+=lastline
 " PowerShell上の問題
 set t_Co=256
 
+if isdirectory($VIMFILES.'/pack/colorschemes/start')
+	colorscheme janah
+endif
+
 " ステータスライン関係
 " デフォルト -> set statusline=%f\ %h%w%m%r%=%-14.(%l,%c%V%)\ %P
 set statusline=%4(%n%):\ %<%f\ [%{&fenc.'/'.&ff}]%h%w%m%r%=\ %l,%-7.(%c%V%)\ [%4(%P%)]\ 
@@ -120,6 +124,21 @@ else
 	set viminfo+=n$VIMFILES/viminfo
 endif
 
+" リマップ分割によりマップリーダーのトラブル頻発中
+let g:mapleader = "\<space>"
+
+" IM関係
+set iminsert=0
+set imsearch=-1
+
+if has('multi_byte_ime')
+	augroup autoIM
+		autocmd!
+		autocmd InsertLeave * set iminsert=0
+		autocmd CmdlineLeave * set iminsert=0
+	augroup END
+endif
+
 " 日本語の文章構造に対応するやつ
 set matchpairs+=（:）,〔:〕,［:］,｛:｝,〈:〉,《:》,「:」,『:』,【:】,＜:＞
 
@@ -136,25 +155,26 @@ if has('autocmd')
 endif
 
 " 起動時だけ読むやつ
-if !exists('g:isFirstLoad') || g:isFirstLoad
+function! s:loadConfigOnce() abort
 " netrwPlugin.vim用
 	let g:netrw_liststyle = 1
 	let g:netrw_mousemaps = 0
 
 " 認証情報
-	if filereadable($VIMFILES.'/.private.vim')
+	try
 		source $VIMFILES/.private.vim
-	endif
+	catch /E484/
+	endtry
 
 " vim-plug
 	source $VIMFILES/vim-plug/vim-plug.conf.vim
-	let g:isVimplugLoaded = 1
-
-" リマップ分割によりマップリーダーのトラブル頻発中
-	let g:mapleader = "\<space>"
 
 " droidVim専用
-	let g:imctrl_normal = 53
+	if g:isDroid
+		let g:imctrl_normal = 53
+	endif
+endfunction
 
-	let g:isFirstLoad = 0
+if !v:vim_did_enter
+	call s:loadConfigOnce()
 endif

@@ -12,6 +12,8 @@ inoremap <C-j> <CR><C-g>u
 
 nnoremap <Leader>, i,<Esc>
 nnoremap <Leader>. i.<Esc>
+nnoremap <Leader>? i?<Esc>
+nnoremap <Leader>! i!<Esc>
 nnoremap <Leader><Space> i <Esc>
 nnoremap <Leader><CR> i<CR><Esc>
 

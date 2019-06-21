@@ -35,12 +35,6 @@ cabbrev vV= $VIMFILES/vimrc
 cabbrev vs= $VIMFILES/plugin
 cabbrev vS= $VIMFILES/pack/myplug/opt
 cabbrev vp= $VIMFILES/vim-plug
-cabbrev vP= $VIMFILES/vim-plug/vim-plug.conf.vim
-
-" samba
-
-cabbrev lorenzo= scp://sasa@lorenzo//home/sasa
-cabbrev cecilia= scp://root@cecilia//storage
 
 " 汎用アドレス
 let s:pathDict = {
@@ -58,3 +52,4 @@ for c in keys(s:pathDict)
 		call execute(printf('cabbrev %s= %s', c, s:pathDict[c]))
 	endif
 endfor
+cabbrev vP= $VIMFILES/vim-plug/vim-plug.conf.vim

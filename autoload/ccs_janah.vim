@@ -1,7 +1,7 @@
 scriptencoding utf-8
 
 " janah の個別調整
-function colorscheme#janah() abort
+function! ccs_janah#main() abort
 	" ステータスライン調整
 	highlight StatusLine term=bold,reverse cterm=bold,reverse gui=bold,reverse ctermfg=216 ctermbg=16 guifg=#ffaf87 guibg=#3a3a3a
 
@@ -14,7 +14,3 @@ function colorscheme#janah() abort
 		highlight CursorIM guifg=bg guibg=#87dfaf
 	endif
 endfunction
-
-if exists('*colorscheme#{g:colors_name}')
-	call colorscheme#{g:colors_name}()
-endif
