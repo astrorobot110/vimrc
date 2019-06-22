@@ -1,10 +1,6 @@
 scriptencoding utf-8
 
-if !exists(':Packer')
-	source $VIMFILES/plugin/packloader.vim
-endif
-
-Packer
+call packer#main()
 
 if exists(':OpenReading') == 2
 	nnoremap Zr :<C-u>OpenReading

@@ -1,6 +1,6 @@
 scriptencoding utf-8
 
-function! s:packer() abort
+function! packer#main() abort
 	if exists('g:drWorkPath')
 		packadd dailyreading
 	endif
@@ -17,5 +17,3 @@ function! s:packer() abort
 		packadd toBrowser
 	endif
 endfunction
-
-command! Packer call s:packer()
