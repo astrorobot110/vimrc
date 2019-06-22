@@ -23,10 +23,6 @@ nnoremap ZF :<C-u>bel help function-list<CR>
 
 " ここからpacker経由ロードプラグインのマップ
 
-if !exists('*packer#main')
-	call packer#main()
-endif
-
 if exists(':OpenReading') == 2
 	nnoremap Zr :<C-u>OpenReading
 	nnoremap ZR :<C-u>OpenReading!
