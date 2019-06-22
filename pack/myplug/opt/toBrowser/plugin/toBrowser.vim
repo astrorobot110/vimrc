@@ -9,4 +9,4 @@ function! s:toBrowser(searchWord) abort
 	return system(join([isPowershell, shellescape(s:browserExe), address], ' '))
 endfunction
 
-command! -nargs=? Browse call s:toBrowser(<f-args>)
+command! -nargs=? Browse call s:toBrowser(<q-args>)
