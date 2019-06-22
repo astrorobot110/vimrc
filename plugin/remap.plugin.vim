@@ -2,8 +2,6 @@ scriptencoding utf-8
 
 " ローカルプラグイン
 
-" :Packer 関連は $VIMFILES/plugin/remap.pack.vim に
-
 " Bangin
 nnoremap <expr> <Leader>: Bbang()
 nnoremap <expr> <Leader>~ Bslam()
