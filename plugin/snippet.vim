@@ -19,7 +19,7 @@ cabbrev H vert bo h
 cabbrev gitadd lcd $VIMFILES \| !git add .
 cabbrev gitcommit !git commit -m ""<left>
 cabbrev gitpush !git push origin master
-cabbrev gitpull !git pull
+cabbrev gitpull lcd $VIMFILES \| !git pull
 
 " 設定群への移動専用
 nnoremap <Leader>v :<C-u>e v
