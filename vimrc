@@ -159,6 +159,9 @@ function! s:loadConfigOnce() abort
 	catch /E484/
 	endtry
 
+" pack以下のプラグイン
+	call packer#main()
+
 " vim-plug
 	source $VIMFILES/vim-plug/vim-plug.conf.vim
 

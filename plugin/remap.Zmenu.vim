@@ -7,7 +7,6 @@ nmap Z <Nop>
 nnoremap <Leader>ZZ ZZ
 nnoremap <Leader>ZQ ZQ
 
-
 " Zから始まるメニュー諸々
 " 使いそうで使わないちょっと使うプラグインコマンドなどに
 
