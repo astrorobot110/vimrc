@@ -76,6 +76,7 @@ set equalalways
 set scrolloff=8
 set ambiwidth=double
 set display+=lastline
+set background=dark
 
 " PowerShell上の問題
 set t_Co=256
