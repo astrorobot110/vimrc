@@ -17,9 +17,9 @@ cabbrev regurl= 'https\?:\/\/[0-9A-Za-z_\/:%#\$&?()\~\.=+-]\+'
 cabbrev H vert bo h
 
 cabbrev gitadd lcd $VIMFILES \| !git add .
-cabbrev gitcommit lcd $VIMFILES \| !git commit -m ""<left>
-cabbrev gitpush lcd $VIMFILES \| !git push origin master
-cabbrev gitpull lcd $VIMFILES \| !git pull
+cabbrev gitcommit !git commit -m ""<left>
+cabbrev gitpush !git push origin master
+cabbrev gitpull !git pull
 
 " 設定群への移動専用
 nnoremap <Leader>v :<C-u>e v
