@@ -5,8 +5,7 @@ call plug#begin($VIMFILES.'/vim-plug')
 	Plug 'vim-jp/vimdoc-ja'
 	Plug 'deton/jasegment.vim'
 	Plug 'deton/jasentence.vim'
-	Plug 'flazz/vim-colorschemes'
-	Plug 'arzg/vim-wizard'
+	Plug 'mhinz/vim-janah'
 
 	if !g:isDroid
 		if has('python3')

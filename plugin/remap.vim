@@ -41,8 +41,12 @@ noremap <Leader>pp :prev<CR>
 noremap <Leader>nn :next<CR>
 noremap <Leader>NN :last<CR>
 
-"アンドゥ便利だと言ってもどうしてもshiftが押せない
+" アンドゥ便利だと言ってもどうしてもshiftが押せない
 nnoremap g= g+
+
+" キーマップgxがうるさいのでなんとかしたい (メモ)
+" テスト用url http://google.com
+" nmap <silent> gx <Plug>NetrwBrowseX
 
 " markdownをよく使うようになったので
 noremap <Leader>md :<C-u>setlocal ft=markdown<CR>
