@@ -3,7 +3,7 @@ scriptencoding utf-8
 " janah の個別調整
 function! ccs_janah#main() abort
 	" githubにそうしろって…
-	highlight Normal ctermbg=235
+	highlight Normal ctermbg=232
 
 	" ステータスライン調整
 	highlight StatusLine term=bold,reverse cterm=bold,reverse gui=bold,reverse ctermfg=216 ctermbg=16 guifg=#ffaf87 guibg=#3a3a3a
