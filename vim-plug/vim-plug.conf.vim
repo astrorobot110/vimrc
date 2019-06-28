@@ -6,8 +6,6 @@ call plug#begin($VIMFILES.'/vim-plug')
 	Plug 'deton/jasegment.vim'
 	Plug 'deton/jasentence.vim'
 	Plug 'mhinz/vim-janah'
-	Plug 'mattn/webapi-vim'
-		\ | Plug 'mattn/vimplenote-vim'
 
 	if has('win32')
 		Plug 'w0rp/ale'
