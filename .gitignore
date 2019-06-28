@@ -9,12 +9,14 @@
 !.gitignore
 
 ### plugin
-!/plugin
+!/plugin/
 /plugin/*
 !/plugin/*.vim
+!/plugin/command/
+!/plugin/command/*.vim
 
 ### autoload
-!/autoload
+!/autoload/
 /autoload/*
 !/autoload/*.vim
 /autoload/plug.vim
@@ -24,12 +26,12 @@
 !/pack/colorscheme/start/
 
 ### ftplugin
-!/ftplugin
+!/ftplugin/
 /ftplugin/*
 !/ftplugin/*.vim
 
 ### vim-plug
-!/vim-plug
+!/vim-plug/
 /vim-plug/*
 !/vim-plug/*.vim
 /vim-plug/*.vim/
