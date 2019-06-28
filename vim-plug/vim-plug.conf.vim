@@ -6,12 +6,8 @@ call plug#begin($VIMFILES.'/vim-plug')
 	Plug 'deton/jasegment.vim'
 	Plug 'deton/jasentence.vim'
 	Plug 'mhinz/vim-janah'
-
-	if !g:isDroid
-		if has('python3')
-			Plug 'mrtazz/simplenote.vim'
-		endif
-	endif
+	Plug 'mattn/webapi-vim'
+		\ | Plug 'mattn/vimplenote-vim'
 
 	if has('win32')
 		Plug 'w0rp/ale'

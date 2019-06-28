@@ -57,7 +57,6 @@ endif
 set autoindent
 set backspace=indent,eol,start
 set wildmenu
-set clipboard^=unnamed
 set formatoptions+=mMj
 
 " 画面表示

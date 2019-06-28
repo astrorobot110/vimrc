@@ -31,7 +31,7 @@ noremap! <MiddleMouse> <Nop>
 noremap <ESC><ESC> :<C-u>noh<CR>
 
 " :term のバインドひどくね？
-if has(':tnoremap')
+if exists(':tnoremap') == 2
 	tnoremap <ESC> <C-w>n
 endif
 
