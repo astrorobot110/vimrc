@@ -1,6 +1,6 @@
 scriptencoding utf-8
 
-function! s:vimtutor(...) abort
+function! vimtutor#main(...) abort
 	let $TUTORCOPY = $VIMFILES.'/.tutor'
 	if a:0 > 0
 		let $xx = a:1
@@ -10,5 +10,3 @@ function! s:vimtutor(...) abort
 	new $TUTORCOPY
 	on
 endfunction
-
-command! -nargs=? Tutorial call s:vimtutor(<f-args>)

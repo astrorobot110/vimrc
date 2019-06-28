@@ -6,7 +6,7 @@ if &shell =~? '\v(powershell|pwsh)'
 	let s:browser = '&'.s:browser
 endif
 
-function! s:getUrl(...) abort
+function! bibleUrl#getUrl(...) abort
 	let index = a:0 > 0 ? a:1 : input('index: ')
 	let bibleVer = a:0 > 1 ? a:2 : ''
 
@@ -21,17 +21,17 @@ function! s:getUrl(...) abort
 	endwhile
 
 	if isVerse
-		return s:bible(index, bibleVer)
+		return bibleUrl#bible(index, bibleVer)
 	else
-		return s:higoto(index)
+		return bibleUrl#higoto(index)
 	endif
 endfunction
 
-function! s:url(isBang, ...) abort
+function! bibleUrl#url(isBang, ...) abort
 	if a:0 != 0
 		let index = a:1
 		let bibleVer = a:0 > 1 ? a:2 : ''
-		let @r = s:getUrl(index, bibleVer)
+		let @r = bibleUrl#getUrl(index, bibleVer)
 
 		if a:isBang ==# '' && s:browser !=# ''
 			echo join([s:browser, @r])
@@ -44,13 +44,13 @@ function! s:url(isBang, ...) abort
 	endif
 endfunction
 
-function! s:bible(verse, bibleVer) abort
+function! bibleUrl#bible(verse, bibleVer) abort
 	let verse = join([a:verse[0:2]] + split(substitute(a:verse[3:-1], '^\.', '', ''), ':'), '.')
 	let bibleVer = a:bibleVer !=# '' ? a:bibleVer : 1819
 	return printf('https://bible.com/ja/bible/%d/%S', bibleVer, toupper(verse))
 endfunction
 
-function! s:higoto(rawDate) abort
+function! bibleUrl#higoto(rawDate) abort
 	let year = strftime('%Y')
 	let date = split(a:rawDate, '-')
 
@@ -67,6 +67,3 @@ function! s:higoto(rawDate) abort
 
 	return 'https://higo.to/spip.php?date='.printf('%04d-%02d-%02d', date[0], date[1], date[2])
 endfunction
-
-command! -nargs=* -bang Rurl call s:url('<bang>', <f-args>)
-inoremap <expr> <Plug>(dr_getUrl) s:getUrl()

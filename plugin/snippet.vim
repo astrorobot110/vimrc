@@ -16,10 +16,10 @@ cabbrev regurl= 'https\?:\/\/[0-9A-Za-z_\/:%#\$&?()\~\.=+-]\+'
 " コマンドモードでの短縮入力
 cabbrev H vert bo h
 
-cabbrev gitadd lcd $VIMFILES \| !git add .
+cabbrev gitadd !git add .
 cabbrev gitcommit !git commit -m ""<left>
 cabbrev gitpush !git push origin master
-cabbrev gitpull lcd $VIMFILES \| !git pull
+cabbrev gitpull !git pull
 
 " 設定群への移動専用
 nnoremap <Leader>v :<C-u>e v
@@ -31,3 +31,5 @@ cabbrev vs= $VIMFILES/plugin
 cabbrev vS= $VIMFILES/pack/myplug/opt
 cabbrev vp= $VIMFILES/vim-plug
 cabbrev vP= $VIMFILES/vim-plug/vim-plug.conf.vim
+cabbrev va= $VIMFILES/autoload
+cabbrev vA= $VIMFILES/plugin/command

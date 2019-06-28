@@ -3,10 +3,10 @@ scriptencoding utf-8
 " ローカルプラグイン
 
 " Bangin
-nnoremap <expr> <Leader>: Bbang()
-nnoremap <expr> <Leader>~ Bslam()
-nnoremap <expr> <Leader>' Bpang()
-nnoremap <expr> <Leader>! Bflip()
+nnoremap <expr> <Leader>: bangin#bang()
+nnoremap <expr> <Leader>~ Bangin#slam()
+nnoremap <expr> <Leader>' Bangin#pang()
+nnoremap <expr> <Leader>! Bangin#flip()
 
 " DeStain
 nmap <Leader><S-Space> <Plug>(deStain)

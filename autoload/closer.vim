@@ -1,6 +1,6 @@
 scriptencoding utf-8
 
-function! Closer() abort
+function! closer#main() abort
     let bracketList = {}
     let bracketList['open'] = filter(split(&matchpairs, '[:,]'), 'v:key % 2 == 0')
     let bracketList['close'] = filter(split(&matchpairs, '[:,]'), 'v:key % 2 == 1')
@@ -34,15 +34,11 @@ function! Closer() abort
     return isFound ? bracketList.close[match(bracketList.open, foundBracket)] : ''
 endfunction
 
-function! s:closeFromNormal(isBang) abort
-    let @c = Closer()
+function! closer#fromNormal(isBang) abort
+    let @c = closer#main()
     if @c !=# '' && a:isBang ==# '!'
         execute 'normal "cPl'
     else
         echo @c !=# '' ? 'Bracket : '.@c : 'No bracket to close.'
     endif
 endfunction
-
-command! -bang Closer call s:closeFromNormal('<bang>')
-
-inoremap <expr> <Plug>(closer_main) Closer()

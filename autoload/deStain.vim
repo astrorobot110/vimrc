@@ -13,7 +13,7 @@ let g:deStainMarks = [
 			\   '　' ]
 			\]
 
-function! s:deStain() abort
+function! deStain#main() abort
 	let char = matchstr(getline('.'), '.', col('.')-1)
 	let isFullMark = char2nr(char) < 128 ? 0 : 1
 	let m = match(g:deStainMarks[isFullMark], escape(char, '\.*^$[~/'))
@@ -22,6 +22,3 @@ function! s:deStain() abort
 	endif
 endfunction
 
-command! DeStain call s:deStain()
-
-nnoremap <Plug>(deStain) :DeStain<CR>
