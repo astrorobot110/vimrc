@@ -36,6 +36,7 @@ cabbrev vP= $VIMFILES/vim-plug/vim-plug.conf.vim
 " その他よく使いたい設定群
 
 cabbrev markdown= setlocal filetype=markdown
+cabbrev <expr> pwd= expand('%:p:h')
 
 " エクスプローラーを開く用
 if has('win32')
