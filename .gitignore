@@ -2,11 +2,15 @@
 
 ## 基本全部無視
 *
+!*.vim
 
 ## 除外指定
 !vimrc
 !gvimrc
 !.gitignore
+
+## .private.vimはだめよ
+.private.vim
 
 ### plugin
 !/plugin/
@@ -20,8 +24,9 @@
 /autoload/plug.vim
 
 ### pack
-!/pack/myplug/opt/
-!/pack/myplug/opt/**/*.vim
+!/pack
+!/pack/myplug
+!/pack/myplug/**
 
 ### ftplugin
 !/ftplugin/

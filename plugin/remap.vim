@@ -32,7 +32,7 @@ noremap <ESC><ESC> :<C-u>noh<CR>
 
 " :term のバインドひどくね？
 if exists(':tnoremap') == 2
-	tnoremap <ESC> <C-w>n
+	tnoremap <ESC> <C-w>N
 endif
 
 " args辿る用
