@@ -32,3 +32,12 @@ cabbrev va= $VIMFILES/autoload
 cabbrev vA= $VIMFILES/plugin/command.vim
 cabbrev vp= $VIMFILES/vim-plug
 cabbrev vP= $VIMFILES/vim-plug/vim-plug.conf.vim
+
+" その他よく使いたい設定群
+
+cabbrev markdown= setlocal filetype=markdown
+
+" エクスプローラーを開く用
+if has('win32')
+	cabbrev explorer= silent !explorer
+endif
