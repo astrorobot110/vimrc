@@ -23,7 +23,6 @@ cabbrev gitpull !git pull
 
 " 設定群への移動専用
 nnoremap <Leader>v :<C-u>e v
-nnoremap <Leader>V :<C-u>e! v
 
 cabbrev vv= $VIMFILES
 cabbrev vV= $VIMFILES/vimrc

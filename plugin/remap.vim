@@ -31,7 +31,7 @@ noremap! <MiddleMouse> <Nop>
 noremap <ESC><ESC> :<C-u>noh<CR>
 
 " :term のバインドひどくね？
-if exists(':tnoremap') == 2
+if exists(':tmap') == 2
 	tnoremap <ESC> <C-w>N
 endif
 
@@ -53,7 +53,7 @@ noremap <Leader>md :<C-u>setlocal ft=markdown<CR>
 
 " 移動関係
 noremap <Leader>ee :<C-u>e %:h<CR>
-noremap <Leader>EE :<C-u>e! %:h<CR>
+noremap <Leader>e. :<C-u>e .<CR>
 
 " エクスプローラーを開く用
 if has('win32')
