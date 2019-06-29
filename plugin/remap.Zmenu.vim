@@ -15,8 +15,8 @@ nnoremap Zs :<C-u>source %<CR>
 nnoremap Zc :Chords<CR>
 vnoremap Zc :Chords<CR>
 nnoremap ZC :<C-u>3,$Chords<CR>
-nnoremap Zd :lcd %:p:h<CR>
-nnoremap ZD :cd %:p:h<CR>
+nnoremap Zd :lcd %:h<CR>
+nnoremap ZD :cd %:h<CR>
 nnoremap Zf :<C-u>vert bo help function-list<CR>
 nnoremap ZF :<C-u>bel help function-list<CR>
 
@@ -31,8 +31,4 @@ if exists(':Browse') == 2
 	nnoremap Zx "byiW:<C-u>silent Browse <C-r>b<CR>
 	nnoremap ZX :<C-u>silent Browse<CR>
 	vnoremap Zx "by:silent Browse <C-r>b<CR>
-endif
-
-if exists(':QiitaFiles') == 2
-	nnoremap Zq :<C-u>QiitaFiles<CR>
 endif
