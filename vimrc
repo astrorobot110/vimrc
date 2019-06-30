@@ -36,8 +36,7 @@ elseif has('unix')
 endif
 
 " 起動時だけ読むやつ
-function! s:loadConfigOnce() abort
-
+if !v:vim_did_enter
 " 認証情報
 	try
 		source $VIMFILES/.private.vim
@@ -49,11 +48,6 @@ function! s:loadConfigOnce() abort
 
 " vim-plug
 	source $VIMFILES/vim-plug/vim-plug.conf.vim
-
-endfunction
-
-if !v:vim_did_enter
-	call s:loadConfigOnce()
 endif
 
 " 検索周り
