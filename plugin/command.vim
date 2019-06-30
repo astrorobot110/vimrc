@@ -25,7 +25,7 @@ command! DeStain call deStain#main()
 nnoremap <Plug>(deStain) :DeStain<CR>
 
 " dumbQuit
-if has('clientserver') && v:servername =~? 'GVIM\d*$' && has('patch-8.0.1595')
+if has('patch-8.0.1595') && ( !has('clientserver') || v:servername =~? 'GVIM\d*$' )
 	augroup dumbQuit
 		autocmd!
 		au ExitPre * call dumbQuit#main()

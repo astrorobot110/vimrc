@@ -17,7 +17,7 @@ cabbrev regurl= 'https\?:\/\/[0-9A-Za-z_\/:%#\$&?()\~\.=+-]\+'
 cabbrev H vert bo h
 
 cabbrev gitadd !git add .
-cabbrev gitcommit !git commit -m ""<left>
+cabbrev gitcommit !git commit -m "=strftime('%y%m%d', localtime())"<left>
 cabbrev gitpush !git push origin master
 cabbrev gitpull !git pull
 
