@@ -11,13 +11,6 @@ call plug#begin($VIMFILES.'/vim-plug')
 		Plug 'w0rp/ale'
 		Plug 'LunarWatcher/vimsence'
 	endif
-
-	" カラースキーム試したい時用
-	" Plug 'flrnprz/taffy.vim'
-	" Plug 'hzchirs/vim-material'
-	" Plug 'danilo-augusto/vim-afterglow'
-	" Plug 'w0ng/vim-hybrid'
-	" Plug 'vim-scripts/wombat256.vim'
 call plug#end()
 
 " vim-plugロード後の各プラグインの設定
@@ -25,11 +18,6 @@ call plug#end()
 
 " vimdoc-ja
 set helplang=ja,en
-
-" 無理やりvimrcにカラースキームを書いたので失敗した時用
-if execute('colorscheme') !=# g:colors_name
-	call execute('colorscheme '.g:colors_name)
-endif
 
 if !g:isDroid
 	" win固有

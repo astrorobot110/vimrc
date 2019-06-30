@@ -79,13 +79,7 @@ set background=dark
 
 " PowerShell上の問題
 set t_Co=256
-
-" vim-plugとの関係でややこしい書き方になってもうた…
-try
-	colorscheme janah
-catch /E185/
-	let g:colors_name = substitute(v:exception, '\v.*E185.*''(.+)''.*', '\1', '')
-endtry
+colorscheme janah
 
 " ステータスライン関係
 " デフォルト -> set statusline=%f\ %h%w%m%r%=%-14.(%l,%c%V%)\ %P
@@ -151,11 +145,13 @@ if g:isDroid
 	let g:imctrl_normal = 54
 	let g:imactivate_language_switch = 61
 endif
+
+" netrwPlugin.vim用
+let g:netrw_liststyle = 1
+let g:netrw_mousemaps = 0
+
 " 起動時だけ読むやつ
 function! s:loadConfigOnce() abort
-" netrwPlugin.vim用
-	let g:netrw_liststyle = 1
-	let g:netrw_mousemaps = 0
 
 " 認証情報
 	try
