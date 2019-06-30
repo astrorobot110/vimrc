@@ -35,6 +35,27 @@ elseif has('unix')
 	set fileformats=unix,dos,mac
 endif
 
+" 起動時だけ読むやつ
+function! s:loadConfigOnce() abort
+
+" 認証情報
+	try
+		source $VIMFILES/.private.vim
+	catch /E484/
+	endtry
+
+" pack以下のプラグイン
+	call packer#main()
+
+" vim-plug
+	source $VIMFILES/vim-plug/vim-plug.conf.vim
+
+endfunction
+
+if !v:vim_did_enter
+	call s:loadConfigOnce()
+endif
+
 " 検索周り
 set ignorecase smartcase
 set hlsearch
@@ -149,24 +170,3 @@ endif
 " netrwPlugin.vim用
 let g:netrw_liststyle = 1
 let g:netrw_mousemaps = 0
-
-" 起動時だけ読むやつ
-function! s:loadConfigOnce() abort
-
-" 認証情報
-	try
-		source $VIMFILES/.private.vim
-	catch /E484/
-	endtry
-
-" pack以下のプラグイン
-	call packer#main()
-
-" vim-plug
-	source $VIMFILES/vim-plug/vim-plug.conf.vim
-
-endfunction
-
-if !v:vim_did_enter
-	call s:loadConfigOnce()
-endif
