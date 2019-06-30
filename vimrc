@@ -146,6 +146,11 @@ augroup lastCursor
 	\ endif
 augroup END
 
+" droidVim専用
+if g:isDroid
+	let g:imctrl_normal = 54
+	let g:imactivate_language_switch = 61
+endif
 " 起動時だけ読むやつ
 function! s:loadConfigOnce() abort
 " netrwPlugin.vim用
@@ -164,11 +169,6 @@ function! s:loadConfigOnce() abort
 " vim-plug
 	source $VIMFILES/vim-plug/vim-plug.conf.vim
 
-" droidVim専用
-	if g:isDroid
-		let g:imctrl_normal = 53
-		let g:imactivate_language_switch = 61
-	endif
 endfunction
 
 if !v:vim_did_enter
