@@ -67,7 +67,7 @@ function! bibleUrl#put(...) abort
 		let bibleVer = a:0 > 1 ? a:2 : ''
 	endif
 
-	if mode() ==# 'i'
+	if mode() =~# '[ic]'
 		return bibleUrl#getUrl(index, bibleVer)
 	else
 		let @r = bibleUrl#getUrl(index, bibleVer)
