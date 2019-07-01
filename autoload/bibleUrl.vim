@@ -55,7 +55,7 @@ function! bibleUrl#local(index)
 	let currentBuffer = bufwinid(bufname('.'))
 	let verse = [ a:index[0:2] ] + split(a:index[3:], '[\.:]')
 	let line = substitute(verse[2], '\d+\zs.\*','','')
-	execute 'bo pedit' printf('+%s %s/%s/%03d.txt', line, g:bibleText.path, verse[0], verse[1])
+	execute 'bo pedit' printf('+%s %s/%s/%03d.txt', line, g:bibleText.path, tolower(verse[0]), verse[1])
 endfunction
 
 function! bibleUrl#put(...) abort
