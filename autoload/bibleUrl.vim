@@ -51,40 +51,32 @@ function! bibleUrl#higoto(rawDate) abort
 	return 'https://higo.to/spip.php?date='.printf('%04d-%02d-%02d', date[0], date[1], date[2])
 endfunction
 
-function! bibleUrl#local(index)
+function! bibleUrl#local(isBang, index) abort
 	let currentBuffer = bufwinid(bufname('.'))
 	let verse = [ a:index[0:2] ] + split(a:index[3:], '[\.:]')
-	let line = len(verse) > 2 ? substitute(verse[2], '\d+\zs.\*','','') : 0
-	execute 'bo pedit' printf('+%s %s/%s/%03d.txt', line, g:bibleText.path, tolower(verse[0]), verse[1])
+	let arg = join([ g:bibleText['path'], verse[0] ], '/')
+	let arg .= len(verse) > 1 ? printf('/%03d.txt', verse[1]) : ''
+	let line = len(verse) > 2 ? printf('+%d', split(verse[2], '[\.:]')[0]) : '+1'
+	let cmd = len(verse) > 1 && a:isBang ==# '' ? 'bo pedit' : 'bo split'
+	execute cmd line arg
 endfunction
 
-function! bibleUrl#put(...) abort
+function! bibleUrl#main(isBang, ...) abort
 	if a:0 == 0
 		let index = input('verse: ')
-		let bibleVer = input('version: ')
+		let bibleVer = ''
 	else
 		let index = a:1
 		let bibleVer = a:0 > 1 ? a:2 : ''
 	endif
 
-	if mode() =~# '[ic]'
-		return bibleUrl#getUrl(index, bibleVer)
+	let @r = bibleUrl#getUrl(index, bibleVer)
+
+	if a:isBang ==# '!'
+		let cmd = join([s:browser, @r])
+		echo cmd
+		call system(cmd)
 	else
-		let @r = bibleUrl#getUrl(index, bibleVer)
 		execute 'normal "rPw'
 	endif
 endfunction
-
-function! bibleUrl#read(isBang,index,...) abort
-	let bibleVer = a:0 > 0 ? a:1 : ''
-
-	if a:isBang ==# '' && exists('g:bibleText')
-		call bibleUrl#local(a:index)
-	else
-		let cmd = join([s:browser, bibleUrl#getUrl(a:index, bibleVer)])
-		echo cmd
-		call system(cmd)
-	endif
-endfunction
-
-imap <expr> <Plug>(bibleUrl#put) bibleUrl#put()
