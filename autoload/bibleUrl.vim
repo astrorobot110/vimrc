@@ -52,13 +52,17 @@ function! bibleUrl#higoto(rawDate) abort
 endfunction
 
 function! bibleUrl#local(isBang, index) abort
-	let currentBuffer = bufwinid(bufname('.'))
-	let verse = [ a:index[0:2] ] + split(a:index[3:], '[\.:]')
-	let arg = join([ g:bibleText['path'], verse[0] ], '/')
-	let arg .= len(verse) > 1 ? printf('/%03d.txt', verse[1]) : ''
-	let line = len(verse) > 2 ? printf('+%d', split(verse[2], '[\.:]')[0]) : '+1'
-	let cmd = len(verse) > 1 && a:isBang ==# '' ? 'bo pedit' : 'bo split'
-	execute cmd line arg
+	if exists('g:bibleText')
+		let currentBuffer = bufwinid(bufname('.'))
+		let verse = [ a:index[0:2] ] + split(a:index[3:], '[\.:]')
+		let arg = join([ g:bibleText['path'], verse[0] ], '/')
+		let arg .= len(verse) > 1 ? printf('/%03d.txt', verse[1]) : ''
+		let line = len(verse) > 2 ? printf('+%d', split(verse[2], '[\.:]')[0]) : '+1'
+		let cmd = len(verse) > 1 && a:isBang ==# '' ? 'bo pedit' : 'bo split'
+		execute cmd line arg
+	else
+		call bibleUrl#main('!', a:index)
+	endif
 endfunction
 
 function! bibleUrl#main(isBang, ...) abort
