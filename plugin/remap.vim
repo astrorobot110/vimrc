@@ -13,9 +13,7 @@ inoremap <Right> <nop>
 
 " DroidVimはカーソルなし無理！
 if g:isDroid
-	set mouse=a
-	noremap <leftmouse> <nop>
-	noremap! <leftmouse> <nop>
+	set mouse=n mousemodel=extend
 	noremap <up> <up>
 	noremap <down> <down>
 endif
