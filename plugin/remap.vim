@@ -25,7 +25,7 @@ noremap <MiddleMouse> <Nop>
 noremap! <MiddleMouse> <Nop>
 
 " ハイライト消し
-noremap <ESC> :<C-u>noh<CR>
+noremap <ESC><ESC> :<C-u>noh<CR>
 
 " 移動関係 (なしでいいかも)
 " noremap <Leader>ee :<C-u>e %:h<CR>
