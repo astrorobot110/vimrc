@@ -14,8 +14,8 @@ inoremap <Right> <nop>
 " DroidVimはカーソルなし無理！
 if g:isDroid
 	set mouse=n mousemodel=extend
-noremap <Left> <Nop>
-noremap <Down> <Nop>
+	noremap <up> <up>
+	noremap <down> <down>
 endif
 
 " 赤鼻対策
