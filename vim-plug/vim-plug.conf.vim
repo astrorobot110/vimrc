@@ -5,6 +5,7 @@ call plug#begin($VIMFILES.'/vim-plug')
 	Plug 'vim-jp/vimdoc-ja'
 	Plug 'deton/jasegment.vim'
 	Plug 'deton/jasentence.vim'
+	Plug 'tpope/vim-unimpaired'
 	Plug 'mhinz/vim-janah'
 
 	if has('win32')
