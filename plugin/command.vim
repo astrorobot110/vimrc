@@ -5,7 +5,7 @@ if !v:vim_did_enter
 endif
 
 " bibleUrl
-command! -nargs=+ -bang Burl call bibleUrl#put('<bang>', <f-args>)
+command! -nargs=+ -bang Burl call bibleUrl#main('<bang>', <f-args>)
 command! -nargs=+ -bang Bopen call bibleUrl#local('<bang>', <f-args>)
 
 " chordSplitter
