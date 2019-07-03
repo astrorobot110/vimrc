@@ -1,5 +1,7 @@
 " vim:set ff=unix:
 
+let $VIMFILES = split(&runtimepath, ',')[0]
+
 let g:isDroid = $VIMFILES =~? 'droidvim'
 
 if !g:isDroid
@@ -28,8 +30,6 @@ if has('win32')
 	set shellquote=\"
 	set shellxquote=
 endif
-
-let $VIMFILES = split(&runtimepath, ',')[0]
 
 if has('win32')
 	set fileformat=dos
