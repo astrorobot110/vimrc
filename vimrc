@@ -1,6 +1,18 @@
 " vim:set ff=unix:
 
-language ja_JP.UTF8
+let g:isDroid = $VIMFILES =~? 'droidvim'
+
+if !g:isDroid
+	if has('win32')
+		let $VIMDEVICE = tolower($COMPUTERNAME).'_windows'
+	elseif has('unix')
+		let $VIMDEVICE = tolower(systemlist('hostname')[0]).'_unix'
+	endif
+endif
+
+if $VIMDEVICE =~? '_unix$'
+	language ja_JP.utf8
+endif
 
 " Encoding settings
 set encoding=utf-8
@@ -18,16 +30,6 @@ if has('win32')
 endif
 
 let $VIMFILES = split(&runtimepath, ',')[0]
-
-let g:isDroid = $VIMFILES =~? 'droidvim'
-
-if !g:isDroid
-	if has('win32')
-		let $VIMDEVICE = tolower($COMPUTERNAME).'_windows'
-	elseif has('unix')
-		let $VIMDEVICE = tolower(systemlist('hostname')[0]).'_unix'
-	endif
-endif
 
 if has('win32')
 	set fileformat=dos
