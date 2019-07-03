@@ -8,8 +8,10 @@ call plug#begin($VIMFILES.'/vim-plug')
 	Plug 'tpope/vim-unimpaired'
 	Plug 'mhinz/vim-janah'
 
-	Plug 'w0rp/ale', has('win32') ? {} : { 'on': [] }
-	Plug 'LunarWatcher/vimsence', has('win32') ? {} : { 'on': [] }
+	if has('win32')
+		Plug 'w0rp/ale'
+		Plug 'LunarWatcher/vimsence'
+	endif
 call plug#end()
 
 " vim-plugロード後の各プラグインの設定
