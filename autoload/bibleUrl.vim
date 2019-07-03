@@ -30,7 +30,7 @@ endfunction
 function! bibleUrl#bible(verse, bibleVer) abort
 	let verse = join([a:verse[0:2]] + split(substitute(a:verse[3:-1], '^\.', '', ''), ':'), '.')
 	let bibleVer = a:bibleVer !=# '' ? a:bibleVer : 1819
-	return printf('https://bible.com/ja/bible/%d/%S', bibleVer, toupper(verse))
+	return printf('https://www.bible.com/ja/bible/%d/%S', bibleVer, toupper(verse))
 endfunction
 
 function! bibleUrl#higoto(rawDate) abort
