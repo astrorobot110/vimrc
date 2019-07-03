@@ -1,5 +1,3 @@
-" vim:set ff=unix:
-
 let $VIMFILES = split(&runtimepath, ',')[0]
 
 let g:isDroid = $VIMFILES =~? 'droidvim'

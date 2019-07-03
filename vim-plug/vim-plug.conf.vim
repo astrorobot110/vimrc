@@ -8,10 +8,8 @@ call plug#begin($VIMFILES.'/vim-plug')
 	Plug 'tpope/vim-unimpaired'
 	Plug 'mhinz/vim-janah'
 
-	if has('win32')
-		Plug 'w0rp/ale'
-		Plug 'LunarWatcher/vimsence'
-	endif
+	Plug 'w0rp/ale', has('win32') ? {} : { 'on': [] }
+	Plug 'LunarWatcher/vimsence', has('win32') ? {} : { 'on': [] }
 call plug#end()
 
 " vim-plugロード後の各プラグインの設定
@@ -20,16 +18,14 @@ call plug#end()
 " vimdoc-ja
 set helplang=ja,en
 
-if !g:isDroid
-	" win固有
-	if has('win32')
-		" ale
-		let g:ale_sign_column_always = 1
-	endif
+" win固有
+if has('win32')
+	" ale
+	let g:ale_sign_column_always = 1
+endif
 
-	" simplenote.vim
-	" アカウント情報は別記
-	if exists('SimplenoteList')
-		let g:SimplenoteFiletype = 'markdown'
-	endif
+" simplenote.vim
+" アカウント情報は別記
+if exists('SimplenoteList')
+	let g:SimplenoteFiletype = 'markdown'
 endif
