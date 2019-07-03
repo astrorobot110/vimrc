@@ -16,6 +16,7 @@ if g:isDroid
 	set mouse=n mousemodel=extend
 	noremap <up> <up>
 	noremap <down> <down>
+	noremap =<LeftMouse> <LeftMouse><C-]>
 endif
 
 " 赤鼻対策

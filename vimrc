@@ -1,5 +1,7 @@
 " vim:set ff=unix:
 
+language ja_JP.UTF8
+
 " Encoding settings
 set encoding=utf-8
 set fileencoding=utf-8
