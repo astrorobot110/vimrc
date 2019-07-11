@@ -21,6 +21,9 @@ cabbrev gitcommit !git commit -m "<C-r>=strftime('%y%m%d', localtime())<CR>"<lef
 cabbrev gitpush !git push origin master
 cabbrev gitpull !git pull
 
+" sudoめんどい
+cabbrev sudowrite w !sudo tee % > /dev/null 2>&1
+
 " 設定群への移動専用
 nnoremap <Leader>v :<C-u>e v
 
