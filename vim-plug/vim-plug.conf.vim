@@ -25,9 +25,3 @@ if has('win32')
 	" ale
 	let g:ale_sign_column_always = 1
 endif
-
-" simplenote.vim
-" アカウント情報は別記
-if exists('SimplenoteList')
-	let g:SimplenoteFiletype = 'markdown'
-endif
