@@ -21,6 +21,9 @@ set fileencodings=ucs-bom,utf-8,utf-16,cp932,iso-2022-jp,euc-jisx0213,euc-jp
 
 scriptencoding utf-8
 
+" why modeline dead?
+set modeline
+
 " シェル設定
 if has('win32')
 	set shell=pwsh
