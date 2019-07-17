@@ -8,6 +8,10 @@ call plug#begin($VIMFILES.'/vim-plug')
 	Plug 'tpope/vim-unimpaired'
 	Plug 'mhinz/vim-janah'
 
+	if has('python3') || has('python')
+		Plug 'mrtazz/simplenote.vim'
+	endif
+
 	if has('win32')
 		Plug 'w0rp/ale'
 		Plug 'LunarWatcher/vimsence'
@@ -20,8 +24,12 @@ call plug#end()
 " vimdoc-ja
 set helplang=ja,en
 
-" win固有
-if has('win32')
-	" ale
+" ale
+if exists(':ALE') > 0
 	let g:ale_sign_column_always = 1
+endif
+
+if exists(':Simplenote') > 0
+	let g:SimplenoteSingleWindow=1
+	let g:SimplenoteFiletype = 'markdown'
 endif
