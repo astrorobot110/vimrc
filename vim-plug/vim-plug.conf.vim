@@ -8,7 +8,7 @@ call plug#begin($VIMFILES.'/vim-plug')
 	Plug 'tpope/vim-unimpaired'
 	Plug 'mhinz/vim-janah'
 
-	if !g:isDroid && has('python')
+	if !g:isDroid && ( has('python') || has('python3') )
 		Plug 'mrtazz/simplenote.vim'
 	endif
 
