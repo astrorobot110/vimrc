@@ -19,6 +19,7 @@ nnoremap Zd :lcd %:h<CR>
 nnoremap ZD :cd %:h<CR>
 nnoremap Zf :<C-u>vert bo help function-list<CR>
 nnoremap ZF :<C-u>bel help function-list<CR>
+nnoremap Zm :e <C-r>=g:memoPath<CR><CR>
 
 " ここからpacker経由ロードプラグインのマップ
 
