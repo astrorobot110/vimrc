@@ -22,6 +22,7 @@
 /autoload/*
 !/autoload/*.vim
 /autoload/plug.vim
+/autoload/netrw*.vim
 
 ### pack
 !/pack
