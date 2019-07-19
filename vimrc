@@ -54,11 +54,14 @@ if !v:vim_did_enter
 " vim-plug
 	source $VIMFILES/vim-plug/vim-plug.conf.vim
 
-	for r in g:retry
-		execute 'source' r
-	endfor
+" リトライ処理
+	if exists('g:retry')
+		for r in g:retry
+			execute 'source' r
+		endfor
 
-	unlet g:retry
+		unlet g:retry
+	endif
 endif
 
 " 検索周り
