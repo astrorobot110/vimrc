@@ -53,6 +53,12 @@ if !v:vim_did_enter
 
 " vim-plug
 	source $VIMFILES/vim-plug/vim-plug.conf.vim
+
+	for r in g:retry
+		execute 'source' r
+	endfor
+
+	unlet g:retry
 endif
 
 " 検索周り
