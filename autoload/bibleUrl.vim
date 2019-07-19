@@ -1,11 +1,5 @@
 scriptencoding utf-8
 
-let s:browser = exists('g:browser') ? shellescape(g:browser) : ''
-
-if &shell =~? '\v(powershell|pwsh)'
-	let s:browser = '&'.s:browser
-endif
-
 function! bibleUrl#getUrl(...) abort
 	let index = a:0 > 0 ? a:1 : input('index: ')
 	let bibleVer = a:0 > 1 ? a:2 : ''
@@ -73,9 +67,11 @@ function! bibleUrl#main(isBang, ...) abort
 	let @r = bibleUrl#getUrl(index, bibleVer)
 
 	if a:isBang ==# '!'
-		let cmd = join([s:browser, @r])
-		echo cmd
-		call system(cmd)
+		try
+			execute 'OpenBrowser' @r
+		catch /E492/
+			execute 'belowright' '1new' '+setlocal\ buftype=nofile|put\ r'
+		endtry
 	else
 		execute 'normal "rPw'
 	endif

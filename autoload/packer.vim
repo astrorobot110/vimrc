@@ -13,7 +13,7 @@ function! packer#main() abort
 		packadd hymnala
 	endif
 
-	if exists('g:browser')
-		packadd toBrowser
-	endif
+" 	if exists('g:browser')
+" 		packadd toBrowser
+" 	endif
 endfunction

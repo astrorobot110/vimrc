@@ -5,8 +5,10 @@ call plug#begin($VIMFILES.'/vim-plug')
 	Plug 'vim-jp/vimdoc-ja'
 	Plug 'deton/jasegment.vim'
 	Plug 'deton/jasentence.vim'
+	Plug 'tyru/open-browser.vim'
 	Plug 'tpope/vim-unimpaired'
 	Plug 'mhinz/vim-janah'
+	Plug 'previm/previm'
 
 	if !g:isDroid && ( has('python') || has('python3') )
 		Plug 'mrtazz/simplenote.vim'
@@ -27,9 +29,4 @@ set helplang=ja,en
 " ale
 if exists(':ALE') > 0
 	let g:ale_sign_column_always = 1
-endif
-
-if exists(':Simplenote') > 0
-	let g:SimplenoteSingleWindow=1
-	let g:SimplenoteFiletype = 'markdown'
 endif
