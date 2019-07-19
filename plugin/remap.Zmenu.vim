@@ -15,7 +15,11 @@ nnoremap Zd :lcd %:h<CR>
 nnoremap ZD :cd %:h<CR>
 nnoremap Zf :<C-u>vert bo help function-list<CR>
 nnoremap ZF :<C-u>bel help function-list<CR>
-nnoremap Zm :<C-u>execute 'edit' g:memoPath<CR>
+
+" ディレクトリ依存
+if isdirectory(g:memoPath)
+	nnoremap Zm :<C-u>execute 'edit' g:memoPath<CR>
+endif
 
 " packer経由ロードプラグインのマップ
 if exists(':OpenReading') == 2
