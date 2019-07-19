@@ -14,8 +14,6 @@ cabbrev charm= '/.*^$]~\'
 cabbrev regurl= 'https\?:\/\/[0-9A-Za-z_\/:%#\$&?()\~\.=+-]\+'
 
 " コマンドモードでの短縮入力
-cabbrev H vert bo h
-
 cabbrev gitadd !git add .
 cabbrev gitcommit !git commit -m "<C-r>=strftime('%y%m%d', localtime())<CR>"<left>
 cabbrev gitpush !git push origin master
@@ -38,7 +36,7 @@ cabbrev vP= $VIMFILES/vim-plug/vim-plug.conf.vim
 
 " その他よく使いたい設定群
 
-cabbrev markdown= setlocal filetype=markdown
+cabbrev md= setlocal filetype=markdown
 cabbrev <expr> pwd= expand('%:p:h')
 
 " エクスプローラーを開く用

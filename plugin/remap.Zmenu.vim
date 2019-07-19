@@ -17,7 +17,7 @@ nnoremap Zf :<C-u>vert bo help function-list<CR>
 nnoremap ZF :<C-u>bel help function-list<CR>
 
 " ディレクトリ依存
-if isdirectory(g:memoPath)
+if isdirectory(expand(g:memoPath))
 	nnoremap Zm :<C-u>execute 'edit' g:memoPath<CR>
 endif
 
