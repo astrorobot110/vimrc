@@ -15,3 +15,7 @@ nmap <Leader><S-Space> <Plug>(deStain)
 imap <C-b> <Plug>(closer_main)
 nnoremap <silent> <Leader>bb :<C-u>Closer!<CR>
 nnoremap <silent> <Leader>BB :<C-u>Closer<CR>
+
+" vim-plugのプラグイン
+nmap gx <Plug>(openbrowser-smart-search)
+vmap gx <Plug>(openbrowser-smart-search)

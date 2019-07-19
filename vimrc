@@ -167,3 +167,5 @@ endif
 " netrwPlugin.vim用
 let g:netrw_liststyle = 1
 let g:netrw_mousemaps = 0
+" open-browserに任せるので…
+let g:netrw_nogx = 1
