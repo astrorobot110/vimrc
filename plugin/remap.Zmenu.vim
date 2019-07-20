@@ -13,12 +13,13 @@ vnoremap Zc :Chords<CR>
 nnoremap ZC :<C-u>3,$Chords<CR>
 nnoremap Zd :lcd %:h<CR>
 nnoremap ZD :cd %:h<CR>
-nnoremap Zf :<C-u>vert bo help function-list<CR>
-nnoremap ZF :<C-u>bel help function-list<CR>
+nnoremap Zh :<C-u>vert bo help function-list<CR>
+nnoremap ZH :<C-u>bel help function-list<CR>
 
 " ディレクトリ依存
 if isdirectory(expand(g:memoPath))
 	nnoremap Zm :<C-u>execute 'edit' g:memoPath<CR>
+	nnoremap ZM :<C-u>bo vnew +put!\ =glob(g:memoPath.'/**/*.md')<CR>
 endif
 
 " packer経由ロードプラグインのマップ
