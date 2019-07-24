@@ -32,7 +32,8 @@
 ## pack
 
 !/pack
-!/pack/**
+!/pack/myplug
+!/pack/myplug/**
 
 ## ftplugin
 
@@ -52,4 +53,3 @@
 /vim-plug/*
 !/vim-plug/*.vim
 /vim-plug/*.vim/
-!/vim-plug/vim-janah
