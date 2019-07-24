@@ -23,7 +23,7 @@ augroup END
 
 " deStain
 command! DeStain call deStain#main()
-nnoremap <Plug>(deStain) :DeStain<CR>
+nnoremap <Plug>(deStain) :<C-u>DeStain<CR>
 
 " dumbQuit
 if has('patch-8.0.1595') && ( !has('clientserver') || v:servername =~? 'VIM\d*$' )
