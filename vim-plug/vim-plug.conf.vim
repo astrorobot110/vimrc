@@ -10,10 +10,6 @@ call plug#begin($VIMFILES.'/vim-plug')
 	Plug 'mhinz/vim-janah'
 	Plug 'previm/previm'
 
-	if !g:isDroid && ( has('python') || has('python3') )
-		Plug 'mrtazz/simplenote.vim'
-	endif
-
 	if has('win32')
 		Plug 'w0rp/ale'
 		Plug 'LunarWatcher/vimsence'
