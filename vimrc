@@ -52,7 +52,6 @@ if !v:vim_did_enter
 	call packer#main()
 
 " vim-plug
-	packadd vim-plug
 	source $VIMFILES/vim-plug/vim-plug.conf.vim
 
 " リトライ処理
