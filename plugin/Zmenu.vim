@@ -29,6 +29,6 @@ if exists(':OpenReading') == 2
 endif
 
 " plug.vimのプラグイン
-if exists('*openbrowser#open')
+if exists(':OpenBrowser') == 2
 	nnoremap Zx :<C-u>call openbrowser#open(expand('%:p'))<CR>
 endif
