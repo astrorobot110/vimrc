@@ -1,6 +1,6 @@
-[submodule "pack/vim-plug/opt/vim-plug/autoload"]
-	path = pack/vim-plug/opt/vim-plug/autoload
+[submodule "vim-plug"]
+	path = ./pack/vim-plug/opt/vim-plug/autoload
 	url = https://github.com/junegunn/vim-plug
-[submodule ".\\vim-plug\\vim-janah"]
-	path = .\\vim-plug\\vim-janah
+[submodule "vim-janah"]
+	path = ./vim-plug/vim-janah
 	url = https://github.com/mhinz/vim-janah
