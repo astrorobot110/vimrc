@@ -25,12 +25,14 @@ scriptencoding utf-8
 set modeline
 
 " シェル設定
-if has('win32')
-	set shell=pwsh
-	set shellcmdflag=-c
-	set shellquote=\"
-	set shellxquote=
-endif
+" powershell移行は無理でした。
+
+" if has('win32')
+" 	set shell=pwsh
+" 	set shellcmdflag=-c
+" 	set shellquote=\"
+" 	set shellxquote=
+" endif
 
 if has('win32')
 	set fileformat=dos
