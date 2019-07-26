@@ -6,14 +6,14 @@ if !g:isDroid
 	noremap <Down> <Nop>
 	noremap <Up> <Nop>
 	noremap <Right> <nop>
+else
+	set mouse=n mousemodel=extend
+endif
 
 	inoremap <Left> <nop>
 	inoremap <Down> <nop>
 	inoremap <Up> <nop>
 	inoremap <Right> <nop>
-else
-	set mouse=n mousemodel=extend
-endif
 
 " 赤鼻対策
 noremap <MiddleMouse> <Nop>
