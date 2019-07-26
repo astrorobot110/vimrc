@@ -1,22 +1,18 @@
 scriptencoding utf-8
 
-" 甘えるな、hjklを使え
-noremap <Left> <Nop>
-noremap <Down> <Nop>
-noremap <Up> <Nop>
-noremap <Right> <nop>
+" 甘えるな、hjklを使え (
+if !g:isDroid
+	noremap <Left> <Nop>
+	noremap <Down> <Nop>
+	noremap <Up> <Nop>
+	noremap <Right> <nop>
 
-inoremap <Left> <nop>
-inoremap <Down> <nop>
-inoremap <Up> <nop>
-inoremap <Right> <nop>
-
-" DroidVimはカーソルなし無理！
-if g:isDroid
+	inoremap <Left> <nop>
+	inoremap <Down> <nop>
+	inoremap <Up> <nop>
+	inoremap <Right> <nop>
+else
 	set mouse=n mousemodel=extend
-	noremap <up> <up>
-	noremap <down> <down>
-	noremap =<LeftMouse> <LeftMouse><C-]>
 endif
 
 " 赤鼻対策
