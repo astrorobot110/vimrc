@@ -18,4 +18,4 @@ nnoremap <Leader><Space> i <Esc>
 nnoremap <Leader><CR> i<CR><Esc>
 
 " 改行周り
-nnoremap <Leader>nr A  <Esc>
+nnoremap <Leader>nr m`:s/\s*$/  /\|noh<CR>``

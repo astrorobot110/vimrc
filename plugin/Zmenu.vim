@@ -30,3 +30,4 @@ endif
 
 " plug.vimのプラグイン
 nnoremap Zx :<C-u>execute 'OpenBrowser' expand('%')<CR>
+nnoremap ZX :<C-u>execute 'OpenBrowser' eval('@'.input('Register: '))<CR>

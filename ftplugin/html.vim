@@ -10,4 +10,4 @@ inoremap <buffer> <C-]>" &quot;
 inoremap <buffer> <C-]><CR> <br><CR>
 inoremap <buffer> <C-]><C-CR> <br><CR>
 
-nnoremap <buffer> <Leader>br A<br><Esc>
+nnoremap <buffer> <Leader>nr m`:s/\s*$/<br>/\|noh<CR>``<Esc>

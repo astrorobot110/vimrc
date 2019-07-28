@@ -6,6 +6,7 @@ call plug#begin($VIMFILES.'/vim-plug')
 	Plug 'deton/jasegment.vim'
 	Plug 'deton/jasentence.vim'
 	Plug 'tyru/open-browser.vim'
+	Plug 'tpope/vim-fugitive'
 	Plug 'tpope/vim-unimpaired'
 	Plug 'mhinz/vim-janah'
 	Plug 'previm/previm'
@@ -30,3 +31,6 @@ set helplang=ja,en
 if exists(':ALE') > 0
 	let g:ale_sign_column_always = 1
 endif
+
+" previm
+let g:previm_enable_realtime = 1
