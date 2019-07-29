@@ -16,9 +16,7 @@ call plug#begin($VIMFILES.'/vim-plug')
 		Plug 'LunarWatcher/vimsence'
 	endif
 
-	if $VIMDEVICE =~? 'unix$'
-		Plug 'yuratomo/w3m.vim'
-	endif
+	Plug 'yuratomo/w3m.vim'
 call plug#end()
 
 " vim-plugロード後の各プラグインの設定
@@ -34,3 +32,10 @@ endif
 
 " previm
 let g:previm_enable_realtime = 1
+
+" w3m.vim
+if has('win32')
+	let g:w3m#command = expand('~/bin/vmwm')
+endif
+let g:w3m#homepage = 'https://google.com'
+let g:w3m#search_engine = 'https://www.google.com/search?q='
