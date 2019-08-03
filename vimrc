@@ -171,7 +171,7 @@ augroup END
 
 " droidVim専用
 if g:isDroid
-	let g:imctrl_normal = 54
+	let g:imctrl_normal = 53
 	let g:imactivate_language_switch = 61
 endif
 

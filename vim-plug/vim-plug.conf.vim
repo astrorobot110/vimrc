@@ -16,7 +16,9 @@ call plug#begin($VIMFILES.'/vim-plug')
 		Plug 'LunarWatcher/vimsence'
 	endif
 
-	Plug 'yuratomo/w3m.vim'
+	if $VIMDEVICE =~? '_unix$'
+		Plug 'yuratomo/w3m.vim'
+	endif
 call plug#end()
 
 " vim-plugロード後の各プラグインの設定
