@@ -23,7 +23,7 @@ noremap! <MiddleMouse> <Nop>
 noremap <ESC><ESC> :<C-u>noh<CR>
 
 if exists(':Gboard')
-	if $VIMDEVice =~? '_mobile$'
+	if $VIMDEVICE =~? '_mobile$'
 		Gboard small
 	else
 		Gboard large
