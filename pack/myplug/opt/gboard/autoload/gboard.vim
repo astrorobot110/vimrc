@@ -1,19 +1,19 @@
 scriptencoding utf-8
 
 function gboard#map(IFSize) abort
-	nnoremap <C-^><C-^> <C-^>
-	for l in keys(g:longTap)
+	let longTap = g:longTap
+	let longTap['<C-^>'] = ['<C-^><C-^>', '<C-^><C-^>']
+
+	for l in keys(longTap)
 		execute 'noremap <C-^>'.l g:longTap[l][a:IFSize]
 	endfor
 endfunction
 
 function gboard#unmap() abort
-	try
-		nunmap <C-^><C-^>
-	catch /E31/
-	endtry
+	let longTap = g:longTap
+	let longTap['<C-^>'] = ['<C-^><C-^>', '<C-^><C-^>']
 
-	for l in keys(g:longTap)
+	for l in keys(longTap)
 		try
 			execute 'unmap <C-^>'.l
 		catch /E31/
