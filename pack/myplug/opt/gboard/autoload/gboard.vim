@@ -5,7 +5,9 @@ function gboard#map(IFSize) abort
 	let longTap['<C-^>'] = ['<C-^>', '<C-^>']
 
 	for l in keys(longTap)
-		execute 'noremap <C-^>'.l g:longTap[l][a:IFSize]
+		execute 'noremap <C-^>'.l longTap[l][a:IFSize]
+		execute 'onoremap a<C-^>'.l 'a'.longTap[l][a:IFSize]
+		execute 'onoremap i<C-^>'.l 'i'.longTap[l][a:IFSize]
 	endfor
 endfunction
 
@@ -16,6 +18,8 @@ function gboard#unmap() abort
 	for l in keys(longTap)
 		try
 			execute 'unmap <C-^>'.l
+			execute 'ounmap a<C-^>'.l
+			execute 'ounmap i<C-^>'.l
 		catch /E31/
 			continue
 		endtry
