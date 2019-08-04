@@ -2,11 +2,11 @@ scriptencoding utf-8
 
 function gboard#map(IFSize) abort
 	for l in keys(g:longTap)
-		execute 'noremap <C-^>'.l g:longTap[l][a:IFSize]
-		execute 'onoremap a<C-^>'.l 'a'.g:longTap[l][a:IFSize]
-		execute 'onoremap i<C-^>'.l 'i'.g:longTap[l][a:IFSize]
-		execute 'vnoremap a<C-^>'.l 'a'.g:longTap[l][a:IFSize]
-		execute 'vnoremap i<C-^>'.l 'i'.g:longTap[l][a:IFSize]
+		execute 'map <C-^>'.l g:longTap[l][a:IFSize]
+		execute 'vmap i<C-^>'.l 'i'.g:longTap[l][a:IFSize]
+		execute 'vmap a<C-^>'.l 'a'.g:longTap[l][a:IFSize]
+		execute 'omap i<C-^>'.l 'i'.g:longTap[l][a:IFSize]
+		execute 'omap a<C-^>'.l 'a'.g:longTap[l][a:IFSize]
 	endfor
 endfunction
 
@@ -14,10 +14,10 @@ function gboard#unmap() abort
 	for l in keys(g:longTap)
 		try
 			execute 'unmap <C-^>'.l
-			execute 'ounmap a<C-^>'.l
-			execute 'ounmap i<C-^>'.l
-			execute 'vunmap a<C-^>'.l
 			execute 'vunmap i<C-^>'.l
+			execute 'vunmap a<C-^>'.l
+			execute 'ounmap i<C-^>'.l
+			execute 'ounmap a<C-^>'.l
 		catch /E31/
 			continue
 		endtry
