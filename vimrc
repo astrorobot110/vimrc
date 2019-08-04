@@ -148,13 +148,11 @@ let g:mapleader = "\<space>"
 set iminsert=0
 set imsearch=-1
 
-if has('multi_byte_ime')
-	augroup autoIM
-		autocmd!
-		autocmd InsertLeave * set iminsert=0
-		autocmd CmdlineLeave * set iminsert=0
-	augroup END
-endif
+augroup autoIM
+	autocmd!
+	autocmd InsertLeave * set iminsert=0
+	autocmd CmdlineLeave * set iminsert=0
+augroup END
 
 " 日本語の文章構造に対応するやつ
 set matchpairs+=（:）,〔:〕,［:］,｛:｝,〈:〉,《:》,「:」,『:』,【:】,＜:＞
