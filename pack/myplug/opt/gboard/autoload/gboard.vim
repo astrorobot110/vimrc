@@ -1,7 +1,7 @@
 scriptencoding utf-8
 
 function gboard#map(IFSize) abort
-	for l in keys(extend(copy(g:longTap), {'<C-^>': ['<C-^>', '<C-^>']}))
+	for l in keys(g:longTap)
 		execute 'noremap <C-^>'.l g:longTap[l][a:IFSize]
 		execute 'onoremap a<C-^>'.l 'a'.g:longTap[l][a:IFSize]
 		execute 'onoremap i<C-^>'.l 'i'.g:longTap[l][a:IFSize]
@@ -11,7 +11,7 @@ function gboard#map(IFSize) abort
 endfunction
 
 function gboard#unmap() abort
-	for l in keys(extend(copy(g:longTap), {'<C-^>': ['<C-^>', '<C-^>']}))
+	for l in keys(g:longTap)
 		try
 			execute 'unmap <C-^>'.l
 			execute 'ounmap a<C-^>'.l
