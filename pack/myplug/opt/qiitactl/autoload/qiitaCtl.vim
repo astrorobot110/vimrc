@@ -34,7 +34,7 @@ endfunction
 
 function! qiitaCtl#Create() abort
 	write
-	let args = "'".expand('%:p')."'"
+	let args = '"'.expand('%:p').'"'
 	execute 'lcd' s:qcPath
 	let qcCmd = system(s:qcExe.' create post --tweet '.args)
 	echo qcCmd.'...done.'
@@ -44,7 +44,7 @@ endfunction
 
 function! qiitaCtl#Update() abort
 	write
-	let args = "'".expand('%:p')."'"
+	let args = '"'.expand('%:p').'"'
 	execute 'lcd' s:qcPath
 	let qcCmd = system(s:qcExe.' update post '.args)
 	echo qcCmd.'...done.'
