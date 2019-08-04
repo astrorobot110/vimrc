@@ -68,11 +68,11 @@ function! bibleUrl#main(isBang, ...) abort
 
 	if a:isBang ==# '!'
 		try
-			execute 'OpenBrowser' @r
+			execute 'OpenBrowser' @b
 		catch /E492/
-			execute 'belowright' '1new' '+setlocal\ buftype=nofile|put\ r'
+			execute 'belowright' '1new' '+setlocal\ buftype=nofile|put\ b'
 		endtry
 	else
-		execute 'normal "rPw'
+		execute 'normal "bPw'
 	endif
 endfunction

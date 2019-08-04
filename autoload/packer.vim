@@ -13,7 +13,7 @@ function! packer#main() abort
 		packadd hymnala
 	endif
 
-" 	if exists('g:browser')
-" 		packadd toBrowser
-" 	endif
+	if g:isDroid
+		packadd gboard
+	endif
 endfunction

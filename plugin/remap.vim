@@ -22,6 +22,10 @@ noremap! <MiddleMouse> <Nop>
 " ハイライト消し
 noremap <ESC><ESC> :<C-u>noh<CR>
 
-" 移動関係 (なしでいいかも)
-" noremap <Leader>ee :<C-u>e %:h<CR>
-" noremap <Leader>e. :<C-u>e .<CR>
+if exists(':Gboard')
+	if $VIMDEVice =~? '_mobile$'
+		Gboard small
+	else
+		Gboard large
+	endif
+endif
