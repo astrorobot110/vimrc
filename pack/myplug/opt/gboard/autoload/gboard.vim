@@ -3,8 +3,7 @@ scriptencoding utf-8
 function gboard#map(IFSize) abort
 	nnoremap <C-^><C-^> <C-^>
 	for l in keys(g:longTap)
-		echon l
-		execute 'nnoremap <C-^>'.l g:longTap[l][a:IFSize]
+		execute 'noremap <C-^>'.l g:longTap[l][a:IFSize]
 	endfor
 endfunction
 
@@ -16,7 +15,7 @@ function gboard#unmap() abort
 
 	for l in keys(g:longTap)
 		try
-			execute 'nunmap <C-^>'.l
+			execute 'unmap <C-^>'.l
 		catch /E31/
 			continue
 		endtry
@@ -33,7 +32,7 @@ function gboard#main(isBang,...) abort
 			endif
 
 			call gboard#map(IFSize)
-			if !v:vim_did_enter
+			if v:vim_did_enter
 				echo printf('[gboard]: Mapped for %s display.', tolower(a:1))
 			endif
 		else
