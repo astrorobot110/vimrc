@@ -9,6 +9,7 @@ call plug#begin($VIMFILES.'/vim-plug')
 	Plug 'tpope/vim-fugitive'
 	Plug 'tpope/vim-unimpaired'
 	Plug 'mhinz/vim-janah'
+	Plug 'haishanh/night-owl.vim'
 	Plug 'previm/previm'
 
 	if has('win32')

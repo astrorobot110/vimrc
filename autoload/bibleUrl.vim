@@ -64,7 +64,7 @@ function! bibleUrl#main(isBang, ...) abort
 	let index = a:1
 	let bibleVer = a:0 > 1 ? a:2 : ''
 
-	let @r = bibleUrl#getUrl(index, bibleVer)
+	let @b = bibleUrl#getUrl(index, bibleVer)
 
 	if a:isBang ==# '!'
 		try

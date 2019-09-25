@@ -68,6 +68,7 @@ endif
 
 " 検索周り
 set ignorecase smartcase
+set incsearch
 set hlsearch
 
 set diffopt=filler
