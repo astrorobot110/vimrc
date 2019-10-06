@@ -29,5 +29,5 @@ if exists(':OpenReading') == 2
 endif
 
 " plug.vimのプラグイン
-nnoremap Zx :<C-u>execute 'OpenBrowser' expand('%')<CR>
+nnoremap Zx :<C-u>execute 'OpenBrowser' expand('%:p')<CR>
 nnoremap ZX :<C-u>execute 'OpenBrowser' eval('@'.input('Register: '))<CR>

@@ -27,12 +27,12 @@ set modeline
 " シェル設定
 " powershell移行は無理でした。
 
-" if has('win32')
-" 	set shell=pwsh
-" 	set shellcmdflag=-c
-" 	set shellquote=\"
-" 	set shellxquote=
-" endif
+if has('win32')
+	set shell=pwsh
+	set shellcmdflag=-c
+	set shellquote=\"
+	set shellxquote=
+endif
 
 if has('win32')
 	set fileformat=dos

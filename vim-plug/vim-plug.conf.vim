@@ -6,6 +6,7 @@ call plug#begin($VIMFILES.'/vim-plug')
 	Plug 'deton/jasegment.vim'
 	Plug 'deton/jasentence.vim'
 	Plug 'tyru/open-browser.vim'
+"	Plug 'uesseu/nin-english-vim'
 	Plug 'tpope/vim-fugitive'
 	Plug 'tpope/vim-unimpaired'
 	Plug 'mhinz/vim-janah'
@@ -27,6 +28,10 @@ call plug#end()
 
 " vimdoc-ja
 set helplang=ja,en
+
+" nin-english-vim
+"let g:nin_english#dict = '~\share\ejdic-hand'
+"let g:nin_english#hilight = 0
 
 " ale
 if exists(':ALE') > 0

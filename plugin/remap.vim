@@ -10,10 +10,10 @@ else
 	set mouse=n mousemodel=extend
 endif
 
-	inoremap <Left> <nop>
-	inoremap <Down> <nop>
-	inoremap <Up> <nop>
-	inoremap <Right> <nop>
+inoremap <Left> <nop>
+inoremap <Down> <nop>
+inoremap <Up> <nop>
+inoremap <Right> <nop>
 
 " 赤鼻対策
 noremap <MiddleMouse> <Nop>
