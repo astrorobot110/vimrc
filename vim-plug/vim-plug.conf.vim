@@ -13,6 +13,10 @@ call plug#begin($VIMFILES.'/vim-plug')
 	Plug 'haishanh/night-owl.vim'
 	Plug 'previm/previm'
 
+	if has('patch-8.2.1')
+		Plug 'vim/killersheep'
+	endif
+
 	if has('win32')
 		Plug 'w0rp/ale'
 		Plug 'LunarWatcher/vimsence'
