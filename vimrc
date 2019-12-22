@@ -29,8 +29,8 @@ set modeline
 
 if has('win32')
 	set shell=pwsh
-	set shellcmdflag=-Command
-	set shellquote=\"
+	set shellcmdflag=-command
+	set shellquote="
 	set shellxquote=
 endif
 
