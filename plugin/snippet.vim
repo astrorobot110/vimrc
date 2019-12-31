@@ -14,10 +14,7 @@ cabbrev charm= '/.*^$]~\'
 cabbrev regurl= 'https\?:\/\/[0-9A-Za-z_\/:%#\$&?()\~\.=+-]\+'
 
 " コマンドモードでの短縮入力
-cabbrev gitadd !git add .
-cabbrev gitcommit !git commit -m "<C-r>=strftime('%y%m%d', localtime())<CR>"<left>
-cabbrev gitpush !git push origin master
-cabbrev gitpull !git pull
+cabbrev git <Home>!git
 
 " sudoめんどい
 cabbrev sudowrite w !sudo tee % > /dev/null 2>&1
