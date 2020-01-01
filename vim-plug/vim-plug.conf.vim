@@ -18,7 +18,6 @@ call plug#begin($VIMFILES.'/vim-plug')
 	endif
 
 	if has('win32')
-		Plug 'w0rp/ale'
 		Plug 'LunarWatcher/vimsence'
 	endif
 
@@ -33,21 +32,11 @@ call plug#end()
 " vimdoc-ja
 set helplang=ja,en
 
-" nin-english-vim
-"let g:nin_english#dict = '~\share\ejdic-hand'
-"let g:nin_english#hilight = 0
-
-" ale
-if exists(':ALE') > 0
-	let g:ale_sign_column_always = 1
-endif
-
 " previm
 let g:previm_enable_realtime = 1
 
 " w3m.vim
-if has('win32')
-	let g:w3m#command = expand('~/bin/vmwm')
+if exists(':W3m')
+	let g:w3m#homepage = 'https://google.com'
+	let g:w3m#search_engine = 'https://www.google.com/search?q='
 endif
-let g:w3m#homepage = 'https://google.com'
-let g:w3m#search_engine = 'https://www.google.com/search?q='

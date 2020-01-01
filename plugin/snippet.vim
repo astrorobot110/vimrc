@@ -13,11 +13,11 @@ endfunction
 cabbrev charm= '/.*^$]~\'
 cabbrev regurl= 'https\?:\/\/[0-9A-Za-z_\/:%#\$&?()\~\.=+-]\+'
 
-" コマンドモードでの短縮入力
-cabbrev git <Home>!git
-
 " sudoめんどい
 cabbrev sudowrite w !sudo tee % > /dev/null 2>&1
+
+" 一応 (fugitiveなんとかして)
+cabbrev git= !git
 
 " 設定群への移動専用
 nnoremap <Leader>v :<C-u>e v
