@@ -3,15 +3,19 @@ scriptencoding utf-8
 call plug#begin($VIMFILES.'/vim-plug')
 	Plug 'vim-jp/autofmt'
 	Plug 'vim-jp/vimdoc-ja'
+	Plug 'prabirshrestha/async.vim'
+	Plug 'prabirshrestha/asyncomplete.vim'
+	Plug 'prabirshrestha/asyncomplete-lsp.vim'
+	Plug 'prabirshrestha/vim-lsp'
+	Plug 'mattn/vim-lsp-settings'
+	Plug 'tpope/vim-unimpaired'
 	Plug 'deton/jasegment.vim'
 	Plug 'deton/jasentence.vim'
 	Plug 'tyru/open-browser.vim'
-"	Plug 'uesseu/nin-english-vim'
+	Plug 'previm/previm'
 	Plug 'tpope/vim-fugitive'
-	Plug 'tpope/vim-unimpaired'
 	Plug 'mhinz/vim-janah'
 	Plug 'haishanh/night-owl.vim'
-	Plug 'previm/previm'
 
 	if has('patch-8.2.1')
 		Plug 'vim/killersheep'

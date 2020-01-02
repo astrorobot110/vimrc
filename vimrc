@@ -144,7 +144,6 @@ endif
 
 " リマップ分割によりマップリーダーのトラブル頻発中
 let g:mapleader = "\<space>"
-
 " IM関係
 set iminsert=0
 set imsearch=-1
