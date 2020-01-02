@@ -22,12 +22,6 @@ if isdirectory(expand(g:memoPath))
 	nnoremap ZM :<C-u>bo vnew +put!\ =glob(g:memoPath.'/**/*.md')<CR>
 endif
 
-" packer経由ロードプラグインのマップ
-if exists(':OpenReading') == 2
-	nnoremap Zr :<C-u>OpenReading
-	nnoremap ZR :<C-u>OpenReading!
-endif
-
 " plug.vimのプラグイン
 nnoremap Zx :<C-u>execute 'OpenBrowser' expand('%:p')<CR>
 nnoremap ZX :<C-u>execute 'OpenBrowser' eval('@'.input('Register: '))<CR>

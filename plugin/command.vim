@@ -5,8 +5,8 @@ if !v:vim_did_enter
 endif
 
 " bibleUrl
-command! -nargs=+ -bang Burl call bibleUrl#main('<bang>', <f-args>)
-command! -nargs=+ -bang Bopen call bibleUrl#local('<bang>', <f-args>)
+" command! -nargs=+ -bang Burl call bibleUrl#main('<bang>', <f-args>)
+" command! -nargs=+ -bang Bopen call bibleUrl#local('<bang>', <f-args>)
 
 " chordSplitter
 command! -range Chords :<line1>,<line2>call chordSplitter#main()
@@ -23,7 +23,7 @@ augroup END
 
 " deStain
 command! DeStain call deStain#main()
-nnoremap <Plug>(deStain) :<C-u>DeStain<CR>
+nnoremap <Plug>(deStain) :DeStain<CR>
 
 " dumbQuit
 if has('patch-8.0.1595') && ( !has('clientserver') || v:servername =~? 'VIM\d*$' )
