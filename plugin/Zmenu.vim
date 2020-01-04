@@ -19,7 +19,7 @@ nnoremap ZH :<C-u>bel help function-list<CR>
 " ディレクトリ依存
 if isdirectory(expand(g:memoPath))
 	nnoremap Zm :<C-u>execute 'edit' g:memoPath<CR>
-	nnoremap ZM :<C-u>bo vnew +put!\ =glob(g:memoPath.'/**/*.md')<CR>
+	nnoremap ZM :<C-u>bo vs $VIMFILE/.memo.ls \| put =escape(glob(g:memoPath.'/**/*.md'),' ')<CR>
 endif
 
 " plug.vimのプラグイン

@@ -9,4 +9,4 @@ command! QiitaCreate call qiitaCtl#Create()
 command! QiitaUpdate call qiitaCtl#Update()
 
 " リマップ用
-command! QiitaFiles new +setlocal\ bt=nofile|put=escape(glob(s:qcPath.'/**/*.md'),'\ ')
+command! QiitaFiles vs $VIMFILES/.qiitaCtl.ls | put =escape(glob(s:qcPath.'/**/*.md'),' ')

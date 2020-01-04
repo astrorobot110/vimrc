@@ -3,11 +3,6 @@ scriptencoding utf-8
 call plug#begin($VIMFILES.'/vim-plug')
 	Plug 'vim-jp/autofmt'
 	Plug 'vim-jp/vimdoc-ja'
-	Plug 'prabirshrestha/async.vim'
-	Plug 'prabirshrestha/asyncomplete.vim'
-	Plug 'prabirshrestha/asyncomplete-lsp.vim'
-	Plug 'prabirshrestha/vim-lsp'
-	Plug 'mattn/vim-lsp-settings'
 	Plug 'tpope/vim-unimpaired'
 	Plug 'deton/jasegment.vim'
 	Plug 'deton/jasentence.vim'
@@ -16,6 +11,14 @@ call plug#begin($VIMFILES.'/vim-plug')
 	Plug 'tpope/vim-fugitive'
 	Plug 'mhinz/vim-janah'
 	Plug 'haishanh/night-owl.vim'
+
+	if !g:isDroid
+		Plug 'prabirshrestha/async.vim'
+		Plug 'prabirshrestha/asyncomplete.vim'
+		Plug 'prabirshrestha/asyncomplete-lsp.vim'
+		Plug 'prabirshrestha/vim-lsp'
+		Plug 'mattn/vim-lsp-settings'
+	endif
 
 	if has('patch-8.2.1')
 		Plug 'vim/killersheep'

@@ -20,12 +20,14 @@
 !/plugin/
 /plugin/*
 !/plugin/*.vim
+!/plugin/*.tar.gz
 
 ## autoload
 
 !/autoload/
 /autoload/*
 !/autoload/*.vim
+!/autoload/*.tar.gz
 /autoload/plug.vim
 /autoload/netrw*.vim
 
@@ -40,12 +42,14 @@
 !/ftplugin/
 /ftplugin/*
 !/ftplugin/*.vim
+!/ftplugin/*.tar.gz
 
 ## ftdetect
 
 !/ftdetect/
 /ftdetect/*
 !/ftdetect/*.vim
+!/ftdetect/*.tar.gz
 
 ### vim-plug
 
