@@ -9,5 +9,6 @@ endif
 function! dailySave#main() abort
 	if bufname() ==# ''
 		call execute(printf('write! %s/%s.md', expand(s:dailySaveDir), strftime('%y%m%d')))
+		echo 'Dailysaved.'
 	endif
 endfunction
