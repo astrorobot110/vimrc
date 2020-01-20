@@ -48,6 +48,7 @@ if !v:vim_did_enter
 	try
 		source $VIMFILES/.private.vim
 	catch /E484/
+		echo '".private.vim not found.'
 	endtry
 
 " pack以下のプラグイン

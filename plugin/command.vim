@@ -4,10 +4,6 @@ if !v:vim_did_enter
 	call customCS#loader(g:colors_name)
 endif
 
-" bibleUrl
-" command! -nargs=+ -bang Burl call bibleUrl#main('<bang>', <f-args>)
-" command! -nargs=+ -bang Bopen call bibleUrl#local('<bang>', <f-args>)
-
 " chordSplitter
 command! -range Chords :<line1>,<line2>call chordSplitter#main()
 

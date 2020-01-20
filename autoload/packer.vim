@@ -7,5 +7,6 @@ function! packer#main() abort
 
 	if g:isDroid
 		packadd gboard
+		packadd dailySave
 	endif
 endfunction

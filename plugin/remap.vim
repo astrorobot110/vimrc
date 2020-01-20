@@ -22,6 +22,10 @@ noremap! <MiddleMouse> <Nop>
 " ハイライト消し
 noremap <ESC><ESC> :<C-u>noh<CR>
 
+" どうしてもg+が押せなかったので
+nnoremap g= g+
+
+" Gboard用
 if exists(':Gboard')
 	if $VIMDEVICE =~? '_mobile$'
 		Gboard small

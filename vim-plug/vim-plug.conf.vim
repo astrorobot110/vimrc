@@ -25,7 +25,7 @@ call plug#begin($VIMFILES.'/vim-plug')
 	endif
 
 	if has('win32')
-		Plug 'LunarWatcher/vimsence'
+		Plug 'ananagame/vimsence'
 	endif
 
 	if $VIMDEVICE =~? '_unix$'
