@@ -8,6 +8,6 @@ endif
 
 function! dailySave#main() abort
 	if bufname() ==# ''
-		call execute(printf('write %s/%s.md', expand(s:dailySaveDir), strftime('%y%m%d')))
+		call execute(printf('write! %s/%s.md', expand(s:dailySaveDir), strftime('%y%m%d')))
 	endif
 endfunction

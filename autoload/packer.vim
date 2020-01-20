@@ -7,6 +7,8 @@ function! packer#main() abort
 
 	if g:isDroid
 		packadd gboard
-		packadd dailySave
+		if $VIMDEVICE ==# 'xperia_mobile'
+			packadd dailySave
+		endif
 	endif
 endfunction
