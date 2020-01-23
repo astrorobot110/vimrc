@@ -42,6 +42,9 @@ set helplang=ja,en
 " previm
 let g:previm_enable_realtime = 1
 
+" vim-lsp.vim
+let g:lsp_diagnostics_echo_cursor = 1
+
 " w3m.vim
 if exists(':W3m')
 	let g:w3m#homepage = 'https://google.com'

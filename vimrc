@@ -174,7 +174,7 @@ if g:isDroid
 	let g:imactivate_language_switch = 61
 
 	if $VIMDEVICE ==# 'xperia_mobile'
-		set updatetime=10800000
+		set updatetime=3600000
 	endif
 endif
 
