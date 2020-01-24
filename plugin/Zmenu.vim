@@ -22,6 +22,11 @@ if isdirectory(expand(g:memoPath))
 	nnoremap ZM :<C-u>bo vs $VIMFILE/.memo.ls \| put =escape(glob(g:memoPath.'/**/*.md'),' ')<CR>
 endif
 
+" 変数依存
+if exists('g:dailySaveDir')
+	noremap Zw <Plug>DailySave
+endif
+
 " plug.vimのプラグイン
 nnoremap Zx :<C-u>execute 'OpenBrowser' expand('%:p')<CR>
 nnoremap ZX :<C-u>execute 'OpenBrowser' eval('@'.input('Register: '))<CR>
