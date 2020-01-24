@@ -6,4 +6,3 @@ augroup dailySave
 augroup END
 
 command! DailySave call dailySave#main()
-noremap <Plug>DailySave call dailySave#main()

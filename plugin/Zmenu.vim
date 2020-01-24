@@ -24,7 +24,7 @@ endif
 
 " 変数依存
 if exists('g:dailySaveDir')
-	noremap Zw <Plug>DailySave
+	noremap Zw :<C-u>DailySave<CR>
 endif
 
 " plug.vimのプラグイン
