@@ -6,6 +6,7 @@ call plug#begin($VIMFILES.'/vim-plug')
 	Plug 'tpope/vim-unimpaired'
 	Plug 'deton/jasegment.vim'
 	Plug 'deton/jasentence.vim'
+	Plug 'junegunn/vim-peekaboo'
 	Plug 'tyru/open-browser.vim'
 	Plug 'previm/previm'
 	Plug 'tpope/vim-fugitive'
