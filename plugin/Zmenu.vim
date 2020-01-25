@@ -17,13 +17,14 @@ nnoremap Zh :<C-u>vert bo help function-list<CR>
 nnoremap ZH :<C-u>bel help function-list<CR>
 
 " ディレクトリ依存
-if isdirectory(expand(g:memoPath))
-	nnoremap Zm :<C-u>execute 'split' g:memoPath<CR>
+if exists('g:memoPath') && isdirectory(expand(g:memoPath))
+	let memoSplit = g:isDroid ? 'edit' : 'bel vs'
+	nnoremap Zm :<C-u>execute memoSplit g:memoPath<CR>
 	nnoremap ZM :<C-u>bo vs $VIMFILE/.memo.ls \| put =escape(glob(g:memoPath.'/**/*.md'),' ')<CR>
 endif
 
 " 変数依存
-if exists('g:dailySaveDir')
+if exists(':DailySave')
 	noremap Zw :<C-u>DailySave<CR>
 endif
 

@@ -9,7 +9,7 @@ function! packer#main() abort
 		packadd gboard
 	endif
 
-	if exists('g:dailySaveDir')
+	if exists('g:dailySaveDir') && isdirectory(expand(g:memoPath))
 		packadd dailySave
 	endif
 endfunction

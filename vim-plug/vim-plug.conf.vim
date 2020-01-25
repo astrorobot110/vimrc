@@ -1,5 +1,13 @@
 scriptencoding utf-8
 
+" https://github.com/junegunn/vim-plug/wiki/tips#automatic-installation
+if empty(glob(expand($VIMFILES.'/autoload/plug.vim')))
+	cd $VIMFILES
+	silent !curl -fLo autoload/plug.vim --create-dirs
+		\ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+	source $VIMFILES/autoload/plug.vim
+endif
+
 call plug#begin($VIMFILES.'/vim-plug')
 	Plug 'vim-jp/autofmt'
 	Plug 'vim-jp/vimdoc-ja'
