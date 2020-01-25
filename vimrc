@@ -170,6 +170,9 @@ augroup END
 
 " droidVim専用
 if g:isDroid
+	" cuiのvimだけど…というやつ
+	set mouse=n mousemodel=extend
+
 	let g:imctrl_normal = 53
 	let g:imactivate_language_switch = 61
 

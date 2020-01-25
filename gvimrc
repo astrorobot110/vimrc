@@ -8,7 +8,9 @@ set renderoptions=type:directx,renmode:5
 " guioption関係
 set guioptions=ecgm!
 
-set mouse=
+if !g:isDroid
+	set mouse=
+endif
 
 " Hack #120: gVim でウィンドウの位置とサイズを記憶する
 " http://vim-jp.org/vim-users-jp/2010/01/28/Hack-120.html
