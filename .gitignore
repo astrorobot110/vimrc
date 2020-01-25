@@ -27,9 +27,9 @@
 !/autoload/
 /autoload/*
 !/autoload/*.vim
-!/autoload/*.tar.gz
 /autoload/plug.vim
-/autoload/netrw*.vim
+!/autoload/_archives/
+!/autoload/_archives/*
 
 ## pack
 
