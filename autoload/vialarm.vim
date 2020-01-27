@@ -57,6 +57,7 @@ function! vialarm#init() abort
 	try
 		let alarms = split(execute('autocmd vialarm'), '[\n]')[2:]
 	catch /E216/
+		let alarms = []
 	endtry
 
 	for val in alarms
