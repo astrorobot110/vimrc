@@ -46,8 +46,6 @@ function! s:Vialarm.inTime(timer) abort
 	let self.timerID = timer_start(86400000, self.inTime)
 endfunction
 
-" }}}
-
 function! vialarm#init() abort
 	if !empty(s:vialarmList)
 		for val in s:vialarmList
