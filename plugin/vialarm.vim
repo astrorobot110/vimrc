@@ -9,6 +9,8 @@ augroup vialarm
 	autocmd!
 	if $VIMDEVICE ==# 'xperia_mobile'
 		autocmd user 17:00 call s:dailySave()
+	elseif $VIMDEVICE ==# 'lenovo_tab'
+		autocmd user 00:00 call s:nenaiko()
 	endif
 augroup END
 
@@ -22,4 +24,8 @@ function! s:dailySave() abort
 		echo system('git commit -m ''dailysaved.''')
 		echo system('git push')
 	endif
+endfunction
+
+function! s:nenaiko() abort
+	echo 'ねないこだれだ'
 endfunction
