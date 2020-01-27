@@ -67,7 +67,9 @@ function! vialarm#init() abort
 		call add(s:vialarmList, newVialarm)
 	endfor
 
-	echo 'Vialarm: initialized.'
+	if v:vim_did_enter
+		echo 'Vialarm: initialized.'
+	endif
 endfunction
 
 function! vialarm#showList() abort
