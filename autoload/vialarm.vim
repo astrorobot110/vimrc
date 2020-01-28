@@ -29,7 +29,7 @@ function! s:Vialarm.getParam(timeText, command) abort
 		endif
 	catch /vialarm_E11/
 		echoerr 'Error in getParam(): Args isn''t "TimeText", like "HH:MM".'
-	catch /vialarm_E21/
+	catch /vialarm_E12/
 		echoerr 'Error in getParam(): Alarm time not specify.'
 	endtry
 endfunction
@@ -38,6 +38,7 @@ function! s:Vialarm.timerSet() abort
 	" 1 day is 60*60*24 seconds.
 	let currentSeconds = (localtime() + s:timeZone * 3600) % 86400
 	let currentTimer = (86400 + self.timeSeconds - currentSeconds) % 86400
+	let g:currentTimer = currentTimer
 	let self.timerID = timer_start(currentTimer*1000, self.inTime)
 endfunction
 
