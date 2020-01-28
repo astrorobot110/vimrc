@@ -38,7 +38,6 @@ function! s:Vialarm.timerSet() abort
 	" 1 day is 60*60*24 seconds.
 	let currentSeconds = (localtime() + s:timeZone * 3600) % 86400
 	let currentTimer = (86400 + self.timeSeconds - currentSeconds) % 86400
-	let g:currentTimer = currentTimer
 	let self.timerID = timer_start(currentTimer*1000, self.inTime)
 endfunction
 
@@ -81,4 +80,8 @@ function! vialarm#showList() abort
 	endfor
 
 	return empty(outText) ? 'No alarms.' : outText->join("\n")
+endfunction
+
+function! vialarm#showRawList() abort
+	return s:vialarmList
 endfunction

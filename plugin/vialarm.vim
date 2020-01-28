@@ -1,7 +1,5 @@
 scriptencoding utf-8
 
-let g:vialarm_timeZone = has('win32') ? 9 : 0
-
 command VialarmInit call vialarm#init()
 command VialarmList echo vialarm#showList()
 
@@ -10,7 +8,7 @@ augroup vialarm
 	if $VIMDEVICE ==# 'xperia_mobile'
 		autocmd user 17:00 call s:dailySave()
 	endif
-	autocmd user 00:00 call s:nenaiko()
+	autocmd user 20:00 call s:nenaiko()
 augroup END
 
 VialarmInit
