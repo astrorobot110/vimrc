@@ -5,7 +5,7 @@ command VialarmList echo vialarm#showList()
 
 augroup vialarm
 	autocmd!
-	if $VIMDEVICE ==# 'xperia_mobile'
+	if $VIMDEVICE ==# 'xperia_mobile' && v:false
 		autocmd user 17:00 call s:dailySave()
 	endif
 	autocmd user 20:00 call s:nenaiko()
