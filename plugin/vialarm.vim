@@ -26,8 +26,3 @@ endfunction
 function! s:nenaiko() abort
 	echo 'ねないこだれだ'
 endfunction
-
-function! vialarm#test(seconds) abort
-	let timeArray = [ a:seconds/3600, (a:seconds%3600)/60, a:seconds%60 ]
-	return join(timeArray, ':')
-endfunction

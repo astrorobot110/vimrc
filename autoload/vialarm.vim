@@ -81,7 +81,3 @@ function! vialarm#showList() abort
 
 	return empty(outText) ? 'No alarms.' : outText->join("\n")
 endfunction
-
-function! vialarm#showRawList() abort
-	return s:vialarmList
-endfunction
