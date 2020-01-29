@@ -1,83 +1,81 @@
 scriptencoding utf-8
 
-let s:timeZone = exists('g:vialarm_timeZone') ? g:vialarm_timeZone : 0
+let s:oneshots = []
 
-if !exists('s:vialarmList')
-	let s:vialarmList = []
-endif
-
-let s:Vialarm = {
-		\ 'timeText': '',
-		\ 'timeSeconds': 0,
-		\ 'timerID': 0,
-		\ 'command': '',
-		\ }
-
-function! s:Vialarm.getParam(timeText, command) abort
-	try
-		if match(a:timeText, '^\d\d:\d\d$') >= 0
-			let time = split(a:timeText, ':')
-			if time[0] < 24 && time[1] < 60
-				let self.timeText = a:timeText
-				let self.timeSeconds = ( time[0] * 60 + time[1] ) * 60
-				let self.command = a:command
-			else
-				throw 'vialarm_E12'
-			endif
-		else
-			throw 'vialarm_E11'
-		endif
-	catch /vialarm_E11/
-		echoerr 'Error in getParam(): Args isn''t "TimeText", like "HH:MM".'
-	catch /vialarm_E12/
-		echoerr 'Error in getParam(): Alarm time not specify.'
-	endtry
-endfunction
-
-function! s:Vialarm.timerSet() abort
-	" 1 day is 60*60*24 seconds.
-	let currentSeconds = (localtime() + s:timeZone * 3600) % 86400
-	let currentTimer = (86400 + self.timeSeconds - currentSeconds) % 86400
-	let self.timerID = timer_start(currentTimer*1000, self.inTime)
-endfunction
-
-function! s:Vialarm.inTime(timer) abort
-	execute 'doautocmd' 'vialarm' 'user' self.timeText
-	let self.timerID = timer_start(86400000, self.inTime)
-endfunction
-
-function! vialarm#init() abort
-	if !empty(s:vialarmList)
-		for val in s:vialarmList
-			call timer_stop(val.timerID)
-		endfor
-		call filter(s:vialarmList, 0)
+function! s:getAlarm(timer) abort
+	let now = strftime('%H:%M', localtime())
+	if count(s:alarms + s:oneshots, now) > 0
+		execute 'doautocmd vialarm User' now
 	endif
 
+	if match(s:oneshots, now) > -1
+		call filter(s:oneshots, { key, val -> val !=# now })
+	endif
+	if !s:isTimerLooped
+		let s:vialarmTimer = timer_start(60000, function('s:getAlarm'), {'repeat':-1})	
+		let s:isTimerLooped = 1
+	endif
+endfunction
+
+function! s:init() abort
 	try
-		let alarms = split(execute('autocmd vialarm'), '[\n]')[2:]
+		let s:alarms = split(execute('autocmd vialarm'), '[\n]')[2:]
+		call map(s:alarms, { _, val -> matchstr(val,'\d\d:\d\d') })
 	catch /E216/
-		let alarms = []
+		let s:alarms = []
 	endtry
 
-	for val in alarms
-		let newVialarm = deepcopy(s:Vialarm)
-		call newVialarm.getParam(matchstr(val, '\d\d:\d\d'), matchstr(val, '\s\{5}\zs.*'))
-		call newVialarm.timerSet()
-		call add(s:vialarmList, newVialarm)
-	endfor
+	if exists('s:vialarmTimer')
+		call timer_stop(s:vialarmTimer)
+	endif
+	let s:vialarmTimer = timer_start((60-(localtime()%60))*1000, function('s:getAlarm'))
+	let s:isTimerLooped = 0
 
 	if v:vim_did_enter
 		echo 'Vialarm: initialized.'
 	endif
 endfunction
 
-function! vialarm#showList() abort
-	let outText = []
-	for val in s:vialarmList
-		let timerID = val.timerID > 0 ? printf('[TimerID:%8d] ', val.timerID) : ''
-		call add(outText, printf('%s%s: %s', timerID, val.timeText, val.command))
-	endfor
+function! s:addOneshot(time, command)
+	try
+		if match(a:time, '^\d\d:\d\d$') < 0
+			throw 'vialarm_E01'
+		endif
 
-	return empty(outText) ? 'No alarms.' : outText->join("\n")
+		if matchstr(a:time, '^\d\d') > 23 || matchstr(a:time, '\d\d$') > 59
+			throw 'vialarm_E02'
+		endif
+
+		execute 'autocmd vialarm User' a:time '++once' a:command 
+		call add(s:oneshots, a:time)
+
+		echo printf('[vialarm] Added alarm in %s.', a:time)
+	catch /vialarm_E01/
+		echoerr '[vialarm] Error: Time format must be ''HH:MM''.'
+	catch /vialarm_E02/
+		echoerr '[vialarm] Error: No such time. :('
+	endtry
+endfunction
+
+function! vialarm#main(args, isBang) abort
+	if a:isBang ==# ''
+		if a:args !=# ''
+			let time = matchstr(a:args, '^.\{-}\ze\s')
+			let command = matchstr(a:args, '\s\zs.*$')
+			call s:addOneshot(time, command)
+		else
+			echo 'You can also get vialarm info from ":autocmd vialarm".'
+			autocmd vialarm
+		endif			
+	else
+		call s:init()
+	endif
+endfunction	
+
+function! vialarm#getTimerInfo() abort
+	return timer_info(s:vialarmTimer)[0]
+endfunction
+
+function! vialarm#peek() abort
+	return s:alarms + s:oneshots
 endfunction
