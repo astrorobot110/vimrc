@@ -46,6 +46,10 @@ function! s:addOneshot(time, command)
 			throw 'vialarm_E02'
 		endif
 
+		if a:command ==# ''
+			throw 'vialarm_E03'
+		endif
+
 		execute 'autocmd vialarm User' a:time '++once' a:command 
 		call add(s:oneshots, a:time)
 
@@ -54,6 +58,8 @@ function! s:addOneshot(time, command)
 		echoerr '[vialarm] Error: Time format must be ''HH:MM''.'
 	catch /vialarm_E02/
 		echoerr '[vialarm] Error: No such time. :('
+	catch /vialarm_E03/
+		echoerr '[vialarm] Error: Command is empty.'
 	endtry
 endfunction
 
