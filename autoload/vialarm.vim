@@ -2,21 +2,6 @@ scriptencoding utf-8
 
 let s:oneshots = []
 
-function! s:getAlarm(timer) abort
-	let now = strftime('%H:%M', localtime())
-	if count(s:alarms + s:oneshots, now) > 0
-		execute 'doautocmd vialarm User' now
-	endif
-
-	if match(s:oneshots, now) > -1
-		call filter(s:oneshots, { key, val -> val !=# now })
-	endif
-	if !s:isTimerLooped
-		let s:vialarmTimer = timer_start(60000, function('s:getAlarm'), {'repeat':-1})
-		let s:isTimerLooped = 1
-	endif
-endfunction
-
 function! s:init() abort
 	try
 		let s:alarms = split(execute('autocmd vialarm'), '[\n]')[2:]
@@ -29,14 +14,28 @@ function! s:init() abort
 		call timer_stop(s:vialarmTimer)
 	endif
 	let s:vialarmTimer = timer_start((60-(localtime()%60))*1000, function('s:getAlarm'))
-	let s:isTimerLooped = 0
 
 	if v:vim_did_enter
 		echo 'Vialarm: initialized.'
 	endif
 endfunction
 
-function! s:addOneshot(time, command)
+function! s:getAlarm(timer) abort
+	let now = strftime('%H:%M', localtime())
+	if count(s:alarms + s:oneshots, now) > 0
+		execute 'doautocmd User' now
+
+		if match(s:oneshots, now) > -1
+			call filter(s:oneshots, { key, val -> val !=# now })
+		endif
+	endif
+
+	if timer_info(s:vialarmTimer)[0].repeat > 0
+		let s:vialarmTimer = timer_start(60000, function('s:getAlarm'), {'repeat':-1})
+	endif
+endfunction
+
+function! s:addOneshot(time, command) abort
 	try
 		if match(a:time, '^\d\d:\d\d$') < 0
 			throw 'vialarm_E01'
@@ -66,7 +65,7 @@ endfunction
 function! vialarm#main(args, isBang) abort
 	if a:isBang ==# ''
 		if a:args !=# ''
-			let time = matchstr(a:args, '^.\{-}\ze\s')
+			let time = matchstr(a:args, '^\S*')
 			let command = matchstr(a:args, '\s\zs.*$')
 			call s:addOneshot(time, command)
 		else
@@ -76,6 +75,11 @@ function! vialarm#main(args, isBang) abort
 	else
 		call s:init()
 	endif
+endfunction
+
+function! vialarm#stop() abort
+	call timer_stop(s:vialarmTimer)
+	echo 'Vialarm was stopped. execute '':Vialarm'' if you want start vialarm again.'
 endfunction
 
 function! vialarm#getTimerInfo() abort

@@ -5,10 +5,10 @@ command -bang -nargs=* -complete=command Vialarm call vialarm#main(<q-args>, '<b
 augroup vialarm
 	autocmd!
 	if $VIMDEVICE ==# 'xperia_mobile'
-		autocmd user 17:00 call s:dailySave()
+		autocmd User 17:00 call s:dailySave()
 	endif
-	autocmd user 20:00 call s:nenaiko(20)
-	autocmd user 22:00 call s:nenaiko(22)
+	autocmd User 20:00 call s:nenaiko(20)
+	autocmd User 22:00 call s:nenaiko(22)
 augroup END
 
 Vialarm!
