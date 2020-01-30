@@ -12,7 +12,7 @@ function! s:getAlarm(timer) abort
 		call filter(s:oneshots, { key, val -> val !=# now })
 	endif
 	if !s:isTimerLooped
-		let s:vialarmTimer = timer_start(60000, function('s:getAlarm'), {'repeat':-1})	
+		let s:vialarmTimer = timer_start(60000, function('s:getAlarm'), {'repeat':-1})
 		let s:isTimerLooped = 1
 	endif
 endfunction
@@ -50,7 +50,7 @@ function! s:addOneshot(time, command)
 			throw 'vialarm_E03'
 		endif
 
-		execute 'autocmd vialarm User' a:time '++once' a:command 
+		execute 'autocmd vialarm User' a:time '++once' a:command
 		call add(s:oneshots, a:time)
 
 		echo printf('[vialarm] Added alarm in %s.', a:time)
@@ -72,11 +72,11 @@ function! vialarm#main(args, isBang) abort
 		else
 			echo 'You can also get vialarm info from ":autocmd vialarm".'
 			autocmd vialarm
-		endif			
+		endif
 	else
 		call s:init()
 	endif
-endfunction	
+endfunction
 
 function! vialarm#getTimerInfo() abort
 	return timer_info(s:vialarmTimer)[0]
