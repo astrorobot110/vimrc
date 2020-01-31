@@ -17,8 +17,8 @@ VialarmStart
 
 function! s:dailySave() abort
 	if bufname() ==# ''
-		cd $INTERNAL_STORAGE/Documents/git/memo/dailySave
-		call execute(printf('write! %s.md', strftime('%y%m%d')))
+		lcd $INTERNAL_STORAGE/Documents/git/memo/dailySave
+		execute 'write!' strftime('%y%m%d.md', localtime())
 		echo system('git add '.expand('%'))
 		echo system('git commit -m ''dailysaved.''')
 		echo system('git push')
