@@ -1,17 +1,19 @@
 scriptencoding utf-8
 
-command -bang -nargs=* -complete=command Vialarm call vialarm#main(<q-args>, '<bang>')
+command -nargs=* -complete=command Vialarm call vialarm#main(<q-args>)
+command VialarmStart call vialarm#timerSwitch('start')
+command VialarmStop call vialarm#timerSwitch('stop')
 
 augroup vialarm
 	autocmd!
 	if $VIMDEVICE ==# 'xperia_mobile'
-		autocmd User 17:00 call s:dailySave()
+		autocmd User vialarm_17:00 call s:dailySave()
 	endif
-	autocmd User 20:00 call s:nenaiko(20)
-	autocmd User 22:00 call s:nenaiko(22)
+	autocmd User vialarm_20:00 call s:nenaiko(20)
+	autocmd User vialarm_22:00 call s:nenaiko(22)
 augroup END
 
-Vialarm!
+VialarmStart
 
 function! s:dailySave() abort
 	if bufname() ==# ''

@@ -1,33 +1,32 @@
 scriptencoding utf-8
 
-let s:oneshots = []
-
-function! s:init() abort
-	try
-		let s:alarms = split(execute('autocmd vialarm'), '[\n]')[2:]
-		call map(s:alarms, { _, val -> matchstr(val,'\d\d:\d\d') })
-	catch /E216/
-		let s:alarms = []
-	endtry
-
-	if exists('s:vialarmTimer')
-		call timer_stop(s:vialarmTimer)
+function! vialarm#timerSwitch(...) abort
+	if a:0 > 0 && a:1 ==? 'start'
+		call s:timerStart()
+	elseif a:0 > 0 && a:1 ==? 'stop'
+		call s:timerStop()
 	endif
+endfunction
+
+function! s:timerStart() abort
 	let s:vialarmTimer = timer_start((60-(localtime()%60))*1000, function('s:getAlarm'))
 
 	if v:vim_did_enter
-		echo 'Vialarm: initialized.'
+		echo '[vialarm]: start alarm.'
 	endif
+endfunction
+
+function! s:timerStop() abort
+	call timer_stop(s:vialarmTimer)
+	unlet s:vialarmTimer
+	echo '[vialarm]: Stop alarm.'
 endfunction
 
 function! s:getAlarm(timer) abort
 	let now = strftime('%H:%M', localtime())
-	if count(s:alarms + s:oneshots, now) > 0
+	let autocmdText = split(execute('autocmd User'),'\n')
+	if match(autocmdText, '^\s\+vialarm_'.now) > 0
 		execute 'doautocmd User' now
-
-		if match(s:oneshots, now) > -1
-			call filter(s:oneshots, { key, val -> val !=# now })
-		endif
 	endif
 
 	if timer_info(s:vialarmTimer)[0].repeat > 0
@@ -39,20 +38,15 @@ function! s:addOneshot(time, command) abort
 	try
 		if match(a:time, '^\d\d:\d\d$') < 0
 			throw 'vialarm_E01'
-		endif
-
-		if matchstr(a:time, '^\d\d') > 23 || matchstr(a:time, '\d\d$') > 59
+		elseif matchstr(a:time, '^\d\d') > 23 || matchstr(a:time, '\d\d$') > 59
 			throw 'vialarm_E02'
-		endif
-
-		if a:command ==# ''
+		elseif a:command ==# ''
 			throw 'vialarm_E03'
 		endif
 
-		execute 'autocmd vialarm User' a:time '++once' a:command
-		call add(s:oneshots, a:time)
+		execute 'augroup vialarm_oneshots | autocmd User' 'vialarm_'.a:time '++once' a:command
+		echo printf('[vialarm]: Added alarm in %s.', a:time)
 
-		echo printf('[vialarm] Added alarm in %s.', a:time)
 	catch /vialarm_E01/
 		echoerr '[vialarm] Error: Time format must be ''HH:MM''.'
 	catch /vialarm_E02/
@@ -62,30 +56,41 @@ function! s:addOneshot(time, command) abort
 	endtry
 endfunction
 
-function! vialarm#main(args, isBang) abort
-	if a:isBang ==# ''
-		if a:args !=# ''
-			let time = matchstr(a:args, '^\S*')
-			let command = matchstr(a:args, '\s\zs.*$')
-			call s:addOneshot(time, command)
-		else
-			echo 'You can also get vialarm info from ":autocmd vialarm".'
-			autocmd vialarm
+function! s:getAlarmList() abort
+	let autocmdText = split(execute('autocmd User'), '\n')[1:]
+	let outText = ''
+
+	let group = ''
+	let isHit = 0
+	for txt in autocmdText
+		if isHit
+			let outText .= txt."\n"
+			let isHit = 0
+		elseif match(txt, '^\S') >= 0
+			let group = txt
+		elseif match(txt, '^\s\+vialarm') >= 0
+			if len(group) > 0
+				let outText .= group."\n"
+				let group = ''
+			endif
+			let outText .= txt."\n"
+			let isHit = match(txt, '\d\d:\d\d$') >= 0 ? 1 : 0
 		endif
-	else
-		call s:init()
-	endif
+	endfor
+
+	return outText
 endfunction
 
-function! vialarm#stop() abort
-	call timer_stop(s:vialarmTimer)
-	echo 'Vialarm was stopped. execute '':Vialarm'' if you want start vialarm again.'
+function! vialarm#main(args) abort
+	if a:args !=# ''
+		let time = matchstr(a:args, '^\S*')
+		let command = matchstr(a:args, '\s\zs.*$')
+		call s:addOneshot(time, command)
+	else
+		echo s:getAlarmList()
+	endif
 endfunction
 
 function! vialarm#getTimerInfo() abort
 	return timer_info(s:vialarmTimer)[0]
-endfunction
-
-function! vialarm#peek() abort
-	return s:alarms + s:oneshots
 endfunction
