@@ -26,7 +26,7 @@ function! s:getAlarm(timer) abort
 	let now = strftime('%H:%M', localtime())
 	let autocmdText = split(execute('autocmd User'),'\n')
 	if match(autocmdText, '^\s\+vialarm_'.now) > 0
-		execute 'doautocmd User' now
+		execute 'doautocmd User' 'vialarm_'.now
 	endif
 
 	if timer_info(s:vialarmTimer)[0].repeat > 0
