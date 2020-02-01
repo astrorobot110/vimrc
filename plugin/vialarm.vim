@@ -1,6 +1,6 @@
 scriptencoding utf-8
 
-command -nargs=* -complete=command Vialarm call vialarm#main(<q-args>)
+command -bang -nargs=* -complete=command Vialarm call vialarm#main(<q-args>, '<bang>')
 command VialarmStart call vialarm#timerSwitch('start')
 command VialarmStop call vialarm#timerSwitch('stop')
 
@@ -13,7 +13,7 @@ augroup vialarm
 	autocmd User vialarm_22:00 call s:nenaiko(22)
 augroup END
 
-VialarmStart
+Vialarm! start
 
 function! s:dailySave() abort
 	if bufname() ==# ''
