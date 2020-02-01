@@ -1,8 +1,6 @@
 scriptencoding utf-8
 
 command -bang -nargs=* -complete=command Vialarm call vialarm#main(<q-args>, '<bang>')
-command VialarmStart call vialarm#timerSwitch('start')
-command VialarmStop call vialarm#timerSwitch('stop')
 
 augroup vialarm
 	autocmd!
@@ -17,8 +15,8 @@ Vialarm! start
 
 function! s:dailySave() abort
 	if bufname() ==# ''
-		cd $INTERNAL_STORAGE/Documents/git/memo/dailySave
-		call execute(printf('write! %s.md', strftime('%y%m%d')))
+		lcd $INTERNAL_STORAGE/Documents/git/memo/dailySave
+		execute 'write!' strftime('%y%m%d.md', localtime())
 		echo system('git add '.expand('%'))
 		echo system('git commit -m ''dailysaved.''')
 		echo system('git push')
