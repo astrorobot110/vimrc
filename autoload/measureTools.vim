@@ -26,7 +26,7 @@ function! measureTools#getStep(...) abort
 		let point += stride
 		let index += 1
 	endwhile
-	return join(calc, "\n")
+	return calc
 endfunction
 
 function! measureTools#toPolar(...) abort
@@ -39,7 +39,7 @@ function! measureTools#toPolar(...) abort
 	call add(calc, printf('%7s: %7.2f', 'range', sqrt(pow(width,2) + pow(height,2))))
 	call add(calc, printf('%7s: %7.2fﾟ', 'angle', s:toDeg(atan2(height, width))))
 
-	return join(calc, "\n")
+	return calc
 endfunction
 
 function! measureTools#toRect(...) abort
@@ -52,5 +52,5 @@ function! measureTools#toRect(...) abort
 	call add(calc, printf('%7s: %7.2f', 'width', range*(cos(s:toRad(angle)))))
 	call add(calc, printf('%7s: %7.2f', 'height', range*(sin(s:toRad(angle)))))
 
-	return join(calc, "\n")
+	return calc
 endfunction

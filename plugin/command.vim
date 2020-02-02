@@ -39,6 +39,6 @@ command! -nargs=? Tutorial call vimtutor#main(<f-args>)
 command! -nargs=0 Calc call calcIt#main()
 
 " measureTools
-command! -nargs=+ GetStep put =measureTools#getStep(<f-args>)
-command! -nargs=+ ToPolar put =measureTools#toPolar(<f-args>)
-command! -nargs=+ ToRect put =measureTools#toRect(<f-args>)
+command! -nargs=+ GetStep call append(line('.'), measureTools#getStep(<f-args>))
+command! -nargs=+ ToPolar call append(line('.'), measureTools#toPolar(<f-args>))
+command! -nargs=+ ToRect call append(line('.'), measureTools#toRect(<f-args>))
