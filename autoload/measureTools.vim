@@ -10,16 +10,6 @@ function! s:toDeg(radian) abort
 	return (a:radian/s:pi) * 180
 endfunction
 
-function! s:output(out) abort
-	if getline(line('.')) !=# ''
-		call append(line('.'), '')
-		call setpos('.', [bufnr(), line('.')+1, 0])
-	endif
-	let putLine = line('.') == 1 ? 0 : line('.')
-	call append(putLine, a:out)
-	call setpos('.', [bufnr(), line('.')+len(a:out), 0])
-endfunction
-
 function! measureTools#getStep(...) abort
 	let [ offset, length, stride ] = map(copy(a:000)[0:2], {_,val -> str2float(val)})
 	let calc = [
@@ -36,7 +26,7 @@ function! measureTools#getStep(...) abort
 		let point += stride
 		let index += 1
 	endwhile
-	call s:output(calc)
+	return join(calc, "\n")
 endfunction
 
 function! measureTools#toPolar(...) abort
@@ -49,7 +39,7 @@ function! measureTools#toPolar(...) abort
 	call add(calc, printf('%7s: %7.2f', 'range', sqrt(pow(width,2) + pow(height,2))))
 	call add(calc, printf('%7s: %7.2fﾟ', 'angle', s:toDeg(atan2(height, width))))
 
-	call s:output(calc)
+	return join(calc, "\n")
 endfunction
 
 function! measureTools#toRect(...) abort
@@ -62,5 +52,5 @@ function! measureTools#toRect(...) abort
 	call add(calc, printf('%7s: %7.2f', 'width', range*(cos(s:toRad(angle)))))
 	call add(calc, printf('%7s: %7.2f', 'height', range*(sin(s:toRad(angle)))))
 
-	call s:output(calc)
+	return join(calc, "\n")
 endfunction
