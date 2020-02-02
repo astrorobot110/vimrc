@@ -55,35 +55,30 @@ function! s:showAlarms() abort
 	let autocmdText = split(execute('1verbose autocmd User'), '\n')[1:]
 
 	let currentGroup = ''
-	let isHit = 0
-	let verbose = 0
+	let currentLine = 0
 
 	echohl Title
 	echo '[vialarm]: Current alarm is...'
 	echohl None
 
-	for txt in autocmdText
-		if match(txt, '^\S') >= 0
-			let currentGroup = txt
-		elseif match(txt, '^\s\+vialarm') >= 0
+	while currentLine < len(autocmdText)
+		if match(autocmdText[currentLine], '^\S') >= 0
+			let currentGroup = autocmdText[currentLine]
+			let currentLine += 1
+		elseif match(autocmdText[currentLine], '^\s\+vialarm_') >= 0
 			if currentGroup !=# ''
 				echohl Title
 				echo currentGroup
 				echohl None
 				let currentGroup = ''
 			endif
-			echo txt
-
-			let isHit = match(txt, '\d\d:\d\d$') >= 0
-			let verbose = 1
-		elseif isHit
-			echo txt
-			let isHit = 0
-		elseif verbose
-			echo txt
-			let verbose = 0
+			let lines = match(autocmdText[currentLine], '\d\d:\d\d$') >= 0 ? 3 : 2
+			echo join(autocmdText[currentLine:currentLine+lines-1], "\n")
+			let currentLine += lines
+		else
+			let currentLine += 1
 		endif
-	endfor
+	endwhile
 endfunction
 
 function! s:showTimerInfo() abort
