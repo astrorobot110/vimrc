@@ -27,7 +27,7 @@ set modeline
 " シェル設定
 " powershell移行は無理でした。
 
-if has('win32')
+if has('win32') && 0
 	set shell=pwsh
 	set shellcmdflag=\ -command
 	set shellquote=\"

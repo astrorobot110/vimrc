@@ -21,7 +21,6 @@ call plug#begin($VIMFILES.'/vim-plug')
 	Plug 'haishanh/night-owl.vim'
 
 	if !g:isDroid
-		Plug 'junegunn/vim-peekaboo'
 		Plug 'prabirshrestha/async.vim'
 		Plug 'prabirshrestha/asyncomplete.vim'
 		Plug 'prabirshrestha/asyncomplete-lsp.vim'
