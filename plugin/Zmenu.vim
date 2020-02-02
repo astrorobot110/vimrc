@@ -15,6 +15,7 @@ nnoremap Zd :lcd %:h<CR>
 nnoremap ZD :cd %:h<CR>
 nnoremap Zh :<C-u>vert bo help function-list<CR>
 nnoremap ZH :<C-u>bel help function-list<CR>
+nnoremap Z= :<C-u>Calc<CR>
 
 " ディレクトリ依存
 if exists('g:memoPath') && isdirectory(expand(g:memoPath))

@@ -1,10 +1,14 @@
 scriptencoding utf-8
 
 function! s:timerStart() abort
-	let s:vialarmTimer = timer_start((60-(localtime()%60))*1000, function('s:getAlarm'))
+	if !exists('s:vialarmTimer')
+		let s:vialarmTimer = timer_start((60-(localtime()%60))*1000, function('s:getAlarm'))
 
-	if v:vim_did_enter
-		echo '[vialarm]: Start vialarm.'
+		if v:vim_did_enter
+			echo '[vialarm]: Start vialarm.'
+		endif
+	else
+		echo '[vialarm]: Vialarm is already running.'
 	endif
 endfunction
 
