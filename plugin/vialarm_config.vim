@@ -7,8 +7,6 @@ augroup vialarm
 	if $VIMDEVICE ==# 'xperia_mobile'
 		autocmd User vialarm_17:00 call s:dailySave('$INTERNAL_STORAGE/Documents/git/memo')
 	endif
-	autocmd User vialarm_20:00 call s:nenaiko(20)
-	autocmd User vialarm_22:00 call s:nenaiko(22)
 augroup END
 
 function! s:dailySave(path) abort
@@ -27,7 +25,7 @@ function! s:dailySave(path) abort
 		endfor
 
 		if getftype(fileName) !=# ''
-			echo system('git add '.expand('%'))
+			echo system('git add dailySave/*')
 			echo system('git commit -m ''dailysaved.''')
 			echo system('git push')
 		endif
