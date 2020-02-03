@@ -10,7 +10,17 @@ function! s:toDeg(radian) abort
 	return (a:radian/s:pi) * 180
 endfunction
 
-function! measureTools#getStep(...) abort
+function! jig#appender(funcName, ...) abort
+	let Jig = function('jig#'.a:funcName, a:000)
+	let putLine = line('.') == 1 ? 0 : line('.')
+	if putLine != 0
+		call append(line('.'), '')
+		call setpos('.', [bufnr(), putLine+1, 0])
+	endif
+	call append(putLine, split(Jig(), "\n"))
+endfunction
+
+function! jig#step(...) abort
 	let [ offset, length, stride ] = map(copy(a:000)[0:2], {_,val -> str2float(val)})
 	let calc = [
 		\ printf('%7s: %8.1f', 'offset', offset),
@@ -26,10 +36,12 @@ function! measureTools#getStep(...) abort
 		let point += stride
 		let index += 1
 	endwhile
-	return calc
+
+	call add(calc, printf('%7d: %8.1f', index, length))
+	return join(calc, "\n")
 endfunction
 
-function! measureTools#toPolar(...) abort
+function! jig#polar(...) abort
 	let [ width, height ] = map(copy(a:000)[0:1], {_,val -> str2float(val)})
 	let calc = [
 		\ printf('%7s: %6.1f', 'width', width),
@@ -39,10 +51,10 @@ function! measureTools#toPolar(...) abort
 	call add(calc, printf('%7s: %7.2f', 'range', sqrt(pow(width,2) + pow(height,2))))
 	call add(calc, printf('%7s: %7.2fﾟ', 'angle', s:toDeg(atan2(height, width))))
 
-	return calc
+	return join(calc, "\n")
 endfunction
 
-function! measureTools#toRect(...) abort
+function! jig#rect(...) abort
 	let [ range, angle ] = map(copy(a:000)[0:1], {_,val -> str2float(val)})
 	let calc = [
 		\ printf('%7s: %6.1f', 'range', range),
@@ -52,5 +64,5 @@ function! measureTools#toRect(...) abort
 	call add(calc, printf('%7s: %7.2f', 'width', range*(cos(s:toRad(angle)))))
 	call add(calc, printf('%7s: %7.2f', 'height', range*(sin(s:toRad(angle)))))
 
-	return calc
+	return join(calc, "\n")
 endfunction
