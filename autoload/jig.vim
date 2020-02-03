@@ -10,7 +10,7 @@ function! s:toDeg(radian) abort
 	return (a:radian/s:pi) * 180
 endfunction
 
-function! jig#appender(funcName, ...) abort
+function! jig#append(funcName, ...) abort
 	let Jig = function('jig#'.a:funcName, a:000)
 	let putLine = line('.') == 1 ? 0 : line('.')
 	if putLine != 0
