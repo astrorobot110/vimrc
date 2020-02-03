@@ -1,6 +1,6 @@
 scriptencoding utf-8
 
 function calcIt#main() abort
-	let formula = getline('.')
-	call append(line('.'), "\t=".eval(formula))
+	let formula = eval(getline('.'))
+	call append(line('.'), "\t=".string(formula))
 endfunction
