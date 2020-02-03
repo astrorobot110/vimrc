@@ -16,8 +16,8 @@ cabbrev regurl= 'https\?:\/\/[0-9A-Za-z_\/:%#\$&?()\~\.=+-]\+'
 " sudoめんどい
 cabbrev sudowrite w !sudo tee % > /dev/null 2>&1
 
-" 一応 (fugitiveなんとかして)
-cabbrev git= !git
+" dailySaveしてくれない…
+cabbrev dailysave= do User vialarm_17:00
 
 " 設定群への移動専用
 nnoremap <Leader>v :<C-u>e v
