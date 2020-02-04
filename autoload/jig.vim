@@ -11,13 +11,19 @@ function! s:toDeg(radian) abort
 endfunction
 
 function! jig#append(funcName, ...) abort
-	let Jig = function('jig#'.a:funcName, a:000)
-	let putLine = line('.') == 1 ? 0 : line('.')
-	if putLine != 0
-		call append(line('.'), '')
-		call setpos('.', [bufnr(), putLine+1, 0])
+	let jig = eval(printf('jig#%s(%s)', a:funcName, join(a:000, ',')))->split("\n")
+
+	if getline('.') !=# ''
+		call insert(jig, '')
 	endif
-	call append(putLine, split(Jig(), "\n"))
+
+	call append(line('.'), jig)
+
+	if line('.') == 1 && getline(1) ==# ''
+		call execute('delete _')
+	endif
+
+	call setpos('.', [bufnr(), line('.')+len(jig), 0])
 endfunction
 
 function! jig#step(...) abort
