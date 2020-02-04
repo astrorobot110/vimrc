@@ -17,10 +17,10 @@ function! jig#append(funcName, ...) abort
 		call insert(jig, '')
 	endif
 
-	call append(line('.'), jig)
-
-	if line('.') == 1 && getline(1) ==# ''
-		call execute('delete _')
+	if strlen(getline(1,'$')->join()) > 0
+		call append(line('.'), jig)
+	else
+		call setline(1, jig)
 	endif
 
 	call setpos('.', [bufnr(), line('.')+len(jig), 0])
