@@ -127,19 +127,3 @@ function! vialarm#main(args, isBang) abort
 		endif
 	endif
 endfunction
-
-function! vialarm#stackedAlarm() abort
-	let currentTime = localtime()
-	let stackedTime = s:recentTime + 60
-	if currentTime > stackedTime
-		let autocmdText = execute('autocmd User')
-		while stackedTime < currentTime
-			let stack = strftime('%H:%M', stackedTime)
-			echo stack
-			if match(autocmdText, '^\s\+vialarm_'.stack) >= 0
-				execute 'doautocmd User' 'vialarm_'.stack
-			endif
-			let stackedTime += 60
-		endwhile
-	endif
-endfunction
