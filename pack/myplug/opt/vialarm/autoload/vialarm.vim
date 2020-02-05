@@ -1,5 +1,7 @@
 scriptencoding utf-8
 
+let s:recentTime = localtime()
+
 function! s:timerStart() abort
 	if !exists('s:vialarmTimer')
 		let s:vialarmTimer = timer_start((60-(localtime()%60))*1000, function('s:getAlarm'))
@@ -19,11 +21,13 @@ function! s:timerStop() abort
 endfunction
 
 function! s:getAlarm(timer) abort
-	let now = strftime('%H:%M', localtime())
 	let autocmdText = execute('autocmd User')
+	let now = strftime('%H:%M', localtime())
 	if match(autocmdText, '^\s\+vialarm_'.now) >= 0
 		execute 'doautocmd User' 'vialarm_'.now
 	endif
+
+	let s:recentTime = localtime()
 
 	if timer_info(s:vialarmTimer)[0].repeat > 0
 		let s:vialarmTimer = timer_start(60000, function('s:getAlarm'), {'repeat':-1})
@@ -121,5 +125,21 @@ function! vialarm#main(args, isBang) abort
 		else
 			echo '[vialarm]: Usage `:Vialarm! [(start|stop)]`'
 		endif
+	endif
+endfunction
+
+function! vialarm#stackedAlarm() abort
+	let currentTime = localtime()
+	let stackedTime = s:recentTime + 60
+	if currentTime > stackedTime
+		let autocmdText = execute('autocmd User')
+		while stackedTime < currentTime
+			let stack = strftime('%H:%M', stackedTime)
+			echo stack
+			if match(autocmdText, '^\s\+vialarm_'.stack) >= 0
+				execute 'doautocmd User' 'vialarm_'.stack
+			endif
+			let stackedTime += 60
+		endwhile
 	endif
 endfunction
