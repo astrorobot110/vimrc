@@ -6,15 +6,23 @@ scriptencoding utf-8
 " Zから始まるメニュー諸々
 " 使いそうで使わないちょっと使うプラグインコマンドなどに
 
-nnoremap Zp :<C-u>PlugInstall<CR>
-nnoremap Zs :<C-u>source %<CR>
+" Select all.
+nnoremap Za ggVG
+" Chordsplitter
 nnoremap Zc :Chords<CR>
 vnoremap Zc :Chords<CR>
 nnoremap ZC :<C-u>3,$Chords<CR>
+" cd to current buffer.
 nnoremap Zd :lcd %:h<CR>
 nnoremap ZD :cd %:h<CR>
+" Quick help to function-list
 nnoremap Zh :<C-u>vert bo help function-list<CR>
-nnoremap ZH :<C-u>bel help function-list<CR>
+" PlugInstall
+nnoremap Zp :<C-u>PlugInstall<CR>
+" Paste terminal clipboard
+nnoremap Zv "+p
+nnoremap ZV "+P
+" CalcIt
 nnoremap Z= :<C-u>Calc<CR>
 inoremap <expr> <C-z>= calcIt#main()
 
@@ -23,11 +31,6 @@ if exists('g:memoPath') && isdirectory(expand(g:memoPath))
 	let memoSplit = g:isDroid ? 'edit' : 'bel vs'
 	nnoremap Zm :<C-u>execute memoSplit g:memoPath<CR>
 	nnoremap ZM :<C-u>bo vs $VIMFILE/.memo.ls \| put =escape(glob(g:memoPath.'/**/*.md'),' ')<CR>
-endif
-
-" 変数依存
-if exists(':DailySave')
-	noremap Zw :<C-u>DailySave<CR>
 endif
 
 " plug.vimのプラグイン

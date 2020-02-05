@@ -24,15 +24,14 @@ scriptencoding utf-8
 " why modeline dead?
 set modeline
 
-" シェル設定
 " powershell移行は無理でした。
 
-if has('win32') && 0
-	set shell=pwsh
-	set shellcmdflag=\ -command
-	set shellquote=\"
-	set shellxquote= 
-endif
+" if has('win32')
+" 	set shell=pwsh
+" 	set shellcmdflag=\ -command
+" 	set shellquote=\"
+" 	set shellxquote= 
+" endif
 
 if has('win32')
 	set fileformat=dos
