@@ -21,10 +21,12 @@ function! s:timerStop() abort
 endfunction
 
 function! s:getAlarm(timer) abort
-	let autocmdText = execute('autocmd User')
-	let now = strftime('%H:%M', localtime())
-	if match(autocmdText, '^\s\+vialarm_'.now) >= 0
-		execute 'doautocmd User' 'vialarm_'.now
+	let autocmdText = split(execute('autocmd User'), '\n')
+	let matchText = '^\s\+\zs[Vv]ialarm\(_.*\)\?_'.strftime('%H:%M', localtime())
+	let index = match(autocmdText, matchText)
+	if index >= 0
+		let alarmName = matchstr(autocmdText[index], matchText)
+		execute 'doautocmd User' alarmName
 	endif
 
 	let s:recentTime = localtime()
@@ -45,7 +47,7 @@ function! s:addOneshot(time, command) abort
 		endif
 
 		execute 'augroup vialarm_oneshots'
-		execute 'autocmd User' 'vialarm_'.a:time '++once' a:command
+		execute 'autocmd User' 'Vialarm_'.a:time '++once' a:command
 		execute 'augroup END'
 
 		echo printf('[vialarm]: Added alarm in %s.', a:time)
@@ -60,7 +62,7 @@ function! s:addOneshot(time, command) abort
 endfunction
 
 function! s:showAlarms() abort
-	let autocmdText = split(execute('1verbose autocmd User'), '\n')[1:]
+	let autocmdText = split(execute('verbose autocmd User'), '\n')[1:]
 
 	let currentGroup = ''
 	let currentLine = 0
@@ -73,7 +75,7 @@ function! s:showAlarms() abort
 		if match(autocmdText[currentLine], '^\S') >= 0
 			let currentGroup = autocmdText[currentLine]
 			let currentLine += 1
-		elseif match(autocmdText[currentLine], '^\s\+vialarm_') >= 0
+		elseif match(autocmdText[currentLine], '^\s\+[Vv]ialarm_') >= 0
 			if currentGroup !=# ''
 				echohl Title
 				echo currentGroup
@@ -126,4 +128,21 @@ function! vialarm#main(args, isBang) abort
 			echo '[vialarm]: Usage `:Vialarm! [(start|stop)]`'
 		endif
 	endif
+endfunction
+
+function vialarm#stackedAlarm() abort
+	let autocmdText = split(execute('autocmd User'), '\n')
+	while s:recentTime < localtime()
+		let matchText = '^\s\+\zsVialarm\(_.*\)\?_'.strftime('%H:%M', s:recentTime)
+		let index = match(autocmdText, matchText)
+		if index >= 0
+			let alarmName = matchstr(autocmdText[index], matchText)
+			execute 'doautocmd User' alarmName
+		endif
+
+		let s:recentTime += 60
+
+	endwhile
+
+	let s:recentTime = localtime()
 endfunction

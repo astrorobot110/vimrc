@@ -25,6 +25,8 @@ nnoremap ZV "+P
 " CalcIt
 nnoremap Z= :<C-u>Calc<CR>
 inoremap <expr> <C-z>= calcIt#main()
+" Remove search register
+nnoremap Z/ :let @/ = ''<CR>
 
 " ディレクトリ依存
 if exists('g:memoPath') && isdirectory(expand(g:memoPath))
