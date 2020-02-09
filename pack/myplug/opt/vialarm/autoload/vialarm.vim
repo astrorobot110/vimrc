@@ -1,11 +1,12 @@
 scriptencoding utf-8
 
 let s:recentTime = localtime()
+let g:vialarm_isRunning = 0
 
 function! s:timerStart() abort
-	if !exists('s:vialarmTimer')
+	if !g:vialarm_isRunning
 		let s:vialarmTimer = timer_start((60-(localtime()%60))*1000, function('s:getAlarm'))
-
+		let g:vialarm_isRunning = 1
 		if v:vim_did_enter
 			echo '[vialarm]: Start vialarm.'
 		endif
@@ -15,9 +16,14 @@ function! s:timerStart() abort
 endfunction
 
 function! s:timerStop() abort
-	call timer_stop(s:vialarmTimer)
-	unlet s:vialarmTimer
-	echo '[vialarm]: Stop vialarm.'
+	if g:vialarm_isRunning
+		call timer_stop(s:vialarmTimer)
+		unlet s:vialarmTimer
+		let g:vialarm_isRunning = 0
+		echo '[vialarm]: Stop vialarm.'
+	else
+		echo '[vialarm]: Vialarm is already stopping.'
+	endif
 endfunction
 
 function! s:getAlarm(timer) abort
