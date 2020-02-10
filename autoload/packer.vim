@@ -8,8 +8,4 @@ function! packer#main() abort
 	if g:isDroid
 		packadd gboard
 	endif
-
-	if exists('g:dailySaveDir') && isdirectory(expand(g:memoPath))
-		packadd dailySave
-	endif
 endfunction

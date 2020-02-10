@@ -29,9 +29,9 @@ inoremap <expr> <C-z>= calcIt#main()
 nnoremap Z/ :let @/ = ''<CR>
 
 " ディレクトリ依存
-if exists('g:memoPath') && isdirectory(expand(g:memoPath))
+if exists('$DOCS/git/memo') && isdirectory(expand('$DOCS/git/memo'))
 	let memoSplit = g:isDroid ? 'edit' : 'bel vs'
-	nnoremap Zm :<C-u>execute memoSplit g:memoPath<CR>
+	nnoremap Zm :<C-u>execute memoSplit '$DOCS/git/memo'<CR>
 	nnoremap ZM :<C-u>bo vs $VIMFILE/.memo.ls \| put =escape(glob(g:memoPath.'/**/*.md'),' ')<CR>
 endif
 
