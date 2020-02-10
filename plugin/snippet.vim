@@ -21,6 +21,7 @@ cabbrev dailysave= do User vialarm_17:00
 
 " 設定群への移動専用
 nnoremap <Leader>v :<C-u>e v
+nnoremap <Leader>V :<C-u>cd v
 
 cabbrev vv= $VIMFILES
 cabbrev vV= $VIMFILES/vimrc

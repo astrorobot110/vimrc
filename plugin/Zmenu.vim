@@ -19,8 +19,6 @@ nnoremap ZD :cd %:h<CR>
 nnoremap Zh :<C-u>vert bo help function-list<CR>
 " PlugInstall
 nnoremap Zp :<C-u>PlugInstall<CR>
-" cd to .vim
-nnoremap Zv :<C-u>cd $VIMFILES
 " CalcIt
 nnoremap Z= :<C-u>Calc<CR>
 inoremap <expr> <C-z>= calcIt#main()
@@ -35,5 +33,7 @@ if isdirectory(expand('$DOCS/git/memo'))
 endif
 
 " plug.vimのプラグイン
+" fugitive
+nnoremap Zg :<C-u>Gstatus<CR>
 nnoremap Zx :<C-u>execute 'OpenBrowser' expand('%:p')<CR>
 nnoremap ZX :<C-u>execute 'OpenBrowser' eval('@'.input('Register: '))<CR>
