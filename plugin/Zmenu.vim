@@ -19,9 +19,8 @@ nnoremap ZD :cd %:h<CR>
 nnoremap Zh :<C-u>vert bo help function-list<CR>
 " PlugInstall
 nnoremap Zp :<C-u>PlugInstall<CR>
-" Paste terminal clipboard
-nnoremap Zv "+p
-nnoremap ZV "+P
+" cd to .vim
+nnoremap Zv :<C-u>cd $VIMFILES
 " CalcIt
 nnoremap Z= :<C-u>Calc<CR>
 inoremap <expr> <C-z>= calcIt#main()
@@ -29,7 +28,7 @@ inoremap <expr> <C-z>= calcIt#main()
 nnoremap Z/ :let @/ = ''<CR>
 
 " ディレクトリ依存
-if exists('$DOCS/git/memo') && isdirectory(expand('$DOCS/git/memo'))
+if isdirectory(expand('$DOCS/git/memo'))
 	let memoSplit = g:isDroid ? 'edit' : 'bel vs'
 	nnoremap Zm :<C-u>execute memoSplit '$DOCS/git/memo'<CR>
 	nnoremap ZM :<C-u>bo vs $VIMFILE/.memo.ls \| put =escape(glob(g:memoPath.'/**/*.md'),' ')<CR>
