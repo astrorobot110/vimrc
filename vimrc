@@ -1,18 +1,18 @@
 let $VIMFILES = split(&runtimepath, ',')[0]
 
 let g:isDroid = $VIMFILES =~? 'droidvim'
-let g:isTmux = exists('$TMUXDEVICE')
+let g:isTermux = exists('$TERMUXDEVICE')
 
 if !g:isDroid
 	if has('win32')
 		let $VIMDEVICE = tolower($COMPUTERNAME).'_windows'
 	elseif has('unix')
-		let hostname = g:isTmux ? $TMUXDEVICE : systemlist('hostname')[0]
+		let hostname = g:isTermux ? $TERMUXDEVICE : systemlist('hostname')[0]
 		let $VIMDEVICE = tolower(hostname).'_unix'
 	endif
 endif
 
-if $VIMDEVICE =~? '_unix$' && !g:isTmux
+if $VIMDEVICE =~? '_unix$' && !g:isTermux
 	language ja_JP.utf8
 endif
 
@@ -27,13 +27,6 @@ scriptencoding utf-8
 set modeline
 
 " powershell移行は無理でした。
-
-" if has('win32')
-" 	set shell=pwsh
-" 	set shellcmdflag=\ -command
-" 	set shellquote=\"
-" 	set shellxquote= 
-" endif
 
 if has('win32')
 	set fileformat=dos
@@ -121,11 +114,13 @@ set statusline=%4(%n%):\ %<%f\ [%{&fenc.'/'.&ff}]%h%w%m%r%=\ %l,%-7.(%c%V%)\ [%4
 
 " android用調整
 set laststatus=2
-let &cmdheight = g:isDroid ? 1 : 2
+let &cmdheight = g:isDroid || g:isTermux ? 1 : 2
 
 " ディレクトリ関係
 if g:isDroid
 	set backupdir=$INTERNAL_STORAGE/Documents/backup
+elseif g:isTermux
+	set backupdir=~/storage/Documents/backup
 else
 	set backupdir=~/Documents/backup
 endif
@@ -138,7 +133,7 @@ set undofile
 set viewdir=$VIMFILES/view
 
 " viminfo
-if !g:isDroid
+if !g:isDroid && !g:isTermux
 	set viminfo+=n$VIMFILES/viminfo
 else
 	set viminfo+=n$HOME/.viminfo
