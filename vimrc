@@ -1,16 +1,18 @@
 let $VIMFILES = split(&runtimepath, ',')[0]
 
 let g:isDroid = $VIMFILES =~? 'droidvim'
+let g:isTmux = exists('$TMUXDEVICE')
 
 if !g:isDroid
 	if has('win32')
 		let $VIMDEVICE = tolower($COMPUTERNAME).'_windows'
 	elseif has('unix')
-		let $VIMDEVICE = tolower(systemlist('hostname')[0]).'_unix'
+		let hostname = g:isTmux ? $TMUXDEVICE : systemlist('hostname')[0]
+		let $VIMDEVICE = tolower(hostname).'_unix'
 	endif
 endif
 
-if $VIMDEVICE =~? '_unix$'
+if $VIMDEVICE =~? '_unix$' && !g:isTmux
 	language ja_JP.utf8
 endif
 
