@@ -117,13 +117,7 @@ set laststatus=2
 let &cmdheight = g:isDroid || g:isTermux ? 1 : 2
 
 " ディレクトリ関係
-if g:isDroid
-	set backupdir=$INTERNAL_STORAGE/Documents/backup
-elseif g:isTermux
-	set backupdir=~/storage/Documents/backup
-else
-	set backupdir=~/Documents/backup
-endif
+set backupdir=$DOCS/backup
 
 set backup
 
