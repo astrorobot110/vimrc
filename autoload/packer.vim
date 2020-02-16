@@ -5,7 +5,7 @@ function! packer#main() abort
 		packadd qiitactl
 	endif
 
-	if g:isDroid
+	if g:isDroid || g:isTermux
 		packadd gboard
 	endif
 endfunction

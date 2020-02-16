@@ -165,10 +165,6 @@ if g:isDroid
 
 	let g:imctrl_normal = 53
 	let g:imactivate_language_switch = 61
-
-	if $VIMDEVICE ==# 'xperia_mobile'
-		set updatetime=3600000
-	endif
 endif
 
 " netrwPlugin.vim用

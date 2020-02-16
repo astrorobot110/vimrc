@@ -27,9 +27,8 @@ nnoremap Z/ :let @/ = ''<CR>
 
 " ディレクトリ依存
 if isdirectory(expand('$DOCS/git/memo'))
-	let memoSplit = g:isDroid || g:isTermux ? 'edit' : 'bel vs'
-	nnoremap Zm :<C-u>execute memoSplit '$DOCS/git/memo'<CR>
-	nnoremap ZM :<C-u>bo vs $VIMFILE/.memo.ls \| put =escape(glob(g:memoPath.'/**/*.md'),' ')<CR>
+	nnoremap Zm :<C-u>edit $DOCS/git/memo<CR>
+	nnoremap ZM :<C-u>edit $VIMFILE/.memo.ls \| put =escape(glob(g:memoPath.'/**/*.md'),' ')<CR>
 endif
 
 " plug.vimのプラグイン

@@ -3,7 +3,7 @@ scriptencoding utf-8
 " janah の個別調整
 function! ccs_janah#main() abort
 	" 液晶ごとに背景安定しねぇ
-	if $VIMDEVICE !~? '_mobile$'
+	if $VIMDEVICE !~? '^xperia_'
 		highlight Normal ctermbg=234
 	else
 		highlight Normal ctermbg=232
