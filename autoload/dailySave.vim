@@ -1,6 +1,6 @@
 scriptencoding utf-8
 
-let s:dailySaveDir = exists('g:dailySaveDir') ? g:dailySaveDir : '~/documents/dailySave'
+let s:dailySaveDir = exists('g:dailySaveDir') ? g:dailySaveDir : '~/Documents/dailySave'
 
 function! dailySave#main(path) abort
 	try
