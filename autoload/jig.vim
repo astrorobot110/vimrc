@@ -1,6 +1,6 @@
 scriptencoding utf-8
 
-let s:pi = 3.1415
+let s:pi = 3.141592
 
 function! s:toRad(degree) abort
 	return (a:degree/180) * s:pi
@@ -10,65 +10,96 @@ function! s:toDeg(radian) abort
 	return (a:radian/s:pi) * 180
 endfunction
 
-function! jig#append(funcName, ...) abort
-	let jig = eval(printf('jig#%s(%s)', a:funcName, join(a:000, ',')))->split("\n")
+function s:toPolar(width, height) abort
+	let range = sqrt(pow(a:width, 2) + pow(a:height, 2))
+	let angle = s:toDeg(atan2(a:height, a:width))
 
+	let calc = [
+		\ printf('%7s: %7.2f', 'range', range),
+		\ printf('%7s: %7.2fﾟ', 'angle', angle),
+		\ ]
+
+	return calc
+endfunction
+
+function s:toRect(range, angle) abort
+	let width = a:range * cos(s:toRad(a:angle))
+	let height = a:range * sin(s:toRad(a:angle))
+
+	let calc = [
+		\ printf('%7s: %7.2f', 'width', width),
+		\ printf('%7s: %7.2f', 'height', height),
+		\ ]
+
+	return calc
+endfunction
+
+function! s:putResult(result) abort
 	if getline('.') !=# ''
-		call insert(jig, '')
+		call insert(a:result, '')
 	endif
 
 	if strlen(getline(1,'$')->join()) > 0
-		call append(line('.'), jig)
+		call append(line('.'), a:result)
 	else
-		call setline(1, jig)
+		call setline(1, a:result)
 	endif
 
-	call setpos('.', [bufnr(), line('.')+len(jig), 0])
+	call setpos('.', [bufnr(), line('.')+len(a:result), 0])
 endfunction
 
-function! jig#step(...) abort
-	let [ offset, length, stride ] = map(copy(a:000)[0:2], {_,val -> str2float(val)})
+function! jig#step(offset, pitch, param, bang) abort
+	let offset = str2float(a:offset)
+	let pitch = str2float(a:pitch)
+	if a:bang ==# ''
+		let param = str2float(a:param)
+		let paramName = 'length'
+		let length = param
+	else
+		let param = str2float(a:param)
+		let paramName = 'step'
+		let length = offset + pitch * param
+	endif
+
 	let calc = [
 		\ printf('%7s: %8.1f', 'offset', offset),
-		\ printf('%7s: %8.1f', 'length', length),
-		\ printf('%7s: %8.1f', 'stride', stride),
+		\ printf('%7s: %8.1f', 'pitch', pitch),
+		\ printf('%7s: %8.1f', paramName, param),
 		\ '------------------'
 		\ ]
-	let index = 1
+	let index = 0
 	let point = offset
 
 	while point < length
 		call add(calc, printf('%7d: %8.1f', index, point))
-		let point += stride
+		let point += pitch
 		let index += 1
 	endwhile
 
 	call add(calc, printf('%7d: %8.1f', index, length))
-	return join(calc, "\n")
+	call s:putResult(calc)
 endfunction
 
-function! jig#polar(...) abort
-	let [ width, height ] = map(copy(a:000)[0:1], {_,val -> str2float(val)})
-	let calc = [
-		\ printf('%7s: %6.1f', 'width', width),
-		\ printf('%7s: %6.1f', 'height', height),
-		\ '-----------------'
+function! jig#polar(paramX, paramY, bang)
+		let paramX = str2float(a:paramX)
+		let paramY = str2float(a:paramY)
+	if a:bang ==# ''
+		let paramXName = 'width'
+		let paramYName = 'height'
+		let paramYUnit = ''
+		let calc = s:toPolar(paramX, paramY)
+	else
+		let paramXName = 'range'
+		let paramYName = 'angle'
+		let paramYUnit = 'ﾟ'
+		let calc = s:toRect(paramX, paramY)
+	endif
+
+	let calcPre = [
+		\ printf('%7s: %6.1f', paramXName, paramX),
+		\ printf('%7s: %6.1f%s', paramYName, paramY, paramYUnit),
+		\ '------------------'
 		\ ]
-	call add(calc, printf('%7s: %7.2f', 'range', sqrt(pow(width,2) + pow(height,2))))
-	call add(calc, printf('%7s: %7.2fﾟ', 'angle', s:toDeg(atan2(height, width))))
 
-	return join(calc, "\n")
-endfunction
-
-function! jig#rect(...) abort
-	let [ range, angle ] = map(copy(a:000)[0:1], {_,val -> str2float(val)})
-	let calc = [
-		\ printf('%7s: %6.1f', 'range', range),
-		\ printf('%7s: %6.1fﾟ', 'angle', angle),
-		\ '-----------------'
-		\ ]
-	call add(calc, printf('%7s: %7.2f', 'width', range*(cos(s:toRad(angle)))))
-	call add(calc, printf('%7s: %7.2f', 'height', range*(sin(s:toRad(angle)))))
-
-	return join(calc, "\n")
+	call s:putResult(calcPre + calc)
 endfunction

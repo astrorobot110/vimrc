@@ -34,12 +34,10 @@ command -nargs=1 -bang -complete=highlight GetHl call getHighlight#main(<q-args>
 
 " vimtutor
 command! -nargs=? Tutorial call vimtutor#main(<f-args>)
-" DailySave
-command! -nargs=? -complete=dir DailySave silent call dailySave#main(<q-args>)
+"
 " calcIt
 command! -nargs=0 Calc call calcIt#main()
 
 " jig
-command! -nargs=+ GetStep call jig#append('step', <f-args>)
-command! -nargs=+ ToPolar call jig#append('polar', <f-args>)
-command! -nargs=+ ToRect call jig#append('rect', <f-args>)
+command! -nargs=+ -bang GetStep call jig#step(<f-args>, '<bang>')
+command! -nargs=+ -bang ToPolar call jig#polar(<f-args>, '<bang>')
