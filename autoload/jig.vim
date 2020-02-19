@@ -80,7 +80,7 @@ function! jig#step(offset, pitch, param, bang) abort
 	call s:putResult(calc)
 endfunction
 
-function! jig#polar(paramX, paramY, bang)
+function! jig#polar(paramX, paramY, bang) abort
 		let paramX = str2float(a:paramX)
 		let paramY = str2float(a:paramY)
 	if a:bang ==# ''
