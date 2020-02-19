@@ -15,8 +15,8 @@ function s:toPolar(width, height) abort
 	let angle = s:toDeg(atan2(a:height, a:width))
 
 	let calc = [
-		\ printf('%7s: %7.2f', 'range', range),
-		\ printf('%7s: %7.2fﾟ', 'angle', angle),
+		\ printf('%7s: %8.2f', 'range', range),
+		\ printf('%7s: %8.2fﾟ', 'angle', angle),
 		\ ]
 
 	return calc
@@ -27,8 +27,8 @@ function s:toRect(range, angle) abort
 	let height = a:range * sin(s:toRad(a:angle))
 
 	let calc = [
-		\ printf('%7s: %7.2f', 'width', width),
-		\ printf('%7s: %7.2f', 'height', height),
+		\ printf('%7s: %8.2f', 'width', width),
+		\ printf('%7s: %8.2f', 'height', height),
 		\ ]
 
 	return calc
@@ -62,21 +62,21 @@ function! jig#step(offset, pitch, param, bang) abort
 	endif
 
 	let calc = [
-		\ printf('%7s: %8.1f', 'offset', offset),
-		\ printf('%7s: %8.1f', 'pitch', pitch),
-		\ printf('%7s: %8.1f', paramName, param),
+		\ printf('%7s: %7.1f', 'offset', offset),
+		\ printf('%7s: %7.1f', 'pitch', pitch),
+		\ printf('%7s: %7.1f', paramName, param),
 		\ '------------------'
 		\ ]
 	let index = 0
 	let point = offset
 
 	while point < length
-		call add(calc, printf('%7d: %8.1f', index, point))
+		call add(calc, printf('%7d: %7.1f', index, point))
 		let point += pitch
 		let index += 1
 	endwhile
 
-	call add(calc, printf('%7d: %8.1f', index, length))
+	call add(calc, printf('%7d: %7.1f', index, length))
 	call s:putResult(calc)
 endfunction
 
@@ -96,8 +96,8 @@ function! jig#polar(paramX, paramY, bang)
 	endif
 
 	let calcPre = [
-		\ printf('%7s: %6.1f', paramXName, paramX),
-		\ printf('%7s: %6.1f%s', paramYName, paramY, paramYUnit),
+		\ printf('%7s: %7.1f', paramXName, paramX),
+		\ printf('%7s: %7.1f%s', paramYName, paramY, paramYUnit),
 		\ '------------------'
 		\ ]
 
