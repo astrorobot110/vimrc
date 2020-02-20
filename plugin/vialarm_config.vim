@@ -5,7 +5,7 @@ Vialarm! start
 
 augroup vialarm
 	autocmd!
-	if $VIMDEVICE ==# 'xperia_mobile'
+	if exists('g:dailySaveDir')
 		autocmd User Vialarm_17:00 call s:dailySave()
 	endif
 augroup END
