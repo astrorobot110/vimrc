@@ -18,7 +18,8 @@ nnoremap ZD :cd %:h<CR>
 " Quick help to function-list
 nnoremap Zh :<C-u>vert bo help function-list<CR>
 " PlugInstall
-nnoremap Zp :<C-u>PlugInstall<CR>
+nnoremap Zp :<C-u>PlugUpdate<CR>
+nnoremap ZP :<C-u>PlugInstall<CR>
 " CalcIt
 nnoremap Z= :<C-u>Calc<CR>
 inoremap <expr> <C-z>= calcIt#main()
