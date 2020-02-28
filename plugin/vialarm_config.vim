@@ -8,6 +8,9 @@ augroup vialarm
 	if exists('g:dailySaveDir')
 		autocmd User Vialarm_17:00 call s:dailySave()
 	endif
+	if $VIMDEVICE =~? '^xperia'
+		autocmd User Vialarm_03:00 quitall!
+	endif
 augroup END
 
 function! s:dailySave(...) abort
