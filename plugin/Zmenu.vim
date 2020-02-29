@@ -20,6 +20,8 @@ nnoremap Zh :<C-u>vert bo help function-list<CR>
 " PlugInstall
 nnoremap Zp :<C-u>PlugUpdate<CR>
 nnoremap ZP :<C-u>PlugInstall<CR>
+" Wrapper
+nnoremap Zw :<C-u>setlocal wrap!<CR>
 " CalcIt
 nnoremap Z= :<C-u>Calc<CR>
 inoremap <expr> <C-z>= calcIt#main()
@@ -35,5 +37,6 @@ endif
 " plug.vimのプラグイン
 " fugitive
 nnoremap Zg :<C-u>Gstatus<CR>
+" OpenBrowser
 nnoremap Zx :<C-u>execute 'OpenBrowser' expand('%:p')<CR>
 nnoremap ZX :<C-u>execute 'OpenBrowser' eval('@'.input('Register: '))<CR>
