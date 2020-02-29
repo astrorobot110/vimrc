@@ -11,7 +11,6 @@ augroup vialarm
 augroup END
 
 function! s:dailySave(...) abort
-	let currentBuf = bufnr()
 	let path = a:0 > 0 && isdirectory(expand(a:1)) ? expand(a:1) : expand(g:dailySaveDir)
 	let fileName = strftime('%y%m%d.md', localtime())
 
@@ -24,11 +23,12 @@ function! s:dailySave(...) abort
 		endif
 	endfor
 
+	call system('git pull')
 	call system(printf('git add %s', fileName))
 	call system('git commit -m ''Dailysaved.''')
 	call system('git push')
 
-	execute 'buffer!' currentBuf
+	execute 'edit!' fileName
 	cd -
 
 	echo 'Dailysaved.'
