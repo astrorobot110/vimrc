@@ -1,6 +1,6 @@
 scriptencoding utf-8
 
-if g:isDroid || g:isTermux
+if &columns <= 80
 	augroup vimhelp
 		autocmd!
 		autocmd FileType help setlocal nowrap
