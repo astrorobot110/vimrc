@@ -20,7 +20,7 @@ call plug#begin($VIMFILES.'/vim-plug')
 	Plug 'mhinz/vim-janah'
 	Plug 'haishanh/night-owl.vim'
 
-	if !g:isDroid
+	if !( g:isDroid || g:isTermux )
 		Plug 'prabirshrestha/async.vim'
 		Plug 'prabirshrestha/asyncomplete.vim'
 		Plug 'prabirshrestha/asyncomplete-lsp.vim'
@@ -32,11 +32,11 @@ call plug#begin($VIMFILES.'/vim-plug')
 		Plug 'vim/killersheep'
 	endif
 
-	if has('win32')
+	if g:isWin
 		Plug 'ananagame/vimsence'
 	endif
 
-	if $VIMDEVICE =~? '_unix$'
+	if g:isUnix || g:isTermux
 		Plug 'yuratomo/w3m.vim'
 	endif
 call plug#end()

@@ -2,17 +2,10 @@ let $VIMFILES = split(&runtimepath, ',')[0]
 
 let g:isDroid = expand('~') =~? 'droidvim'
 let g:isTermux = expand('~') =~? 'termux'
+let g:isWin = has('win32') || has('win64')
+let g:isUnix = has('unix') && !( g:isDroid || g:isTermux )
 
-if !g:isDroid
-	if has('win32')
-		let $VIMDEVICE = tolower($COMPUTERNAME).'_windows'
-	elseif has('unix')
-		let hostname = g:isTermux ? $TERMUXDEVICE : systemlist('hostname')[0]
-		let $VIMDEVICE = tolower(hostname).'_unix'
-	endif
-endif
-
-if $VIMDEVICE =~? '_unix$' && !g:isTermux
+if g:isUnix
 	language ja_JP.utf8
 endif
 
@@ -23,15 +16,10 @@ set fileencodings=ucs-bom,utf-8,utf-16,cp932,iso-2022-jp,euc-jisx0213,euc-jp
 
 scriptencoding utf-8
 
-" why modeline dead?
-set modeline
-
-" powershell移行は無理でした。
-
-if has('win32')
+if g:isWin
 	set fileformat=dos
 	set fileformats=dos,unix,mac
-elseif has('unix')
+else
 	set fileformat=unix
 	set fileformats=unix,dos,mac
 endif
@@ -50,35 +38,10 @@ if !v:vim_did_enter
 
 " vim-plug
 	source $VIMFILES/vim-plug/vim-plug.conf.vim
-
-" リトライ処理
-	if exists('g:retry')
-		for r in g:retry
-			execute 'source' r
-		endfor
-
-		unlet g:retry
-	endif
 endif
 
-" 検索周り
-set ignorecase smartcase
-set incsearch
-set hlsearch
-
-set diffopt=filler
-
-if !g:isDroid
-	set diffopt+=vertical
-endif
-
-if has('win32')
-	if has('patch-8.1.360')
-		set diffopt+=internal
-	else
-		set diffexpr=mydiff#main()
-	endif
-endif
+" なぜかモードライン死んでた
+set modeline
 
 " 編集関係
 set autoindent
@@ -103,6 +66,17 @@ set scrolloff=8
 set ambiwidth=double
 set display+=lastline
 set background=dark
+
+" 検索周り
+set ignorecase smartcase
+set incsearch
+set hlsearch
+
+set diffopt=filler
+
+if &columns < 80
+	set diffopt+=vertical
+endif
 
 " PowerShell上の問題
 set t_Co=256

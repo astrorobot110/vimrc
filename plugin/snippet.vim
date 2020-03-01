@@ -16,9 +16,6 @@ cabbrev regurl= 'https\?:\/\/[0-9A-Za-z_\/:%#\$&?()\~\.=+-]\+'
 " sudoめんどい
 cabbrev sudowrite w !sudo tee % > /dev/null 2>&1
 
-" dailySaveしてくれない…
-cabbrev dailysave= do User vialarm_17:00
-
 " 設定群への移動専用
 nnoremap <Leader>v :<C-u>e v
 nnoremap <Leader>V :<C-u>cd v
@@ -31,15 +28,3 @@ cabbrev va= $VIMFILES/autoload
 cabbrev vA= $VIMFILES/plugin/command.vim
 cabbrev vp= $VIMFILES/vim-plug
 cabbrev vP= $VIMFILES/vim-plug/vim-plug.conf.vim
-
-" その他よく使いたい設定群
-
-cabbrev md= setlocal filetype=markdown
-cabbrev <expr> pwd= expand('%:p:h')
-cabbrev <expr> fname= expand('%:t')
-cabbrev <expr> filename= expand('%:p')
-
-" エクスプローラーを開く用
-if has('win32')
-	cabbrev explorer= silent !explorer
-endif
