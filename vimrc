@@ -30,7 +30,8 @@ if !v:vim_did_enter
 	try
 		source $VIMFILES/.private.vim
 	catch /E484/
-		echo '".private.vim not found.'
+		echo '".private.vim" not found.'
+		let g:device = ''
 	endtry
 
 " pack以下のプラグイン
