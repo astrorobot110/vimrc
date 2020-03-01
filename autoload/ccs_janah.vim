@@ -2,13 +2,6 @@ scriptencoding utf-8
 
 " janah の個別調整
 function! ccs_janah#main() abort
-	" 液晶ごとに背景安定しねぇ
-	if g:device ==# 'xperia'
-		highlight Normal ctermbg=234
-	else
-		highlight Normal ctermbg=232
-	endif
-
 	" ステータスライン調整
 	highlight StatusLine term=bold,reverse cterm=bold,reverse gui=bold,reverse ctermfg=216 ctermbg=16 guifg=#ffaf87 guibg=#3a3a3a
 
