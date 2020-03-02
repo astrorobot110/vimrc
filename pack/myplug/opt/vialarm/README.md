@@ -29,7 +29,7 @@ Vialarmのタイマー登録にはオートコマンドを使用します。
 autocmd User {vialarm} {command}
 ```
 
-引数 {vialarm} は `(vialarm|Vialarm) HH:MM` の様に記述してください。
+引数 {vialarm} は `(vialarm|Vialarm)_HH:MM` の様に記述してください。
 大文字の**V**ialarmで登録されたコマンドはスタックされるアラームです。指定時刻にVimがバックグラウンドの場合、Vimがフォアグラウンドになった際に起動されます。
 
 ## Dumb English
@@ -60,5 +60,5 @@ Vialarm uses autocommand to run alarm.
 autocmd User {vialarm} {command}
 ```
 
-{vialarm} args must be in format `(vialarm|Vialarm) HH:MM`.
+{vialarm} args must be in format `(vialarm|Vialarm)_HH:MM`.
 Capped pattern ( **V**ialarm ) is 'stacked' alarm. If Vim is background at in time, alarm will run while Vim returns to foreground.
