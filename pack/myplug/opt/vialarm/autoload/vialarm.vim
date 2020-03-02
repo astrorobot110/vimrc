@@ -1,5 +1,9 @@
 scriptencoding utf-8
 
+let s:cpo = &cpoptions
+
+set cpo&vim
+
 let s:recentTime = localtime()
 let g:vialarm_isRunning = 0
 
@@ -105,7 +109,7 @@ function! s:showTimerInfo() abort
 
 		let timerState = deepcopy(timer_info(s:vialarmTimer)[0])
 
-		for k in keys(timerState)->filter('v:val !=? "callback"')
+		for k in filter(keys(timerState), 'v:val !=? "callback"')
 			echo printf('  %-10S: %d', k, timerState[k])
 		endfor
 	else
@@ -114,29 +118,29 @@ function! s:showTimerInfo() abort
 	endif
 endfunction
 
-function! vialarm#main(args, isBang) abort
-	if a:isBang ==# ''
-		if a:args !=# ''
-			let time = matchstr(a:args, '^\S*')
-			let command = matchstr(a:args, '\s\zs.*$')
-			call s:addOneshot(time, command)
-		else
-			call s:showAlarms()
-		endif
+function! vialarm#alarm(args) abort
+	if a:args !=# ''
+		let time = matchstr(a:args, '^\S*')
+		let command = matchstr(a:args, '\s\zs.*$')
+		call s:addOneshot(time, command)
 	else
-		if a:args ==? 'start'
-			call s:timerStart()
-		elseif a:args ==? 'stop'
-			call s:timerStop()
-		elseif a:args ==# ''
-			call s:showTimerInfo()
-		else
-			echo '[vialarm]: Usage `:Vialarm! [(start|stop)]`'
-		endif
+		call s:showAlarms()
 	endif
 endfunction
 
-function vialarm#stackedAlarm() abort
+function! vialarm#timer(args) abort
+	if a:args ==? 'start'
+		call s:timerStart()
+	elseif a:args ==? 'stop'
+		call s:timerStop()
+	elseif a:args ==# ''
+		call s:showTimerInfo()
+	else
+		echo '[vialarm]: Usage `:Vialarm! [(start|stop)]`'
+	endif
+endfunction
+
+function! vialarm#stackedAlarm() abort
 	let autocmdText = split(execute('autocmd User'), '\n')
 	while s:recentTime < localtime()
 		let matchText = '^\s\+\zsVialarm\(_.*\)\?_'.strftime('%H:%M', s:recentTime)
@@ -152,3 +156,5 @@ function vialarm#stackedAlarm() abort
 
 	let s:recentTime = localtime()
 endfunction
+
+let &cpoptions = s:cpo

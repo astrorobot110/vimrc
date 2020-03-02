@@ -1,7 +1,7 @@
 scriptencoding utf-8
 
 packadd vialarm
-Vialarm! start
+Vitimer start
 
 augroup vialarm
 	autocmd!
