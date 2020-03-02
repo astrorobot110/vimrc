@@ -3,8 +3,8 @@ scriptencoding utf-8
 function calcIt#main() abort
 	let formula = eval(getline('.'))
 	if mode() ==? 'i'
-		return "\n\t=".string(formula)
+		return "\n=".string(formula)
 	else
-		call append(line('.'), "\t=".string(formula))
+		call append(line('.'), string(formula))
 	endif
 endfunction
