@@ -1,7 +1,7 @@
 scriptencoding utf-8
 
 if !v:vim_did_enter
-	autocmd VimEnter * ++once Vitimer start
+	autocmd VimEnter * ++once silent Vitimer start
 endif
 
 augroup vialarm
