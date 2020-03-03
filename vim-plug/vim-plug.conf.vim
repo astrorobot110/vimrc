@@ -17,6 +17,7 @@ call plug#begin($VIMFILES.'/vim-plug')
 	Plug 'tyru/open-browser.vim'
 	Plug 'previm/previm'
 	Plug 'tpope/vim-fugitive'
+	Plug 'astrorobot110/vialarm'
 	Plug 'mhinz/vim-janah'
 	Plug 'haishanh/night-owl.vim'
 

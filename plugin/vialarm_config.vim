@@ -1,7 +1,8 @@
 scriptencoding utf-8
 
-packadd vialarm
-Vitimer start
+if !v:vim_did_enter
+	autocmd VimEnter * ++once Vitimer start
+endif
 
 augroup vialarm
 	autocmd!

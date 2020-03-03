@@ -36,10 +36,7 @@
 !/pack
 !/pack/myplug
 !/pack/myplug/**
-
-### except vialarm
-
-/pack/myplug/opt/vialarm
+/pack/myplug/**/*.sw?
 
 ## ftplugin
 
