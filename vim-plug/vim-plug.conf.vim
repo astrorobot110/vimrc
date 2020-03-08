@@ -57,8 +57,6 @@ let g:lsp_diagnostics_echo_cursor = 1
 
 " empty-prompt.vim
 
-"test $ 
-"test # 
 let g:empty_prompt#pattern = &shell =~# 'sh$' ? '[\$#] $' : '>\s*$'
 function! s:empty_prompt_mappings() abort
 	" If current line is empty prompt ...
