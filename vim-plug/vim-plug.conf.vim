@@ -15,6 +15,7 @@ call plug#begin($VIMFILES.'/vim-plug')
 	Plug 'deton/jasegment.vim'
 	Plug 'deton/jasentence.vim'
 	Plug 'tyru/open-browser.vim'
+	Plug 'tyru/empty-prompt.vim'
 	Plug 'previm/previm'
 	Plug 'tpope/vim-fugitive'
 	Plug 'astrorobot110/vialarm'
