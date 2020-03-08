@@ -55,6 +55,21 @@ let g:previm_enable_realtime = 1
 " vim-lsp.vim
 let g:lsp_diagnostics_echo_cursor = 1
 
+" empty-prompt.vim
+function! s:empty_prompt_mappings() abort
+	" If current line is empty prompt ...
+
+	" : works as <C-w>:
+	call empty_prompt#map(#{lhs: ':', rhs: '<C-w>:'})
+	" <Esc> works as <C-w>N
+	call empty_prompt#map(#{lhs: '<Esc>', rhs: '<C-w>N'})
+
+	" ... Add more mappings you like
+
+endfunction
+
+autocmd VimEnter * ++once call s:empty_prompt_mappings()
+
 " w3m.vim
 if exists(':W3m')
 	let g:w3m#homepage = 'https://google.com'
