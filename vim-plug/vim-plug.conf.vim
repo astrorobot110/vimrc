@@ -15,7 +15,6 @@ call plug#begin($VIMFILES.'/vim-plug')
 	Plug 'deton/jasegment.vim'
 	Plug 'deton/jasentence.vim'
 	Plug 'tyru/open-browser.vim'
-	Plug 'tyru/empty-prompt.vim'
 	Plug 'previm/previm'
 	Plug 'tpope/vim-fugitive'
 	Plug 'astrorobot110/vialarm'
@@ -31,6 +30,7 @@ call plug#begin($VIMFILES.'/vim-plug')
 	endif
 
 	if has('patch-8.2.1')
+		Plug 'tyru/empty-prompt.vim'
 		Plug 'vim/killersheep'
 	endif
 
