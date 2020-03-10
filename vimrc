@@ -52,7 +52,7 @@ set formatoptions+=mMj
 
 " 画面表示
 set tabstop=4
-set shiftwidth=4
+set shiftwidth=0
 set virtualedit=onemore
 set number
 set ruler
