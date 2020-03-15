@@ -1,3 +1,10 @@
+scriptencoding utf-8
+
+" Encoding settings
+set encoding=utf-8
+set fileencoding=utf-8
+set fileencodings=ucs-bom,utf-8,utf-16,cp932,iso-2022-jp,euc-jisx0213,euc-jp
+
 let $VIMFILES = split(&runtimepath, ',')[0]
 
 let g:isDroid = expand('~') =~? 'droidvim'
@@ -9,12 +16,6 @@ if g:isUnix
 	language ja_JP.utf8
 endif
 
-" Encoding settings
-set encoding=utf-8
-set fileencoding=utf-8
-set fileencodings=ucs-bom,utf-8,utf-16,cp932,iso-2022-jp,euc-jisx0213,euc-jp
-
-scriptencoding utf-8
 
 if g:isWin
 	set fileformat=dos
