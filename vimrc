@@ -1,9 +1,9 @@
-scriptencoding utf-8
-
 " Encoding settings
 set encoding=utf-8
 set fileencoding=utf-8
 set fileencodings=ucs-bom,utf-8,utf-16,cp932,iso-2022-jp,euc-jisx0213,euc-jp
+
+scriptencoding utf-8
 
 let $VIMFILES = split(&runtimepath, ',')[0]
 
@@ -15,7 +15,6 @@ let g:isUnix = has('unix') && !( g:isDroid || g:isTermux )
 if g:isUnix
 	language ja_JP.utf8
 endif
-
 
 if g:isWin
 	set fileformat=dos
@@ -122,7 +121,7 @@ augroup autoIM
 augroup END
 
 " 日本語の文章構造に対応するやつ
-set matchpairs+=（:）,〔:〕,［:］,｛:｝,〈:〉,《:》,「:」,『:』,【:】,＜:＞
+set matchpairs=（:）,〔:〕,［:］,｛:｝,〈:〉,《:》,「:」,『:』,【:】,＜:＞
 
 " 脱初心者を目指すVimmerにオススメしたいVimプラグインや.vimrcの設定
 " https://qiita.com/jnchito/items/5141b3b01bced9f7f48f#最後のカーソル位置を復元する
