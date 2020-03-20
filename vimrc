@@ -41,9 +41,6 @@ if !v:vim_did_enter
 	source $VIMFILES/vim-plug/vim-plug.conf.vim
 endif
 
-" なぜかモードライン死んでた
-set modeline
-
 " 編集関係
 set autoindent
 set backspace=indent,eol,start
