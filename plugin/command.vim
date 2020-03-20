@@ -1,21 +1,11 @@
 scriptencoding utf-8
 
-if !v:vim_did_enter
-	call customCS#loader(g:colors_name)
-endif
-
 " chordSplitter
 command! -range Chords :<line1>,<line2>call chordSplitter#main()
 
 " closer
 command! -bang Closer call closer#fromNormal('<bang>')
 inoremap <expr> <Plug>(closer_main) closer#main()
-
-" customCS
-augroup customColor
-	autocmd!
-	autocmd ColorScheme * call customCS#loader(g:colors_name)
-augroup END
 
 " deStain
 command! DeStain call deStain#main()

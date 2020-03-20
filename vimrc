@@ -78,7 +78,8 @@ endif
 
 " PowerShell上の問題
 set t_Co=256
-colorscheme janah
+" タイミング調整の為にオートコマンドに
+autocmd VimEnter * ++once colorscheme wombat256mod
 
 " ステータスライン関係
 " デフォルト -> set statusline=%f\ %h%w%m%r%=%-14.(%l,%c%V%)\ %P
@@ -118,7 +119,7 @@ augroup autoIM
 augroup END
 
 " 日本語の文章構造に対応するやつ
-set matchpairs=（:）,〔:〕,［:］,｛:｝,〈:〉,《:》,「:」,『:』,【:】,＜:＞
+set matchpairs+=（:）,〔:〕,［:］,｛:｝,〈:〉,《:》,「:」,『:』,【:】,＜:＞
 
 " 脱初心者を目指すVimmerにオススメしたいVimプラグインや.vimrcの設定
 " https://qiita.com/jnchito/items/5141b3b01bced9f7f48f#最後のカーソル位置を復元する

@@ -20,6 +20,12 @@ call plug#begin($VIMFILES.'/vim-plug')
 	Plug 'astrorobot110/vialarm'
 	Plug 'mhinz/vim-janah'
 	Plug 'haishanh/night-owl.vim'
+	Plug 'eemed/sitruuna.vim'
+	Plug 'arzg/vim-corvine'
+	Plug 'doums/darcula'
+	Plug 'vim-scripts/wombat256.vim'
+	Plug 'rhysd/wallaby.vim'
+	Plug 'dunstontc/vim-vscode-theme'
 
 	if !( g:isDroid || g:isTermux )
 		Plug 'prabirshrestha/async.vim'
@@ -56,7 +62,6 @@ let g:previm_enable_realtime = 1
 let g:lsp_diagnostics_echo_cursor = 1
 
 " empty-prompt.vim
-
 let g:empty_prompt#pattern = &shell =~# 'sh$' ? '[\$#] $' : '>\s*$'
 function! s:empty_prompt_mappings() abort
 	" If current line is empty prompt ...
@@ -67,10 +72,11 @@ function! s:empty_prompt_mappings() abort
 	call empty_prompt#map(#{lhs: '<Esc>', rhs: '<C-w>N'})
 
 	" ... Add more mappings you like
-
 endfunction
 
 autocmd VimEnter * ++once call s:empty_prompt_mappings()
+
+" 読み込みの都合でカラースキームはここに
 
 " w3m.vim
 if exists(':W3m')
