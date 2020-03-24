@@ -24,10 +24,10 @@ command -nargs=1 -bang -complete=highlight GetHl call getHighlight#main(<q-args>
 
 " vimtutor
 command! -nargs=? Tutorial call vimtutor#main(<f-args>)
-"
+
 " calcIt
-command! -nargs=0 Calc call calcIt#main()
+command! -nargs=? Calc call calcIt#main(<q-args>)
 
 " jig
-command! -nargs=+ -bang GetStep call jig#step(<f-args>, '<bang>')
-command! -nargs=+ -bang ToPolar call jig#polar(<f-args>, '<bang>')
+command! -nargs=+ -bang Step call jig#step(<f-args>, '<bang>')
+command! -nargs=+ -bang Polar call jig#polar(<f-args>, '<bang>')
