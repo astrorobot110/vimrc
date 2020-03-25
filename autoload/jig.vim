@@ -1,6 +1,6 @@
 scriptencoding utf-8
 
-let s:pi = 3.141592
+let s:pi = acos(-1)
 
 function! s:toRad(degree) abort
 	return (a:degree/180) * s:pi
