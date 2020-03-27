@@ -23,4 +23,7 @@ function! customCS#wombat() abort
 	if has('multi_byte_ime')
 		highlight CursorIM ctermfg=234 ctermbg=111 guifg=bg guibg=#88b8f6
 	endif
+
+	" カーソル行にアンダーライン追加
+	highlight CursorLine cterm=underline gui=underline
 endfunction

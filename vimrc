@@ -79,7 +79,7 @@ endif
 " PowerShell上の問題
 set t_Co=256
 " タイミング調整の為にオートコマンドに
-autocmd VimEnter * ++once colorscheme wombat256mod
+autocmd VimEnter * ++once ++nested colorscheme wombat256mod
 
 " ステータスライン関係
 " デフォルト -> set statusline=%f\ %h%w%m%r%=%-14.(%l,%c%V%)\ %P
