@@ -12,11 +12,11 @@ let s:gray2rgb = {
 		\ }
 
 let s:name2term = {
-		\ 'Orange': 214,
-		\ 'Purple': 129,
-		\ 'Violet': 213,
-		\ 'SeaGreen': 29,
-		\ 'SlateBlue': 62
+		\ 'orange': 214,
+		\ 'purple': 129,
+		\ 'violet': 213,
+		\ 'seagreen': 29,
+		\ 'slateblue': 62
 		\ }
 
 let s:colorName = [
@@ -36,8 +36,12 @@ function! s:getGuiColor(guiColor) abort
 		endif
 
 		return s:rgb2term(color)
-	elseif a:guiColor ==# 'NONE' || match(s:colorName, '^'..a:guiColor..'$') > 0
-		return s:colorName[match(s:colorName, '^'..a:guiColor..'$')]
+	elseif a:guiColor ==? 'none'
+		return 'NONE'
+	elseif has_key(s:name2term, tolower(a:guiColor))
+		return s:name2term[tolower(a:guiColor)]
+	elseif match(s:colorName, '^'..a:guiColor..'$') > 0
+		return a:guiColor
 	else
 		return -1
 	endif
