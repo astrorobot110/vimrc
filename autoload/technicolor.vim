@@ -1,79 +1,73 @@
 scriptencoding utf-8
 
-let s:Highlight = {
-		\ 'isSystemColor': 0,
-		\ 'isGrayScale': 0,
-		\ 'cterm': {
-		\ 	'isBold': 0,
-		\ 	'isLine': 0,
-		\ 	'isReverse': 0
-		\ },
-		\ 'gui': {
-		\ 	'isBold': 0,
-		\ 	'isLine': 0,
-		\ 	'isReverse': 0
-		\ },
-		\ 'order': 'cterm'
+let s:cpo = &cpoptions
+
+set cpo&vim
+
+let s:gray2rgb = {
+		\ '95': 43,
+		\ '135': 86,
+		\ '175': 129,
+		\ '215': 172
 		\ }
 
-function! s:Highlight.setInRGB(ground, red, green, blue) abort
-	let self.isGrayScale = a:red == a:green && a:red == a:blue &&
-			\ a:red >= 95 && (a:red + 95) % 40 == 0
-	let self.gui[a:ground] = map([ a:red, a:green, a:blue ], {_, val -> sort([0, val, 255])[1]})
+let s:name2term = {
+		\ 'Orange': 214,
+		\ 'Purple': 129,
+		\ 'Violet': 213,
+		\ 'SeaGreen': 29,
+		\ 'SlateBlue': 62
+		\ }
 
-	if self.isGrayScale
-		let self.cterm[a:ground] = sort([0, self.gui[a:ground][0] - 8, 255])[1] / 10 + 232
-	else
-		let termColor = 0
+let s:colorName = [
+		\ 'bg', 'BackGround', 'fg', 'ForeGround', 'Black',
+		\ 'DarkRed', 'DarkGreen', 'DarkYellow', 'Brown', 'DarkBlue', 'DarkMagenta', 'DarkCyan', 'Gray', 'Grey',
+		\ 'DarkGray', 'DarkGrey', 'Red', 'Green', 'Yellow', 'Blue', 'Magenta', 'Cyan', 'White',
+		\ 'LightGray', 'LightGrey', 'lightRed', 'LightGreen', 'LightYellow', 'LightBlue', 'LightMagenta', 'LightCyan'
+		\ ]
 
-		for value in self.gui[a:ground]
-			let termColor *= 6
-			if value >= 75
-				let termColor += float2nr(round((value - 75) / 40.0))
-			endif
-		endfor
+function! s:getGuiColor(guiColor) abort
+	if a:guiColor =~ '^#\?\x\{6}$'
+		let color = matchlist(a:guiColor, '\v^#(\x\x)(\x\x)(\x\x)')[1:3]
+				\ ->map({_, val ->eval('0x'..val)})
 
-		let self.cterm[a:ground] = termColor + 16
-	endif
-endfunction
-
-function! s:Highlight.setInTermColor(ground, termColor) abort
-	let self.cterm[a:ground] = sort([0, a:termColor, 255])[1]
-	let self.isSystemColor = self.cterm[a:ground] <= 15
-	let self.isGrayScale = self.cterm[a:ground] >= 232
-	let self.gui[a:ground] = []
-
-	if self.isGrayScale
-		call add(self.gui[a:ground], repeat([(self.cterm[a:ground] - 232) * 10 + 8], 3))
-	elseif self.isSystemColor
-		if self.cterm[a:ground] == 7
-			let value = 192
-		elseif self.cterm[a:ground] <= 8
-			let value = 128
-		else
-			let value = 255
+		if len(uniq(copy(color))) == 1
+			return s:gray2term(color[0])
 		endif
 
-		for index in [1, 2, 4]
-			call add(self.gui[a:ground], (self.cterm[a:ground] / index) % 2 * value)
-		endfor
+		return s:rgb2term(color)
+	elseif a:guiColor ==# 'NONE' || match(s:colorName, '^'..a:guiColor..'$') > 0
+		return s:colorName[match(s:colorName, '^'..a:guiColor..'$')]
 	else
-		let value = [0, 95, 135, 175, 215, 255]
-		for index in [36, 6, 1]
-			call add(self.gui[a:ground], value[((self.cterm[a:ground] - 16) / index) % 6])
-		endfor
+		return -1
 	endif
 endfunction
 
-function! s:Highlight.getArgs() abort
-	if match(getline('.'), '^hi\(ghlight\)\?!\?\ze\s\(link\)\@!') == 0
-		let args = filter(split(getline('.'), '\s'), 'v:val =~# "="')
-		let self.order = matchstr(args[0], '^\(cterm\|gui\)')
-		for elements in args
-			let state = matchlist(elements, '\(cterm\|gui\)\(fg\|bg\)\?=\(.*\)')[1:3]
-			echo state
-		endfor
-	endif
+function! s:rgb2term(rgb) abort
+	for value in a:rgb
+		let termColor = get(l:, 'termColor', 0)*6
+		if value >= 75
+			let termColor += ((value-75)/40)+1
+		endif
+	endfor
+
+	return termColor+16
 endfunction
 
-let g:testHighlight = deepcopy(s:Highlight)
+function! s:gray2term(level) abort
+	if a:level <= 3
+		return 16
+	elseif a:level >= 243
+		return 231
+	elseif has_key(s:gray2rgb, a:level)
+		return s:gray2rgb[a:level]
+	endif
+
+	let step = sort([0, (a:level-3)/10, 23], 'n')[1]
+
+	return step+232
+endfunction
+
+command! -nargs=1 Tech2Term echo s:getGuiColor(<q-args>)
+
+let &cpo = s:cpo
