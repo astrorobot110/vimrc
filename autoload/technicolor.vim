@@ -26,7 +26,7 @@ let s:colorName = [
 		\ 'LightGray', 'LightGrey', 'lightRed', 'LightGreen', 'LightYellow', 'LightBlue', 'LightMagenta', 'LightCyan'
 		\ ]
 
-function! s:getGuiColor(guiColor) abort
+function! s:gui2term(guiColor) abort
 	if a:guiColor =~ '^#\?\x\{6}$'
 		let color = matchlist(a:guiColor, '\v^#(\x\x)(\x\x)(\x\x)')[1:3]
 				\ ->map({_, val ->eval('0x'..val)})
@@ -72,6 +72,6 @@ function! s:gray2term(level) abort
 	return step+232
 endfunction
 
-command! -nargs=1 Tech2Term echo s:getGuiColor(<q-args>)
+command! -nargs=1 Tech2Term echo s:gui2term(<q-args>)
 
 let &cpo = s:cpo
