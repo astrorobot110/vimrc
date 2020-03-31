@@ -4,7 +4,7 @@ let s:cpo = &cpoptions
 
 set cpo&vim
 
-let s:gray2rgb = {
+let s:gray2color = {
 		\ '95': 43,
 		\ '135': 86,
 		\ '175': 129,
@@ -63,8 +63,8 @@ function! s:gray2term(level) abort
 		return 16
 	elseif a:level >= 243
 		return 231
-	elseif has_key(s:gray2rgb, a:level)
-		return s:gray2rgb[a:level]
+	elseif has_key(s:gray2color, a:level)
+		return s:gray2color[a:level]
 	endif
 
 	let step = sort([0, (a:level-3)/10, 23], 'n')[1]
