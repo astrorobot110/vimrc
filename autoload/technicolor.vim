@@ -26,6 +26,8 @@ let s:colorName = [
 		\ 'LightGray', 'LightGrey', 'lightRed', 'LightGreen', 'LightYellow', 'LightBlue', 'LightMagenta', 'LightCyan'
 		\ ]
 
+let s:rgbValue = ['00', '5F', '87', 'AF', 'D7', 'FF']
+
 function! s:gui2term(guiColor) abort
 	if a:guiColor =~ '^#\?\x\{6}$'
 		let rgbList = matchlist(a:guiColor, '\v^#(\x\x)(\x\x)(\x\x)')[1:3]
@@ -111,17 +113,46 @@ function! s:term2gray(termColor) abort
 endfunction
 
 function! s:term2rgb(termColor) abort
-	let value = ['00', '5F', '87', 'AF', 'D7', 'FF']
 	let rgb = '#'
 
 	for div in [36, 6, 1]
-		let rgb .= value[(a:termColor/div)%6]
+		let rgb .= s:rgbValue[(a:termColor/div)%6]
 	endfor
 
 	return rgb
 endfunction
 
+function! technicolor#main(args) abort
+	let [environment, ground, value] = matchlist(a:args, '\v(cterm|gui)(fg|bg|)\=(.+)')[1:3]
+
+	if environment ==? 'cterm'
+		let target = 'gui'..ground
+		let targetValue = s:term2gui(value)
+	elseif environment ==? 'gui'
+		let target = 'cterm'..ground
+		let targetValue = s:gui2term(value)
+	endif
+
+	let currentLine = getline('.')
+	let currentLine = substitute(
+			\ currentLine,
+			\ environment..ground..'=\zs\S\+',
+			\ value,
+			\ ''
+			\ )
+	let currentLine = substitute(
+			\ currentLine,
+			\ target..'=\zs\S\+',
+			\ targetValue,
+			\ ''
+			\ )
+	call setline('.', currentLine)
+
+	return
+endfunction
+
 command! -nargs=1 Tech2Term echo s:gui2term(<q-args>)
 command! -nargs=1 Tech2Gui echo s:term2gui(<q-args>)
+command! -nargs=1 Technicolor call technicolor#main(<q-args>)
 
 let &cpo = s:cpo
