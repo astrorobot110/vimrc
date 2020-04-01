@@ -11,13 +11,15 @@ let s:gray2color = {
 		\ '215': 172
 		\ }
 
-let s:name2term = {
+let s:name2cterm = {
 		\ 'orange': 214,
 		\ 'purple': 129,
 		\ 'violet': 213,
 		\ 'seagreen': 29,
 		\ 'slateblue': 62
 		\ }
+
+let s:targetDict = {'cterm': 'gui', 'gui': 'cterm'}
 
 let s:colorName = [
 		\ 'bg', 'BackGround', 'fg', 'ForeGround', 'Black',
@@ -28,18 +30,27 @@ let s:colorName = [
 
 let s:rgbValue = ['00', '5F', '87', 'AF', 'D7', 'FF']
 
-function! s:gui2term(guiColor) abort
+let s:technicolor = {
+		\ 'order': ['ctermfg', 'ctermbg', 'cterm', 'guifg', 'guibg', 'gui'],
+		\ 'command': 'hi',
+		\ 'tabstop': &tabstop,
+		\ 'preWidth': 16,
+		\ 'width': 16,
+		\ 'blank': "\t\t\t\t"
+		\ }
+
+function! s:gui2cterm(guiColor) abort
 	if a:guiColor =~ '^#\?\x\{6}$'
 		let rgbList = matchlist(a:guiColor, '\v^#(\x\x)(\x\x)(\x\x)')[1:3]
 				\ ->map({_, val ->str2nr(val, 16)})
 
 		if len(uniq(copy(rgbList))) == 1
-			return s:gray2term(rgbList[0])
+			return s:gray2cterm(rgbList[0])
 		endif
 
-		return s:rgb2term(rgbList)
-	elseif has_key(s:name2term, tolower(a:guiColor))
-		return s:name2term[tolower(a:guiColor)]
+		return s:rgb2cterm(rgbList)
+	elseif has_key(s:name2cterm, tolower(a:guiColor))
+		return s:name2cterm[tolower(a:guiColor)]
 	elseif match(s:colorName, '^'..a:guiColor..'$') > 0
 		return a:guiColor
 	else
@@ -47,18 +58,18 @@ function! s:gui2term(guiColor) abort
 	endif
 endfunction
 
-function! s:rgb2term(rgbList) abort
+function! s:rgb2cterm(rgbList) abort
 	for value in a:rgbList
-		let termColor = get(l:, 'termColor', 0)*6
+		let ctermColor = get(l:, 'ctermColor', 0)*6
 		if value >= 75
-			let termColor += ((value-75)/40)+1
+			let ctermColor += ((value-75)/40)+1
 		endif
 	endfor
 
-	return termColor+16
+	return ctermColor+16
 endfunction
 
-function! s:gray2term(level) abort
+function! s:gray2cterm(level) abort
 	if a:level <= 3
 		return 16
 	elseif a:level >= 243
@@ -72,27 +83,27 @@ function! s:gray2term(level) abort
 	return step+232
 endfunction
 
-function! s:term2gui(termColor) abort
-	if a:termColor < 0 || a:termColor > 255
+function! s:cterm2gui(ctermColor) abort
+	if a:ctermColor < 0 || a:ctermColor > 255
 		return 'NONE'
-	elseif a:termColor <= 15
-		return s:term2sysRgb(a:termColor)
-	elseif a:termColor >= 232
-		return s:term2gray(a:termColor-232)
-	elseif str2nr(a:termColor) > 0
-		return s:term2rgb(a:termColor-16)
-	elseif match(s:colorName, '^'..a:termColor..'$') > 0
-		return a:termColor
+	elseif a:ctermColor <= 15
+		return s:cterm2sysRgb(a:ctermColor)
+	elseif a:ctermColor >= 232
+		return s:cterm2gray(a:ctermColor-232)
+	elseif str2nr(a:ctermColor) > 0
+		return s:cterm2rgb(a:ctermColor-16)
+	elseif match(s:colorName, '^'..a:ctermColor..'$') > 0
+		return a:ctermColor
 	endif
 	return 'NONE'
 endfunction
 
-function! s:term2sysRgb(termColor) abort
-	if a:termColor == 7
+function! s:cterm2sysRgb(ctermColor) abort
+	if a:ctermColor == 7
 		return '#C0C0C0'
-	elseif a:termColor == 8
+	elseif a:ctermColor == 8
 		return '#808080'
-	elseif a:termColor < 7
+	elseif a:ctermColor < 7
 		let value = '80'
 	else
 		let value = 'FF'
@@ -101,48 +112,52 @@ function! s:term2sysRgb(termColor) abort
 	let rgb = '#'
 
 	for div in [1, 2, 4]
-		let rgb .= (a:termColor/div)%2 == 0 ? '00' : value
+		let rgb .= (a:ctermColor/div)%2 == 0 ? '00' : value
 	endfor
 
 	return rgb
 endfunction
 
-function! s:term2gray(termColor) abort
-	let rgb = printf('%02X', a:termColor*10+8)
+function! s:cterm2gray(ctermColor) abort
+	let rgb = printf('%02X', a:ctermColor*10+8)
 	return '#'..repeat(rgb, 3)
 endfunction
 
-function! s:term2rgb(termColor) abort
+function! s:cterm2rgb(ctermColor) abort
 	let rgb = '#'
 
 	for div in [36, 6, 1]
-		let rgb .= s:rgbValue[(a:termColor/div)%6]
+		let rgb .= s:rgbValue[(a:ctermColor/div)%6]
 	endfor
 
 	return rgb
 endfunction
 
 function! technicolor#main(args) abort
-	let [environment, ground, value] = matchlist(a:args, '\v(cterm|gui)(fg|bg|)\=(.+)')[1:3]
+	if !exists('b:technicolor')
+		let b:technicolor = deepcopy(s:technicolor)
+	endif
 
-	if environment ==? 'cterm'
-		let target = 'gui'..ground
-		let targetValue = s:term2gui(value)
-	elseif environment ==? 'gui'
-		let target = 'cterm'..ground
-		let targetValue = s:gui2term(value)
+	let [env, ground, value] = matchlist(a:args, '\v(cterm|gui)(fg|bg|)\=(.+)')[1:3]
+
+	let target = s:targetDict[tolower(env)]
+
+	if ground != ''
+		let targetValue = funcref(printf('s:%s2%s', env, target))(value)
+	else
+		let targetValue = value
 	endif
 
 	let currentLine = getline('.')
 	let currentLine = substitute(
 			\ currentLine,
-			\ environment..ground..'=\zs\S\+',
+			\ env..ground..'=\zs\S\+',
 			\ value,
 			\ ''
 			\ )
 	let currentLine = substitute(
 			\ currentLine,
-			\ target..'=\zs\S\+',
+			\ target..ground..'=\zs\S\+',
 			\ targetValue,
 			\ ''
 			\ )
@@ -151,8 +166,8 @@ function! technicolor#main(args) abort
 	return
 endfunction
 
-command! -nargs=1 Tech2Term echo s:gui2term(<q-args>)
-command! -nargs=1 Tech2Gui echo s:term2gui(<q-args>)
+command! -nargs=1 Tech2cterm echo s:gui2cterm(<q-args>)
+command! -nargs=1 Tech2gui echo s:cterm2gui(<q-args>)
 command! -nargs=1 Technicolor call technicolor#main(<q-args>)
 
 let &cpo = s:cpo
