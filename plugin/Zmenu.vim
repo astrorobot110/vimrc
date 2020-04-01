@@ -17,6 +17,8 @@ nnoremap Zd :lcd %:h<CR>
 nnoremap ZD :cd %:h<CR>
 " Quick help to function-list
 nnoremap Zh :<C-u>vert bo help function-list<CR>
+" Relative line number
+nnoremap Zl :<C-u>set relativenumber!<CR>
 " PlugInstall
 nnoremap Zp :<C-u>PlugUpdate<CR>
 nnoremap ZP :<C-u>PlugInstall<CR>
@@ -30,8 +32,8 @@ nnoremap Z/ :let @/ = ''<CR>
 
 " ディレクトリ依存
 if isdirectory(expand('$DOCS/git/memo'))
-	nnoremap Zm :<C-u>edit $DOCS/git/memo<CR>
-	nnoremap ZM :<C-u>edit $VIMFILE/.memo.ls \| put =escape(glob(g:memoPath.'/**/*.md'),' ')<CR>
+	nnoremap Zm :<C-u>edit! $DOCS/git/memo<CR>
+	nnoremap ZM :<C-u>edit! $VIMFILE/.memo.ls \| put =escape(glob(g:memoPath.'/**/*.md'),' ')<CR>
 endif
 
 " plug.vimのプラグイン
