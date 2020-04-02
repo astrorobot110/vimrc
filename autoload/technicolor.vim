@@ -33,7 +33,6 @@ let s:rgbValue = ['00', '5F', '87', 'AF', 'D7', 'FF']
 let s:technicolor = {
 		\ 'order': ['ctermfg', 'ctermbg', 'cterm', 'guifg', 'guibg', 'gui'],
 		\ 'command': 'hi',
-		\ 'tabstop': &tabstop,
 		\ 'preWidth': 16,
 		\ 'width': 16,
 		\ 'blank': "\t\t\t\t"
@@ -148,9 +147,8 @@ function! technicolor#main(args) abort
 		let targetValue = value
 	endif
 
-	let currentLine = getline('.')
 	let currentLine = substitute(
-			\ currentLine,
+			\ getline('.'),
 			\ env..ground..'=\zs\S\+',
 			\ value,
 			\ ''
@@ -161,6 +159,7 @@ function! technicolor#main(args) abort
 			\ targetValue,
 			\ ''
 			\ )
+
 	call setline('.', currentLine)
 
 	return
