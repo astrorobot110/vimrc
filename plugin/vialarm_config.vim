@@ -18,7 +18,7 @@ function! s:dailySave(...) abort
 	execute 'cd' path
 
 	for buf in range(1, bufnr('$'))
-		if buflisted(buf) && bufname(bufnr(buf)) ==# ''
+		if buflisted(buf) && bufname(buf) ==# ''
 			execute 'buffer!' buf
 			execute 'write! >>' fileName
 		endif
