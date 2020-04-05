@@ -249,9 +249,7 @@ function! technicolor#main(args) abort
 	endif
 
 	let params = {}
-	let [space, tabstop] = b:technicolor.isTab ?
-			\ ["\t", &tabstop] :
-			\ [' ', 1]
+	let tabstop = b:technicolor.isTab ? &tabstop : 1
 
 	for line in split(getline('.'), '\s\+\ze\S\+=')
 		if match(line, '^hi\(ghlight\)\?') < 0
