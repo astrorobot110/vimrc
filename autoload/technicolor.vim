@@ -184,7 +184,9 @@ function! s:getStructure() abort
 		let line = split(getline(span[0]), '\s\+\zs\ze\S\+=')
 	endif
 
-	let b:technicolor = get(b:, 'technicolor', { 'span': span })
+	let b:technicolor = get(b:, 'technicolor', {})
+
+	let b:technicolor.span = span
 
 	let b:technicolor.head = line[0][0] !=# '"' ?
 			\ matchstr(line[0], '^\S\+', '') :
@@ -205,7 +207,7 @@ endfunction
 
 " main {{{1
 function! technicolor#main(args) abort
-	if !exists('b:technicolor') || sort(b:technicolor.span+[line('.')], 'n')[1] != line('.')
+	if !exists('b:technicolor') || sort(b:technicolor.span + [line('.')], 'n')[1] != line('.')
 		call s:getStructure()
 	endif
 
@@ -219,24 +221,40 @@ function! technicolor#main(args) abort
 		let targetValue = value
 	endif
 
-	let b:technicolor.currentLine = getline('.')
+	let params = {}
 
-	let b:technicolor.currentLine = substitute(
-			\ getline('.'),
-			\ env..ground..'=\zs\S\+',
-			\ value,
-			\ ''
-			\ )
-	let b:technicolor.currentLine = substitute(
-			\ currentLine,
-			\ target..ground..'=\zs\S\+',
-			\ targetValue,
-			\ ''
-			\ )
+	for line in split(getline('.'), '\s\+\ze\S\+=')
+		if match(line, '^hi\(ghlight\)\?') < 0
+			let [ target, value ] = split(line, '=')
+			let params[target] = value
+		else
+			let output = line .. repeat("\t", (b:technicolor.headLength-len(line))/&tabstop+1)
+		endif
+	endfor
 
-	call setline('.', b:technicolor.currentLine)
+	if b:technicolor.isTab
+		let index = 0
 
-	return
+		while index < len(b:technicolor.order)
+			let tab = b:technicolor.orderLength[index] > 0 ? "\t" : ''
+
+			if exists('params[b:technicolor.order['..index..']]')
+				let toOut = printf('%s=%s', b:technicolor.order[index], params[b:technicolor.order[index]])
+			else
+				let toOut = repeat(tab, b:technicolor.orderLength[index]/&tabstop)
+			endif
+
+			while strdisplaywidth(toOut) < b:technicolor.orderLength[index]
+				let toOut .= tab
+			endwhile
+
+			let output .= toOut
+			let index += 1
+		endwhile
+	endif
+
+	echo output
+
 endfunction
 " }}}
 
