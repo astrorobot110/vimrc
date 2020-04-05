@@ -13,7 +13,7 @@ let s:gray2color = {
 		\ }
 
 " ctermパレットからRGB値への変換用
-let s:rgbValue = ['00', '5F', '87', 'AF', 'D7', 'FF']
+let s:rgbValue = ['00', '5f', '87', 'af', 'd7', 'ff']
 
 " cterm/guiのインバーター (めんどかった)
 let s:targetDict = {'cterm': 'gui', 'gui': 'cterm'}
@@ -97,7 +97,7 @@ endfunction
 
 " }}}
 
-" s:cterm2gray(): ctermからguiへ変換 {{{1
+" s:cterm2gui(): ctermからguiへ変換 {{{1
 function! s:cterm2gui(ctermColor) abort
 	if a:ctermColor < 0 || a:ctermColor > 255
 		return 'none'
@@ -116,13 +116,13 @@ endfunction
 " s:term2sysRgb(): xtermシステムカラーからRGB値へ変換 {{{2
 function! s:term2sysRgb(termColor) abort
 	if a:termColor == 7
-		return '#C0C0C0'
-	elseif a:termColor == 8
+		return '#c0c0c0'
+	elseif a:termcolor == 8
 		return '#808080'
-	elseif a:termColor < 7
+	elseif a:termcolor < 7
 		let value = '80'
 	else
-		let value = 'FF'
+		let value = 'ff'
 	endif
 
 	let rgb = '#'
@@ -131,13 +131,18 @@ function! s:term2sysRgb(termColor) abort
 		let rgb .= (a:termColor/div)%2 == 0 ? '00' : value
 	endfor
 
+	if b:technicolor.isUppercase
+		let rgb = toupper(rgb)
+	endif
+
 	return rgb
 endfunction
 " }}}
 
 " s:term2gray(): xtermパレットのグレースケールからRGB値へ変換 {{{2
 function! s:term2gray(termColor) abort
-	let rgb = printf('%02X', a:termColor*10+8)
+	let print = b:technicolor.isUppercase ? '%02X' : '%02x'
+	let rgb = printf(print, a:termColor*10+8)
 	return '#'..repeat(rgb, 3)
 endfunction
 " }}}
@@ -149,6 +154,10 @@ function! s:term2rgb(termColor) abort
 	for div in [36, 6, 1]
 		let rgb .= s:rgbValue[(a:termColor/div)%6]
 	endfor
+
+	if b:technicolor.isUppercase
+		let rgb = toupper(rgb)
+	endif
 
 	return rgb
 endfunction
@@ -225,12 +234,20 @@ function! technicolor#main(args) abort
 
 	for line in split(getline('.'), '\s\+\ze\S\+=')
 		if match(line, '^hi\(ghlight\)\?') < 0
-			let [ target, value ] = split(line, '=')
-			let params[target] = value
+			let [ paramTarget, paramValue ] = split(line, '=')
+			let params[paramTarget] = paramValue
 		else
-			let output = line .. repeat("\t", (b:technicolor.headLength-len(line))/&tabstop+1)
+			let space = b:technicolor.isTab ?
+					\ repeat("\t", (b:technicolor.headLength-len(line))/&tabstop+1) :
+					\ repeat(' ', b:technicolor.headLength-len(line))
+			let output = line .. space
 		endif
 	endfor
+
+	let params[env..ground] = value
+	let params[target..ground] = targetValue
+
+	echo params
 
 	if b:technicolor.isTab
 		let index = 0
@@ -253,8 +270,7 @@ function! technicolor#main(args) abort
 		endwhile
 	endif
 
-	echo output
-
+	call setline(line('.'), output)
 endfunction
 " }}}
 
