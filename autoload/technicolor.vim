@@ -44,7 +44,25 @@ let s:technicolorTemplate = {
 		\ 'isTab': 1,
 		\ 'isUppercase': 0
 		\ }
+
+" ハイライトテンプレに関して {{{2
+
+"	technicolorではハイライトの構造を確認するために…
+"		1. 現在のカーソル位置から上に検索して、直近の空行の下にあるハイライトコマンドの構造
+"		2. Normalグループの記述の構造
+"		3. 辞書変数 `b:technicolorTemplate`による定義
+"		4. 上記辞書変数 `s:technicolorTemplate`による定義
+"	…の順に記述があるものを確認しています。
+"	この場合、1.に該当するのにテンプレートとして機能しないケースが存在します。
+"	そのために現在の行が参照してほしいテンプレートを…
+"
+"		> " technicolor		ctermfg=15		ctermbg=0		cterm=none		guifg=#FFFFFF		guibg=#000000	gui=none
+"
+"	…のように、行頭が `" technicolor` の行をハイライトコマンドの記述とみなして使用します。
+"	`b:technicolorTemplate`は上記の `s:technicolorTemplate` の行をコピーして使うのが当座簡単かなとおもいます。
 " }}}
+
+"}}}
 
 " s:gui2cterm(): guiからctermへ変換 (システムカラーへは変換しない) {{{1
 function! s:gui2cterm(guiColor) abort
@@ -171,7 +189,7 @@ function! s:getStructure() abort
 			\ ->add(search('^$', 'nb')+1)
 			\ ->add(search('^$', 'n'))
 
-	while match(getline(span[0]), '\v\c^(hi(ghlight)?\!?|"\stechnicolor)', '') < 0
+	while match(getline(span[0]), '\v\c^(hi(ghlight)?\!?|"\s?technicolor)', '') < 0
 		let span[0] += 1
 		if span[0] > line('.')
 			break
@@ -231,6 +249,7 @@ function! technicolor#main(args) abort
 	endif
 
 	let params = {}
+	let tabstop = b:technicolor.isTab ? &tabstop : 1
 
 	for line in split(getline('.'), '\s\+\ze\S\+=')
 		if match(line, '^hi\(ghlight\)\?') < 0
@@ -238,7 +257,7 @@ function! technicolor#main(args) abort
 			let params[paramTarget] = paramValue
 		else
 			let space = b:technicolor.isTab ?
-					\ repeat("\t", (b:technicolor.headLength-len(line))/&tabstop+1) :
+					\ repeat("\t", (b:technicolor.headLength-len(line))/tabstop+1) :
 					\ repeat(' ', b:technicolor.headLength-len(line))
 			let output = line .. space
 		endif
@@ -249,41 +268,34 @@ function! technicolor#main(args) abort
 
 	echo params
 
-	if b:technicolor.isTab
-		let index = 0
+	let index = 0
 
-		while index < len(b:technicolor.order)
-			let tab = b:technicolor.orderLength[index] > 0 ? "\t" : ''
+	while index < len(b:technicolor.order)
+		let space = b:technicolor.orderLength[index] > 0 ? "\t" : ''
 
-			if exists('params[b:technicolor.order['..index..']]')
-				let toOut = printf('%s=%s', b:technicolor.order[index], params[b:technicolor.order[index]])
-			else
-				let toOut = repeat(tab, b:technicolor.orderLength[index]/&tabstop)
-			endif
+		if exists('params[b:technicolor.order['..index..']]')
+			let toOut = printf('%s=%s', b:technicolor.order[index], params[b:technicolor.order[index]])
+		else
+			let toOut = repeat(space, b:technicolor.orderLength[index]/tabstop)
+		endif
 
-			while strdisplaywidth(toOut) < b:technicolor.orderLength[index]
-				let toOut .= tab
-			endwhile
-
-			let output .= toOut
-			let index += 1
+		while strdisplaywidth(toOut) < b:technicolor.orderLength[index]
+			let toOut .= space
 		endwhile
-	endif
+
+		let output .= toOut
+		let index += 1
+	endwhile
 
 	call setline(line('.'), output)
 endfunction
 " }}}
 
-" テスト用 (あとで消す) {{{1
-function! technicolor#test(functionName, ...) abort
-	return funcref('s:'..a:functionName, a:000)()
-endfunction
-" }}}
-
-" 出来たら../plugin/technicolor.vimへ
+" コマンド登録: テスト中につきここに書いてあります {{{1
 command! -nargs=1 Tech2cterm echo s:gui2cterm(<q-args>)
 command! -nargs=1 Tech2gui echo s:cterm2gui(<q-args>)
 command! -nargs=1 Technicolor call technicolor#main(<q-args>)
+"}}}
 
 let &cpo = s:save_cpo
 
