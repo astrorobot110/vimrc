@@ -59,6 +59,8 @@ let s:technicolorTemplate = {
 "		> " technicolor		ctermfg=15		ctermbg=0		cterm=none		guifg=#FFFFFF		guibg=#000000	gui=none
 "
 "	…のように、行頭が `" technicolor` の行をハイライトコマンドの記述とみなして使用します。
+"	この際 `guifg` `guibg`の記述に大文字が含まれているかどうかをチェックしています。
+"	RGB値の記述の大文字、小文字の指定はここで行なえます。
 "	`b:technicolorTemplate`は上記の `s:technicolorTemplate` の行をコピーして使うのが当座簡単かなとおもいます。
 " }}}
 
@@ -227,7 +229,8 @@ function! s:getStructure() abort
 	let b:technicolor.orderLength = map(line[1:-2], {_, val->strdisplaywidth(val)})
 			\ ->add(0)
 
-	let hexedParam = matchstr(line[match(b:technicolor.order, 'guifg')+1], '=#\zs\x\+', '')
+	let hexedParam = matchstr(line[match(b:technicolor.order, 'guifg')+1], '=#\zs\x\+', '')..
+			\ matchstr(line[match(b:technicolor.order, 'guibg')+1], '=#\zs\x\+', '')
 	let b:technicolor.isUppercase = hexedParam =~# '\u'
 endfunction
 " }}}

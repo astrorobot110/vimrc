@@ -46,6 +46,8 @@ set autoindent
 set backspace=indent,eol,start
 set wildmenu
 set formatoptions+=mMj
+set formatoptions-=q
+set textwidth=0
 
 " 画面表示
 set tabstop=4
