@@ -215,7 +215,6 @@ function! s:getStructure() abort
 		let b:technicolor.headLength = strdisplaywidth(param[0])
 		let b:technicolor.space = matchstr(param[0], '\s$')
 
-		let b:technicolor.order = {}
 		let b:technicolor.order = map(param[1:], {_, val->matchstr(val, '\S\+\ze=')})
 		let b:technicolor.orderLength = map(param[1:-2], {_, val->strdisplaywidth(val)})
 				\ ->add(0)
@@ -292,6 +291,8 @@ function! technicolor#main(args) abort
 		let output .= toOut
 		let index += 1
 	endwhile
+
+	let output = substitute(output, '/s/+$', '', 'e')
 
 	if line =~# '^hi\(ghlight\)' || line ==# ''
 		call setline(line('.'), output)
