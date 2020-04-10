@@ -41,7 +41,7 @@ let s:technicolorTemplate = {
 		\ 'orderLength': [16, 16, 16, 16, 16, 0],
 		\ 'head': 'highlight',
 		\ 'headLength': 24,
-		\ 'isTab': 1,
+		\ 'space': "\t",
 		\ 'isUppercase': 0
 		\ }
 
@@ -151,18 +151,13 @@ function! s:term2sysRgb(termColor) abort
 		let rgb .= (a:termColor/div)%2 == 0 ? '00' : value
 	endfor
 
-	if b:technicolor.isUppercase
-		let rgb = toupper(rgb)
-	endif
-
 	return rgb
 endfunction
 " }}}
 
 " s:term2gray(): xtermパレットのグレースケールからRGB値へ変換 {{{2
 function! s:term2gray(termColor) abort
-	let print = b:technicolor.isUppercase ? '%02X' : '%02x'
-	let rgb = printf(print, a:termColor*10+8)
+	let rgb = printf('%02x', a:termColor*10+8)
 	return '#'..repeat(rgb, 3)
 endfunction
 " }}}
@@ -175,10 +170,6 @@ function! s:term2rgb(termColor) abort
 		let rgb .= s:rgbValue[(a:termColor/div)%6]
 	endfor
 
-	if b:technicolor.isUppercase
-		let rgb = toupper(rgb)
-	endif
-
 	return rgb
 endfunction
 " }}}
@@ -187,62 +178,70 @@ endfunction
 
 " s:getStructure(): スクリプト内highlightの記述解析 {{{1
 function! s:getStructure() abort
-	let span = []
-			\ ->add(search('^$', 'nb')+1)
-			\ ->add(search('^$', 'n'))
+	let span = {
+			\ 'start': search('^$', 'nb')+1,
+			\ 'end': search('^$', 'n')
+			\ }
 
-	while match(getline(span[0]), '\v\c^(hi(ghlight)?\!?|"\s?technicolor)', '') < 0
-		let span[0] += 1
-		if span[0] > line('.')
+	while match(getline(span.start), '\v\c^(hi(ghlight)?\!?|"\s?technicolor)', '') < 0
+		if span.start == line('.')
+			let span.start = line('.')
+			let span.end = line('.')+1
+
+			let normalGroup = search('^hi\(ghlight\)\?!\?\s\cnormal', 'nw')
+
 			break
 		endif
+
+		let span.start += 1
 	endwhile
 
-	if span[0] > line('.')
-		let normalGroup = search('^hi\(ghlight\)\?!\?\s\cnormal', 'nw')
-		if normalGroup <= 0
-			let b:technicolor = deepcopy(get(b:, 'technicolorTemplate', s:technicolorTemplate))
-			let b:technicolor.span = [ line('.'), line('.')+1 ]
-
-			return
-		else
-			let line = split(getline(normalGroup), '\s\+\zs\ze\S\+=')
-			let span = [ line('.'), line('.')+1 ]
-		endif
-	else
-		let line = split(getline(span[0]), '\s\+\zs\ze\S\+=')
+	if span.start < line('.')
+		let line = getline(span.start)
+	elseif normalGroup > 0
+		let line = getline(normalGroup)
 	endif
 
-	let b:technicolor = get(b:, 'technicolor', {})
+	if exists('line')
+		let b:technicolor = {}
+		let param = split(line, '\s\+\zs\ze\S\+=')
+
+		if match(param[0], '^hi\(ghlight\)\?') == 0
+			let b:technicolor.head = matchstr(param[0], '^hi\(ghlight\)\?')
+		else
+			let b:technicolor.head = get(b:, 'technicolorTemplate.head', s:technicolorTemplate.head)
+		endif
+
+		let b:technicolor.headLength = strdisplaywidth(param[0])
+		let b:technicolor.space = matchstr(param[0], '\s$')
+
+		let b:technicolor.order = {}
+		let b:technicolor.order = map(param[1:], {_, val->matchstr(val, '\S\+\ze=')})
+		let b:technicolor.orderLength = map(param[1:-2], {_, val->strdisplaywidth(val)})
+				\ ->add(0)
+
+		let hexParam = ''
+		for paramIndex in param
+			let hexParam .= matchstr(paramIndex, '#\zs\x\+')
+		endfor
+
+		let b:technicolor.isUppercase = hexParam =~# '\u'
+	else
+		let b:technicolor = get(b:, 'technicolorTemplate', s:technicolorTemplate)
+	endif
 
 	let b:technicolor.span = span
-
-	let b:technicolor.head = line[0][0] !=# '"' ?
-			\ matchstr(line[0], '^\S\+', '') :
-			\ matchstr(getline(b:technicolor.span[0]+1), '^\S\+', '')
-		let b:technicolor.headLength = strdisplaywidth(line[0])
-
-	let b:technicolor.isTab = matchstr(line[0], '\s$', '') ==# "\t"
-
-	let b:technicolor.order = {}
-	let b:technicolor.order = map(line[1:], {_, val->matchstr(val, '\S\+\ze=')})
-	let b:technicolor.orderLength = map(line[1:-2], {_, val->strdisplaywidth(val)})
-			\ ->add(0)
-
-	let hexedParam = matchstr(line[match(b:technicolor.order, 'guifg')+1], '=#\zs\x\+', '')..
-			\ matchstr(line[match(b:technicolor.order, 'guibg')+1], '=#\zs\x\+', '')
-	let b:technicolor.isUppercase = hexedParam =~# '\u'
 endfunction
 " }}}
 
 " main {{{1
 function! technicolor#main(args) abort
-	if !exists('b:technicolor') || sort(b:technicolor.span + [line('.')], 'n')[1] != line('.')
+	if !exists('b:technicolor') || sort(values(b:technicolor.span) + [line('.')], 'n')[1] != line('.')
 		call s:getStructure()
 	endif
+	let tabstop = b:technicolor.space ==# "\t" ? &tabstop : 1
 
 	let [env, ground, value] = matchlist(a:args, '\v(cterm|gui)(fg|bg|)\=(.+)')[1:3]
-
 	let target = s:targetDict[tolower(env)]
 
 	if ground != ''
@@ -251,46 +250,55 @@ function! technicolor#main(args) abort
 		let targetValue = value
 	endif
 
-	let params = {}
-	let tabstop = b:technicolor.isTab ? &tabstop : 1
+	let line = getline('.')
 
-	for line in split(getline('.'), '\s\+\ze\S\+=')
-		if match(line, '^hi\(ghlight\)\?') < 0
-			let [ paramTarget, paramValue ] = split(line, '=')
-			let params[paramTarget] = paramValue
-		else
-			let space = b:technicolor.isTab ?
-					\ repeat("\t", (b:technicolor.headLength-len(line))/tabstop+1) :
-					\ repeat(' ', b:technicolor.headLength-len(line))
-			let output = line .. space
-		endif
-	endfor
+	let output = matchstr(line, '^hi\(ghlight\)\?!\?\s\S\+')
+	if output ==# ''
+		let output = b:technicolor.head .. ' '
+	endif
 
-	let params[env..ground] = value
-	let params[target..ground] = targetValue
+	while strdisplaywidth(output) < b:technicolor.headLength
+		let output .= b:technicolor.space
+	endwhile
 
-	echo params
+	let param = {}
+	let index = 1
+	while match(line, '\s\zs\S\+=\S\+', 0, index) >= 0
+		let [key, val] = matchlist(line, '\s\zs\(\S\+\)=\(\S\+\)', 0, index)[1:2]
+		let param[key] = val
+		let index += 1
+	endwhile
+
+	let param[env..ground] = value
+	let param[target..ground] = targetValue
 
 	let index = 0
-
 	while index < len(b:technicolor.order)
-		let space = b:technicolor.orderLength[index] > 0 ? "\t" : ''
-
-		if exists('params[b:technicolor.order['..index..']]')
-			let toOut = printf('%s=%s', b:technicolor.order[index], params[b:technicolor.order[index]])
+		if has_key(param, b:technicolor.order[index])
+			let paramKey = b:technicolor.order[index]
+			let paramValue = param[b:technicolor.order[index]]
+			if paramKey =~# 'gui\(fg\|bg\)' && b:technicolor.isUppercase
+				let paramValue = toupper(paramValue)
+			endif
+			let toOut = printf('%s=%s', paramKey , paramValue)
 		else
-			let toOut = repeat(space, b:technicolor.orderLength[index]/tabstop)
+			let toOut = ''
 		endif
 
 		while strdisplaywidth(toOut) < b:technicolor.orderLength[index]
-			let toOut .= space
+			let toOut .= b:technicolor.space
 		endwhile
 
 		let output .= toOut
 		let index += 1
 	endwhile
 
-	call setline(line('.'), output)
+	if line =~# '^hi\(ghlight\)' || line ==# ''
+		call setline(line('.'), output)
+	else
+		call append(line('.'), output)
+		call setpos('.', [ bufnr(), line('.')+1, 0, 0])
+	endif
 endfunction
 " }}}
 
