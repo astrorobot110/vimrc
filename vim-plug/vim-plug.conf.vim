@@ -44,6 +44,7 @@ call plug#begin($VIMFILES.'/vim-plug')
 
 	if g:isWin
 		Plug 'ananagame/vimsence'
+		Plug 'PProvost/vim-ps1'
 	endif
 
 	if g:isUnix || g:isTermux
