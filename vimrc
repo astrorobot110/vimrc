@@ -64,6 +64,7 @@ set cursorline
 set equalalways
 set scrolloff=8
 set ambiwidth=double
+set emoji
 set display+=lastline
 set background=dark
 
