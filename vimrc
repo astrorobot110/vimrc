@@ -1,7 +1,7 @@
 " Encoding settings
 set encoding=utf-8
 set fileencoding=utf-8
-set fileencodings=ucs-bom,utf-8,utf-16le,utf-16,cp932,iso-2022-jp,euc-jisx0213,euc-jp
+set fileencodings=ucs-bom,utf-8,utf-16,cp932,iso-2022-jp,euc-jisx0213,euc-jp
 
 scriptencoding utf-8
 
