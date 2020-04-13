@@ -1,8 +1,11 @@
-setlocal fileformat=unix
+" 何勝手にしてくれてんねん！
 
-" Zsのトラブル頻発してるので退避
-nnoremap <buffer> Zs :<C-u>source %<CR>
+augroup customFt_vim
+	autocmd!
+	autocmd BufEnter,BufNewFile *.vim call s:customFt_vim()
+augroup END
 
-" 改行忘れ用
-nnoremap <buffer> <C-]><CR> A<CR>
-nnoremap <buffer> <C-]><C-CR> A<CR>
+function! s:customFt_vim() abort
+	setlocal formatoptions-=q
+	setlocal textwidth=0
+endfunction
