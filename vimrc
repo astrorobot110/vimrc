@@ -103,11 +103,7 @@ set undofile
 set viewdir=$VIMFILES/view
 
 " viminfo
-if !(g:isDroid || g:isTermux)
-	set viminfo+=n$VIMFILES/viminfo
-else
-	set viminfo+=n$HOME/.viminfo
-endif
+set viminfo+=n$VIMFILES/viminfo
 
 " リマップ分割によりマップリーダーのトラブル頻発中
 let g:mapleader = "\<space>"
