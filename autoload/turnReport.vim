@@ -1,9 +1,5 @@
 scriptencoding utf-8
 
-" 無理！vital使う！
-let s:Vital = vital#of('vital')
-let s:DateTime = s:Vital.import('DateTime')
-
 function! s:turnFile(direction) abort
 	if filereadable(expand('%'))
 		let directory = expand('%:p:h')
