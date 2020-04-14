@@ -36,7 +36,7 @@ if isdirectory(expand('$DOCS/git/memo'))
 	nnoremap ZM :<C-u>edit! $VIMFILE/.memo.ls \| put =escape(glob(g:memoPath.'/**/*.md'),' ')<CR>
 endif
 
-if isdirectory(fnameescape(g:dailySaveDir))
+if exists('g:dailySaveDir') && isdirectory(fnameescape(g:dailySaveDir))
 	nnoremap Zv :<C-u>doautocmd User Vialarm_17:00<CR>
 endif
 
