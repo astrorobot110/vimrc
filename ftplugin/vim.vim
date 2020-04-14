@@ -9,3 +9,5 @@ function! s:customFt_vim() abort
 	setlocal formatoptions-=q
 	setlocal textwidth=0
 endfunction
+
+nnoremap <buffer> Zs :<C-u>source %<cr>

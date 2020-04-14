@@ -52,6 +52,13 @@
 !/ftdetect/*.vim
 !/ftdetect/*.tar.gz
 
+## syntax
+
+!/syntax/
+/syntax/*
+!/syntax/*.vim
+!/syntax/*.tar.gz
+
 ### vim-plug
 
 !/vim-plug/
