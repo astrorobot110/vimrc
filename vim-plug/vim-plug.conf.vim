@@ -20,7 +20,6 @@ call plug#begin($VIMFILES.'/vim-plug')
 	Plug 'tyru/open-browser.vim'
 	Plug 'previm/previm'
 	Plug 'tpope/vim-fugitive'
-	Plug 'astrorobot110/vialarm'
 	Plug 'mhinz/vim-janah'
 	Plug 'haishanh/night-owl.vim'
 	Plug 'eemed/sitruuna.vim'
@@ -51,6 +50,10 @@ call plug#begin($VIMFILES.'/vim-plug')
 	if g:isUnix || g:isTermux
 		Plug 'yuratomo/w3m.vim'
 	endif
+
+	" 自分の
+	Plug 'astrorobot110/vialarm'
+	Plug 'astrorobot110/technicolor'
 call plug#end()
 
 " vim-plugロード後の各プラグインの設定
