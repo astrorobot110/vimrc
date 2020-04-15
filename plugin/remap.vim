@@ -1,7 +1,7 @@
 scriptencoding utf-8
 
 " 甘えるな、hjklを使え (
-if !g:isDroid
+if !(g:isDroid || g:isTermux)
 	noremap <Left> <Nop>
 	noremap <Down> <Nop>
 	noremap <Up> <Nop>
