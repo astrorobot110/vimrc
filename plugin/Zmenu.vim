@@ -27,8 +27,12 @@ nnoremap Zw :<C-u>setlocal wrap!<CR>
 " CalcIt
 nnoremap Z= :<C-u>Calc<CR>
 inoremap <expr> <C-z>= calcIt#main()
-" Remove search register
-nnoremap Z/ :let @/ = ''<CR>
+" cd to home
+if exists('$INTERNAL_STORAGE')
+	nnoremap Z/ :<C-u>cd $INTERNAL_STORAGE<CR>
+else
+	nnoremap Z/ :<C-u>cd ~<CR>
+endif
 
 " ディレクトリ依存
 if isdirectory(expand('$DOCS/git/memo'))
