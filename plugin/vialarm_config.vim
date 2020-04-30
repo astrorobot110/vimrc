@@ -17,20 +17,23 @@ function! s:dailySave(...) abort
 
 	execute 'cd' path
 
-	for buf in range(1, bufnr('$')+1)
+	for buf in range(1, bufnr('$'))
 		if bufexists(buf) && bufname(buf) ==# ''
 			execute 'buffer!' buf
 			execute 'write! >>' fileName
+			let isPush = 1
 		endif
 	endfor
 
-	call system('git pull')
-	call system(printf('git add %s', fileName))
-	call system('git commit -m ''Dailysaved.''')
-	call system('git push')
+	if get(l:, 'isPush', 0)
+		echo 'Dailysaved.'
+		call system('git pull')
+		call system(printf('git add %s', fileName))
+		call system('git commit -m ''Dailysaved.''')
+		call system('git push')
 
-	execute 'edit!' fileName
+		execute 'edit!' fileName
+	endif
+
 	cd -
-
-	echo 'Dailysaved.'
 endfunction
