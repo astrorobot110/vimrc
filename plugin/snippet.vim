@@ -18,7 +18,7 @@ cabbrev sudowrite= w !sudo tee % > /dev/null 2>&1
 
 " privateから移転
 for [ key, value ] in items(g:private)
-	if isdirectory(expand(value))
+	if isdirectory(expand(value)) || filereadable(expand(value))
 		call execute(printf('cabbrev %s= %s', key, value))
 	endif
 endfor
