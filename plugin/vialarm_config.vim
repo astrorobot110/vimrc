@@ -6,13 +6,13 @@ endif
 
 augroup vialarm
 	autocmd!
-	if exists('g:dailySaveDir')
+	if exists('g:private.daily')
 		autocmd User Vialarm_17:00 call s:dailySave()
 	endif
 augroup END
 
 function! s:dailySave(...) abort
-	let path = a:0 > 0 && isdirectory(expand(a:1)) ? expand(a:1) : expand(g:dailySaveDir)
+	let path = a:0 > 0 && isdirectory(expand(a:1)) ? expand(a:1) : expand(g:private.daily)
 	let fileName = strftime('%y%m%d.md', localtime())
 
 	execute 'cd' path

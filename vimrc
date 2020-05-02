@@ -5,7 +5,7 @@ set fileencodings=ucs-bom,utf-8,utf-16,cp932,iso-2022-jp,euc-jisx0213,euc-jp
 
 scriptencoding utf-8
 
-let $VIMFILES = split(&runtimepath, ',')[0]
+let $VIMFILES = expand('<sfile>:p:h')
 
 let g:isDroid = expand('~') =~? 'droidvim'
 let g:isTermux = expand('~') =~? 'termux'

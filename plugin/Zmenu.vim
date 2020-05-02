@@ -37,10 +37,10 @@ endif
 " ディレクトリ依存
 if isdirectory(expand('$DOCS/git/memo'))
 	nnoremap Zm :<C-u>edit! $DOCS/git/memo<CR>
-	nnoremap ZM :<C-u>edit! $VIMFILE/.memo.ls \| put =escape(glob(g:memoPath.'/**/*.md'),' ')<CR>
+	nnoremap ZM :<C-u>edit! $VIMFILE/.memo.ls \| put =escape(glob(g:private.memo..'/**/*.md'),' ')<CR>
 endif
 
-if exists('g:dailySaveDir') && isdirectory(fnameescape(g:dailySaveDir))
+if exists('g:private.daily') && isdirectory(fnameescape(g:private.daily))
 	nnoremap Zv :<C-u>doautocmd User Vialarm_17:00<CR>
 endif
 

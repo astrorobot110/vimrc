@@ -14,7 +14,14 @@ cabbrev charm= '/.*^$]~\'
 cabbrev regurl= 'https\?:\/\/[0-9A-Za-z_\/:%#\$&?()\~\.=+-]\+'
 
 " sudoめんどい
-cabbrev sudowrite w !sudo tee % > /dev/null 2>&1
+cabbrev sudowrite= w !sudo tee % > /dev/null 2>&1
+
+" privateから移転
+for [ key, value ] in items(g:private)
+	if isdirectory(expand(value))
+		call execute(printf('cabbrev %s= %s', key, value))
+	endif
+endfor
 
 " 設定群への移動専用
 nnoremap <Leader>v :<C-u>e v
