@@ -23,6 +23,14 @@ for [ key, value ] in items(g:private)
 	endif
 endfor
 
+if has_key(g:private, 'memo')
+	call execute('cabbrev Memo= vimgrep / '..g:private.memo..'/**/*.md<S-Left><S-Left>')
+endif
+
+if has_key(g:private, 'kim')
+	call execute('cabbrev Kim= vimgrep / '..g:private.kim..'/*.md<S-Left><S-Left>')
+endif
+
 " 設定群への移動専用
 nnoremap <Leader>v :<C-u>e v
 nnoremap <Leader>V :<C-u>cd v
