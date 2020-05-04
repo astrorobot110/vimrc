@@ -24,11 +24,11 @@ for [ key, value ] in items(g:private)
 endfor
 
 if has_key(g:private, 'memo')
-	call execute('cabbrev Memo= vimgrep / '..g:private.memo..'/**/*.md<S-Left><S-Left>')
+	call execute('cabbrev Memo= vimgrep /j '..g:private.memo..'/**/*.md \| copen<S-Left><S-Left><S-Left><S-Left>')
 endif
 
 if has_key(g:private, 'kim')
-	call execute('cabbrev Kim= vimgrep / '..g:private.kim..'/*.md<S-Left><S-Left>')
+	call execute('cabbrev Kim= vimgrep /j '..g:private.kim..'/*.md \| copen<S-Left><S-Left><S-Left><S-Left>')
 endif
 
 " 設定群への移動専用
