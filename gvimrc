@@ -5,8 +5,9 @@ set guifont=HackGen:h11
 set linespace=1
 set renderoptions=type:directx,renmode:5
 
-" guioption関係
+" guiのI/F関係
 set guioptions=ecgm!
+set winaltkeys=no
 
 if !g:isDroid
 	set mouse=
