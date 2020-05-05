@@ -68,6 +68,9 @@ set emoji
 set display+=lastline
 set background=dark
 
+" これだけvimrcじゃないとダメとのことで
+set guioptions+=M
+
 " 検索周り
 set ignorecase smartcase
 set incsearch

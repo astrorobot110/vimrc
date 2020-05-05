@@ -6,7 +6,7 @@ set linespace=1
 set renderoptions=type:directx,renmode:5
 
 " guiのI/F関係
-set guioptions=ecgm!
+set guioptions=c!
 set winaltkeys=no
 
 if !g:isDroid
