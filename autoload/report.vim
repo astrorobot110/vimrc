@@ -32,5 +32,8 @@ function! report#templates() abort
 	let month = string(fileDate.month())
 	let day = string(fileDate.day())
 
-	return printf('# ''%s %s/%s', year, month, day)
+	let template = [ printf('# ''%s %s/%s', year, month, day),
+			\ '', '## 作業', '', '## 配送' ]
+
+	return template
 endfunction
