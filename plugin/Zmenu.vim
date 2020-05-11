@@ -36,8 +36,8 @@ endif
 
 " ディレクトリ依存
 if isdirectory(expand('$DOCS/git/memo'))
-	nnoremap Zm :<C-u>edit! $DOCS/git/memo<CR>
-	nnoremap ZM :<C-u>edit! $VIMFILE/.memo.ls \| put =escape(glob(g:private.memo..'/**/*.md'),' ')<CR>
+	nnoremap Zm :<C-u>edit $DOCS/git/memo<CR>
+	nnoremap Z<C-m> :<C-u>edit $VIMFILE/.memo.ls \| put =escape(glob(g:private.memo..'/**/*.md'),' ')<CR>
 endif
 
 if exists('g:private.daily') && isdirectory(fnameescape(g:private.daily))
