@@ -12,20 +12,15 @@ augroup vialarm
 augroup END
 
 function! s:dailySave(...) abort
-	let g:log = []
+	below 1sp
+
 	let path = a:0 > 0 && isdirectory(expand(a:1)) ? expand(a:1) : expand(g:private.daily)
 	let fileName = strftime('%y%m%d.md', localtime())
 
 	execute 'cd' path
 
 	for buf in range(1, bufnr('$'))
-		call add(g:log, {
-				\ 'bufname': bufnr(buf),
-				\ 'bufexists': bufexists(buf),
-				\ 'bufname': bufname(buf)
-				\ })
-		if bufexists(buf) && ( bufname(buf) ==# '' )
-			let g:log[-1]['write'] = 1
+		if bufexists(buf) && bufname(buf) ==# ''
 			execute 'buffer!' buf
 			execute 'write! >>' fileName
 			let isPush = 1
