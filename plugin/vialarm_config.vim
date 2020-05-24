@@ -12,12 +12,12 @@ augroup vialarm
 augroup END
 
 function! s:dailySave(...) abort
-	below 1sp
-
 	let path = a:0 > 0 && isdirectory(expand(a:1)) ? expand(a:1) : expand(g:private.daily)
 	let fileName = strftime('%y%m%d.md', localtime())
 
 	execute 'cd' path
+
+	below 1sp
 
 	for buf in range(1, bufnr('$'))
 		if bufexists(buf) && bufname(buf) ==# ''
@@ -29,6 +29,8 @@ function! s:dailySave(...) abort
 		endif
 	endfor
 
+	bwipeout
+
 	if get(l:, 'isPush', 0)
 		echo 'Dailysaved.'
 		call system('git pull')
@@ -36,7 +38,7 @@ function! s:dailySave(...) abort
 		call system('git commit -m ''Dailysaved.''')
 		call system('git push')
 
-		execute 'edit!' fileName
+		execute 'tabedit!' fileName
 	endif
 
 	cd -
