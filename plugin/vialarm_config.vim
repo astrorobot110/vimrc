@@ -24,8 +24,6 @@ function! s:dailySave(...) abort
 			execute 'buffer!' buf
 			execute 'write! >>' fileName
 			let isPush = 1
-		else
-			let g:log[-1]['write'] = 0
 		endif
 	endfor
 
