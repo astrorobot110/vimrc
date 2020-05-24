@@ -27,7 +27,7 @@ function! s:dailySave(...) abort
 		endif
 	endfor
 
-	bwipeout
+	close!
 
 	if get(l:, 'isPush', 0)
 		echo 'Dailysaved.'
