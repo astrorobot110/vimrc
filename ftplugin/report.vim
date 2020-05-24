@@ -1,6 +1,7 @@
 scriptencoding utf-8
 
-let b:report_fileList = glob(expand('%:p:h')..'/*.'..expand('%:e'), 1, 1)
+let b:report_fileList = glob(expand('%:p:h')..'/\d\{6}.'..expand('%:e'), 1, 1)
+		\ ->filter('v:val =~# ''^_''')
 
 nnoremap <buffer> ]r :<C-u>call report#main(v:count1)<CR>
 nnoremap <buffer> [r :<C-u>call report#main(-v:count1)<CR>
