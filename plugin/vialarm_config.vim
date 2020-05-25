@@ -21,9 +21,8 @@ function! s:dailySave(...) abort
 		if bufexists(buf) && bufname(buf) ==# ''
 			execute 'sbuffer' buf
 			execute 'write! >>' fileName
-			if get(l:, 'isPush', 0)
-				let isPush = 1
-			endif
+			let isPush = 1
+			close!
 		endif
 	endfor
 
