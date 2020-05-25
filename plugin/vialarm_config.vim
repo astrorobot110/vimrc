@@ -17,17 +17,15 @@ function! s:dailySave(...) abort
 
 	execute 'cd' path
 
-	below 1sp
-
 	for buf in range(1, bufnr('$'))
 		if bufexists(buf) && bufname(buf) ==# ''
-			execute 'buffer!' buf
+			execute 'sbuffer' buf
 			execute 'write! >>' fileName
-			let isPush = 1
+			if get(l:, 'isPush', 0)
+				let isPush = 1
+			endif
 		endif
 	endfor
-
-	close!
 
 	if get(l:, 'isPush', 0)
 		echo 'Dailysaved.'
