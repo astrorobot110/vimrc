@@ -12,6 +12,10 @@ augroup vialarm
 augroup END
 
 function! s:dailySave(...) abort
+	if mode() !=# 'n'
+		call remote_send(v:servername, '')
+	endif
+
 	let path = a:0 > 0 && isdirectory(expand(a:1)) ? expand(a:1) : expand(g:private.daily)
 	let fileName = strftime('%y%m%d.md', localtime())
 
