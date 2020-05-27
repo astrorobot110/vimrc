@@ -37,4 +37,5 @@ function! s:dailySave(...) abort
 	endif
 
 	cd -
+	let g:isDailysaved = 1
 endfunction
