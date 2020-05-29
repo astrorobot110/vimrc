@@ -1,4 +1,4 @@
-scriptencoding utf-7
+scriptencoding utf-8
 
 if !v:vim_did_enter
 	autocmd VimEnter * silent Vialarm start
@@ -7,11 +7,14 @@ endif
 augroup vialarm
 	autocmd!
 	if exists('g:private.daily')
-		autocmd User Vialarm_17:00 call s:dailySave()
+		autocmd User vialarm!17:00 call s:dailySave()
+		autocmd User vialarm!19:50 call s:dailySave()
 	endif
 augroup END
 
 function! s:dailySave(...) abort
+	let g:isDailysaved = 1
+
 	let path = a:0 > 0 && isdirectory(expand(a:1)) ? expand(a:1) : expand(g:private.daily)
 	let fileName = strftime('%y%m%d.md', localtime())
 
@@ -37,5 +40,4 @@ function! s:dailySave(...) abort
 	endif
 
 	cd -
-	let g:isDailysaved = 1
 endfunction
