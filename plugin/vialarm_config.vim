@@ -37,5 +37,12 @@ function! s:dailySave(...) abort
 	endif
 
 	cd -
-	let g:isDailysaved = 1
+endfunction
+
+function! Test(...) abort
+	if exists('g:test')
+		call add(g:test, strftime('%H:%M', localtime()))
+	else
+		let g:test = [ strftime('%H:%M', localtime()) ]
+	endif
 endfunction
