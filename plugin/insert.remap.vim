@@ -8,6 +8,7 @@ inoremap <C-l> <del>
 
 " <C-g>uが遠くて使いこなせない
 inoremap <C-g><C-g> <C-g>u
+inoremap <C-m> <C-m><C-g>u
 
 nnoremap <Leader>, i,<Esc>
 nnoremap <Leader>. i.<Esc>
