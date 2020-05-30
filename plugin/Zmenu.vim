@@ -41,7 +41,7 @@ if isdirectory(expand('$DOCS/git/memo'))
 endif
 
 if exists('g:private.daily') && isdirectory(fnameescape(g:private.daily))
-	nnoremap Zv :<C-u>doautocmd User Vialarm_17:00<CR>
+	nnoremap zv :<c-u>doautocmd user vialarm!17:00<cr>
 endif
 
 " plug.vimのプラグイン
