@@ -44,6 +44,15 @@ if exists('g:private.daily') && isdirectory(fnameescape(g:private.daily))
 	nnoremap zv :<c-u>doautocmd user vialarm!17:00<cr>
 endif
 
+" 関数依存
+if exists('*jig#toRad')
+	inoremap <expr> <C-z>r printf('jig#toRad(%f)', input('degree: ')->str2float())
+endif
+
+if exists('*jig#toDeg')
+	inoremap <expr> <C-z>d printf('jig#toDeg(%f*acos(-1))', input('radian (w/o pi): ')->str2float())
+endif
+
 " plug.vimのプラグイン
 " fugitive
 nnoremap Zg :<C-u>Gstatus<CR>

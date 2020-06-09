@@ -6,7 +6,7 @@ scriptencoding utf-8
 " <C-R>=Eatchar('\s')<CR>を最後に足して使う
 function! Eatchar(pat)
 	let c = nr2char(getchar(0))
-	return (c =~ a:pat) ? '' : c
+	return (c =~# a:pat) ? '' : c
 endfunction
 
 " たまーに使うやつ
