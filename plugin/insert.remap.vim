@@ -24,3 +24,6 @@ nnoremap <Leader>nr :<C-u>call setline('.', getline('.')..'  ')<CR>
 
 " calcIt (コマンドモードなら<C-r>=あるので)
 inoremap <expr> <C-z>= calcIt#main()
+
+" ちょっと楽したい
+inoremap <expr> <C-z>l '->'

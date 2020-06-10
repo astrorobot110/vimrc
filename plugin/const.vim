@@ -1,6 +1,11 @@
 scriptencoding utf-8
 
-let Pi = acos(-1)
+let g:pi = acos(-1)
 
-let Rad = { deg -> deg * Pi / 180 }
-let Deg = { rad -> rad * 180 / Pi }
+function! Rad(deg, ...) abort
+	return a:deg * g:pi / 180
+endfunction
+
+function! Deg(rad, ...) abort
+	return a:rad * 180 / g:pi
+endfunction

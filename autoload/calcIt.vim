@@ -14,5 +14,6 @@ function! calcIt#main(...) abort
 		endif
 	catch /E\(15\|121\)/
 		echo '=42.0'
+		return ''
 	endtry
 endfunction

@@ -2,25 +2,12 @@ scriptencoding utf-8
 
 let s:pi = acos(-1)
 
-function! jig#toRad(...) abort
-	let degree = a:0 > 0 ? a:1 : input('degree: ')->eval()
-	if type(degree) != v:t_float
-		let degree = str2float(degree)
-	endif
-	return (degree/180) * s:pi
-endfunction
-
-function! jig#toDeg(...) abort
-	let radian = a:0 > 0 ? a:1 : input('radian : ', 'acos(-1)*')->eval()
-	if type(radian) != v:t_float
-		let radian = str2float(radian)
-	endif
-	return (radian/s:pi) * 180
-endfunction
+let s:rad = { deg -> deg * s:pi / 180 }
+let s:deg = { rad -> rad * 180 / s:pi }
 
 function s:toPolar(width, height) abort
 	let range = sqrt(pow(a:width, 2) + pow(a:height, 2))
-	let angle = jig#toDeg(atan2(a:height, a:width))
+	let angle = s:deg(atan2(a:height, a:width))
 
 	let calc = [
 		\ printf('%7s: %8.2f', 'range', range),
@@ -31,8 +18,8 @@ function s:toPolar(width, height) abort
 endfunction
 
 function s:toRect(range, angle) abort
-	let width = a:range * cos(jig#toRad(a:angle))
-	let height = a:range * sin(jig#toRad(a:angle))
+	let width = a:range * cos(s:rad(a:angle))
+	let height = a:range * sin(s:rad(a:angle))
 
 	let calc = [
 		\ printf('%7s: %8.2f', 'width', width),
