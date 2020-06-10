@@ -26,13 +26,6 @@ nnoremap ZP :<C-u>PlugInstall<CR>
 nnoremap Zw :<C-u>setlocal wrap!<CR>
 " CalcIt
 nnoremap Z= :<C-u>Calc<CR>
-inoremap <expr> <C-z>= calcIt#main()
-" cd to home
-if exists('$INTERNAL_STORAGE')
-	nnoremap Z/ :<C-u>cd $INTERNAL_STORAGE<CR>
-else
-	nnoremap Z/ :<C-u>cd ~<CR>
-endif
 
 " ディレクトリ依存
 if isdirectory(expand('$DOCS/git/memo'))
@@ -40,22 +33,19 @@ if isdirectory(expand('$DOCS/git/memo'))
 	nnoremap Z<C-m> :<C-u>edit $VIMFILE/.memo.ls \| put =escape(glob(g:private.memo..'/**/*.md'),' ')<CR>
 endif
 
-if exists('g:private.daily') && isdirectory(fnameescape(g:private.daily))
-	nnoremap zv :<c-u>doautocmd user vialarm!17:00<cr>
+" cd to home
+if exists('$INTERNAL_STORAGE')
+	nnoremap Z/ :<C-u>cd $INTERNAL_STORAGE<CR>
+else
+	nnoremap Z/ :<C-u>cd ~<CR>
 endif
 
-" 関数依存
-if exists('*jig#toRad')
-	inoremap <expr> <C-z>r printf('jig#toRad(%f)', input('degree: ')->str2float())
-endif
-
-if exists('*jig#toDeg')
-	inoremap <expr> <C-z>d printf('jig#toDeg(%f*acos(-1))', input('radian (w/o pi): ')->str2float())
+" vialarm
+if isdirectory(fnameescape(get(g:private, 'daily', '/dev/null')))
+	nnoremap Zv :<c-u>doautocmd user vialarm!17:00<cr>
 endif
 
 " plug.vimのプラグイン
-" fugitive
-nnoremap Zg :<C-u>Gstatus<CR>
 " OpenBrowser
 nnoremap Zx :<C-u>execute 'OpenBrowser' expand('%:p')<CR>
 nnoremap ZX :<C-u>execute 'OpenBrowser' eval('@'.input('Register: '))<CR>
