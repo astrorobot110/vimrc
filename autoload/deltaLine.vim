@@ -10,3 +10,5 @@ function! deltaLine#main() abort
 		autocmd CursorMoved * ++once set relativenumber!
 	augroup END
 endfunction
+
+let &cpoptions = s:cpo
