@@ -19,6 +19,7 @@ nnoremap ZD :cd %:h<CR>
 nnoremap Zh :<C-u>vert bo help function-list<CR>
 " Relative line number
 nnoremap Zl :<C-u>call deltaLine#main()<CR>
+vnoremap Zl <Esc>:<C-u>call deltaLine#main()<CR>gv
 " PlugInstall
 nnoremap Zp :<C-u>PlugUpdate<CR>
 nnoremap ZP :<C-u>PlugInstall<CR>

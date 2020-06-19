@@ -8,7 +8,6 @@ augroup vialarm
 	autocmd!
 	if exists('g:private.daily')
 		autocmd User vialarm!17:00 call s:dailySave()
-		autocmd User vialarm!19:50 call s:dailySave()
 	endif
 augroup END
 
@@ -24,22 +23,16 @@ function! s:dailySave(...) abort
 		if bufexists(buf) && bufname(buf) ==# ''
 			execute 'sbuffer' buf
 			execute 'write! >>' fileName
-			let isPush = 1
 			close!
 		endif
 	endfor
 
-	if get(l:, 'isPush', 0)
-		echo 'Dailysaved.'
-		call system('git pull')
-		call system(printf('git add %s', fileName))
-		call system('git commit -m ''Dailysaved.''')
-		call system('git push')
-
-		execute 'tabedit!' fileName
+	if filereadable(fileName)
+		execute 'tabe' fileName
 	endif
 
 	cd -
+	echo 'dailesaved.'
 endfunction
 
 function! Test(...) abort
