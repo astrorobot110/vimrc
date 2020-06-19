@@ -29,8 +29,8 @@ nnoremap Zw :<C-u>setlocal wrap!<CR>
 nnoremap Z= :<C-u>Calc<CR>
 
 " ディレクトリ依存
-if isdirectory(expand('$DOCS/git/memo'))
-	nnoremap Zm :<C-u>edit $DOCS/git/memo<CR>
+if isdirectory(fnameescape(get(g:private, 'memo', '/dev/null')))
+	nnoremap Zm :<C-u>execute 'edit' g:private.memo<CR>
 	nnoremap Z<C-m> :<C-u>edit $VIMFILE/.memo.ls \| put =escape(glob(g:private.memo..'/**/*.md'),' ')<CR>
 endif
 
