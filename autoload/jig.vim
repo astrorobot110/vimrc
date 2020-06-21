@@ -2,17 +2,12 @@ scriptencoding utf-8
 
 let s:pi = acos(-1)
 
-function! s:toRad(degree) abort
-	return (a:degree/180) * s:pi
-endfunction
-
-function! s:toDeg(radian) abort
-	return (a:radian/s:pi) * 180
-endfunction
+let s:rad = { deg -> deg * s:pi / 180 }
+let s:deg = { rad -> rad * 180 / s:pi }
 
 function s:toPolar(width, height) abort
 	let range = sqrt(pow(a:width, 2) + pow(a:height, 2))
-	let angle = s:toDeg(atan2(a:height, a:width))
+	let angle = s:deg(atan2(a:height, a:width))
 
 	let calc = [
 		\ printf('%7s: %8.2f', 'range', range),
@@ -23,8 +18,8 @@ function s:toPolar(width, height) abort
 endfunction
 
 function s:toRect(range, angle) abort
-	let width = a:range * cos(s:toRad(a:angle))
-	let height = a:range * sin(s:toRad(a:angle))
+	let width = a:range * cos(s:rad(a:angle))
+	let height = a:range * sin(s:rad(a:angle))
 
 	let calc = [
 		\ printf('%7s: %8.2f', 'width', width),
