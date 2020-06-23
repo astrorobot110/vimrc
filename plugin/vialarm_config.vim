@@ -34,11 +34,3 @@ function! s:dailySave(...) abort
 	cd -
 	echo 'dailesaved.'
 endfunction
-
-function! Test(...) abort
-	if exists('g:test')
-		call add(g:test, strftime('%H:%M', localtime()))
-	else
-		let g:test = [ strftime('%H:%M', localtime()) ]
-	endif
-endfunction
