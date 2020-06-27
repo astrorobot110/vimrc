@@ -24,14 +24,18 @@ noremap <ESC><ESC> :<C-u>noh<CR>
 nnoremap g= g+
 
 " 空行入れ
-nnoremap "<space> "="\n"<CR>
+nnoremap <silent> "<Space> "="\n"<CR>
+nnoremap <silent> "<S-Space> "="\n"<CR>
+
+" gboardローダー
+if g:device ==? 'lenovo'
+	Gboard large
+elseif g:device ==? 'xperia'
+	Gboard small
+endif
 
 " gboard用
 if g:isDroid || g:isTermux
-	nnoremap <C-^>uu <<
-	nnoremap <C-^>ii >>
-	nnoremap <C-^>t [
-	nnoremap <C-^>y ]
-	nnoremap <C-^>o {
-	nnoremap <C-^>p }
+	noremap <u <<
+	noremap >i >>
 endif
