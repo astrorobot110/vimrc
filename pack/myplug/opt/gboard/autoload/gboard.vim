@@ -2,7 +2,7 @@ scriptencoding utf-8
 
 function gboard#map(IFSize) abort
 	for l in keys(g:longTap)
-		execute 'noremap <C-^>'.l g:longTap[l][a:IFSize]
+		execute 'map <C-^>'.l g:longTap[l][a:IFSize]
 	endfor
 endfunction
 
