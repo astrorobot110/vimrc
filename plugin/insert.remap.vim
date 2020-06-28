@@ -20,6 +20,9 @@ nnoremap <Leader><CR> i<CR><Esc>
 " 改行周り
 nnoremap <Leader>nr :<C-u>call setline('.', getline('.')..'  ')<CR>
 
+" IMEのキーマップ暴発対策
+imap <Nul> <Nop>
+
 " インサートモード中のZmenu的なやつ
 
 " calcIt (コマンドモードなら<C-r>=あるので)
