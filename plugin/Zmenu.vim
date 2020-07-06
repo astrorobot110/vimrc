@@ -41,11 +41,6 @@ else
 	nnoremap Z/ :<C-u>cd ~<CR>
 endif
 
-" vialarm
-if isdirectory(fnameescape(get(g:private, 'daily', '/dev/null')))
-	nnoremap Zv :<c-u>doautocmd user vialarm!17:00<cr>
-endif
-
 " plug.vimのプラグイン
 " OpenBrowser
 nnoremap Zx :<C-u>execute 'OpenBrowser' expand('%:p')<CR>
