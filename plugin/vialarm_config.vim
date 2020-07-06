@@ -32,5 +32,5 @@ function! s:dailySave(...) abort
 	endif
 
 	cd -
-	echo 'dailesaved.'
+	echo 'dailysaved.'
 endfunction

@@ -25,15 +25,3 @@ function! report#main(direction) abort
 		execute 'edit!' fnameescape(targetFile)
 	endif
 endfunction
-
-function! report#templates() abort
-	let fileDate = s:DateTime.from_format(expand('%:t:r'), '%y%m%d')
-	let year = string(fileDate.year())[2:]
-	let month = string(fileDate.month())
-	let day = string(fileDate.day())
-
-	let template = [ printf('# ''%s %s/%s', year, month, day),
-			\ '', '## 作業', '', '## 配送' ]
-
-	return template
-endfunction

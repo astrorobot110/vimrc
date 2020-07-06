@@ -27,10 +27,6 @@ if has_key(g:private, 'memo')
 	call execute('cabbrev Memo= vimgrep /j '..g:private.memo..'/**/*.md \| copen<S-Left><S-Left><S-Left><S-Left>')
 endif
 
-if has_key(g:private, 'kim')
-	call execute('cabbrev Kim= vimgrep /j '..g:private.kim..'/*.md \| copen<S-Left><S-Left><S-Left><S-Left>')
-endif
-
 " 設定群への移動専用
 nnoremap <Leader>v :<C-u>e v
 nnoremap <Leader>V :<C-u>cd v
