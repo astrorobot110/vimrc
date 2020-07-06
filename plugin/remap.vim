@@ -22,3 +22,13 @@ noremap <ESC><ESC> :<C-u>noh<CR>
 
 " どうしてもg+が押せなかったので
 nnoremap g= g+
+
+" 空行入れ
+nnoremap <silent> "<Space> "="\n"<CR>
+nnoremap <silent> "<S-Space> "="\n"<CR>
+
+" gboard用
+if g:isDroid || g:isTermux
+	noremap <u <<
+	noremap >i >>
+endif

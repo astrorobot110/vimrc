@@ -68,6 +68,10 @@ set emoji
 set display+=lastline
 set background=dark
 
+if g:isWin
+	set termguicolors
+endif
+
 " これだけvimrcじゃないとダメとのことで
 set guioptions+=M
 

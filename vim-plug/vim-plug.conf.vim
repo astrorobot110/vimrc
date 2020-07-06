@@ -20,14 +20,8 @@ call plug#begin($VIMFILES.'/vim-plug')
 	Plug 'tyru/open-browser.vim'
 	Plug 'previm/previm'
 	Plug 'tpope/vim-fugitive'
-	Plug 'mhinz/vim-janah'
-	Plug 'haishanh/night-owl.vim'
-	Plug 'eemed/sitruuna.vim'
-	Plug 'arzg/vim-corvine'
-	Plug 'doums/darcula'
-	Plug 'vim-scripts/wombat256.vim'
-	Plug 'rhysd/wallaby.vim'
-	Plug 'dunstontc/vim-vscode-theme'
+	Plug 'vim-scripts/ScrollColors'
+	Plug 'flazz/vim-colorschemes'
 
 	if !( g:isDroid || g:isTermux )
 		Plug 'prabirshrestha/async.vim'
