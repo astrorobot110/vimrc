@@ -86,8 +86,16 @@ if &columns < 80
 	set diffopt+=vertical
 endif
 
+if has('win32')
+  set shell=pwsh
+  set shellcmdflag=-c
+  set shellquote=\"
+  set shellxquote=
+endif
+
 " PowerShell上の問題
 set t_Co=256
+
 " タイミング調整の為にオートコマンドに
 autocmd VimEnter * ++once ++nested colorscheme wombat256mod
 
