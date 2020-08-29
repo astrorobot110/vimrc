@@ -87,12 +87,7 @@ if &columns < 80
 endif
 
 if has('win32')
-  set shell=pwsh
-  set shellcmdflag=-noprofile\ -nologo\ -c
-  set shellquote=\"
-  set shellxquote=
-  set shellpipe=|
-  set shellredir=>
+	set shell=pwsh
 endif
 
 " PowerShell上の問題
