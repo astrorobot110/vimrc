@@ -86,9 +86,10 @@ if &columns < 80
 	set diffopt+=vertical
 endif
 
-if has('win32')
-	set shell=pwsh
-endif
+" fugitiveいい加減になんとかなってほしい
+" if has('win32')
+" 	set shell=pwsh
+" endif
 
 " PowerShell上の問題
 set t_Co=256
