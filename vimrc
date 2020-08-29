@@ -88,9 +88,11 @@ endif
 
 if has('win32')
   set shell=pwsh
-  set shellcmdflag=-c
+  set shellcmdflag=-noprofile\ -nologo\ -c
   set shellquote=\"
   set shellxquote=
+  set shellpipe=|
+  set shellredir=>
 endif
 
 " PowerShell上の問題
