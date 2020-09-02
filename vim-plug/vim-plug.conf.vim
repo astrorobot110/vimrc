@@ -37,7 +37,7 @@ call plug#begin($VIMFILES.'/vim-plug')
 	endif
 
 	if g:isWin
-		Plug 'ananagame/vimsence'
+		Plug 'hugolgst/vimsence'
 		Plug 'PProvost/vim-ps1'
 	endif
 
