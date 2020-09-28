@@ -11,6 +11,8 @@ endif
 call plug#begin($VIMFILES.'/vim-plug')
 	Plug 'vim-jp/autofmt'
 	Plug 'vim-jp/vimdoc-ja'
+	Plug 'mattn/vim-molder'
+	Plug 'mattn/vim-molder-operations'
 	Plug 'vim-jp/vital.vim'
 	Plug 'tpope/vim-unimpaired'
 	Plug 'deton/jasegment.vim'
