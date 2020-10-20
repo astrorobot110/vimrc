@@ -22,6 +22,7 @@ call plug#begin($VIMFILES.'/vim-plug')
 	Plug 'tpope/vim-fugitive'
 	Plug 'vim-scripts/ScrollColors'
 	Plug 'flazz/vim-colorschemes'
+	Plug 'ghifarit53/tokyonight-vim'
 
 	if !( g:isDroid || g:isTermux )
 		Plug 'mattn/vim-molder'
@@ -79,7 +80,7 @@ endfunction
 
 autocmd VimEnter * ++once call s:empty_prompt_mappings()
 
-" 読み込みの都合でカラースキームはここに
+let g:molder_show_hidden = 1
 
 " w3m.vim
 if exists(':W3m')
