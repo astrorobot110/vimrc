@@ -9,6 +9,9 @@ set renderoptions=type:directx,renmode:5
 set guioptions=c!
 set winaltkeys=no
 
+"tokyonight用
+let g:tokyonight_enable_italic = 1
+
 if !g:isDroid
 	set mouse=
 endif
