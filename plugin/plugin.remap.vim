@@ -6,7 +6,7 @@ scriptencoding utf-8
 nnoremap <expr> <Leader>: bangin#bang()
 
 " DeStain
-nmap <Leader><S-Space> <Plug>(deStain)
+nmap <Leader>~ <Plug>(deStain)
 
 " closer
 imap <C-b> <Plug>(closer_main)
