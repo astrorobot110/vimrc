@@ -27,12 +27,8 @@ nnoremap ZP :<C-u>PlugInstall<CR>
 nnoremap Zw :<C-u>setlocal wrap!<CR>
 " CalcIt
 nnoremap Z= :<C-u>Calc<CR>
-
-" ディレクトリ依存
-if isdirectory(fnameescape(get(g:private, 'memo', '/dev/null')))
-	nnoremap Zm :<C-u>execute 'edit' g:private.memo<CR>
-	nnoremap Z<C-m> :<C-u>edit $VIMFILE/.memo.ls \| put =escape(glob(g:private.memo..'/**/*.md'),' ')<CR>
-endif
+" Open current buffer's directory
+nnoremap Z% :<C-u>edit %:h<CR>
 
 " cd to home
 if exists('$INTERNAL_STORAGE')

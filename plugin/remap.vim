@@ -27,9 +27,6 @@ nnoremap g= g+
 nnoremap <silent> "<Space> "="\n"<CR>
 nnoremap <silent> "<S-Space> "="\n"<CR>
 
-" 親ディレクトリ移動用
-nnoremap <Leader>% :<C-u> e %:h<CR>
-
 " gboard用
 if g:isDroid || g:isTermux
 	noremap <u <<
