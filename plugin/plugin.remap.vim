@@ -6,7 +6,11 @@ scriptencoding utf-8
 nnoremap <expr> <Leader>: bangin#bang()
 
 " DeStain
-nmap <Leader>~ <Plug>(deStain)
+if !( g:isDroid || g:isTermux )
+	nmap <Leader><S-Space> <Plug>(deStain)
+else
+	nmap <Leader>/ <Plug>(deStain)
+endif
 
 " closer
 imap <C-b> <Plug>(closer_main)
