@@ -27,6 +27,8 @@ nnoremap ZP :<C-u>PlugInstall<CR>
 nnoremap Zw :<C-u>setlocal wrap!<CR>
 " CalcIt
 nnoremap Z= :<C-u>Calc<CR>
+" Send Clipboard
+nnoremap Z+ :<C-u>let @+ = @"<CR>
 " Open current buffer's directory
 nnoremap Z% :<C-u>edit %:h<CR>
 

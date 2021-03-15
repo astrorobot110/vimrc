@@ -12,6 +12,7 @@ endfunction
 " たまーに使うやつ
 cabbrev charm= '/.*^$]~\'
 cabbrev regurl= 'https\?:\/\/[0-9A-Za-z_\/:%#\$&?()\~\.=+-]\+'
+cabbrev md= set filetype=markdown
 
 " sudoめんどい
 cabbrev sudowrite= w !sudo tee % > /dev/null 2>&1
