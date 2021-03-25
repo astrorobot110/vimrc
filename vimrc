@@ -87,9 +87,14 @@ if &columns < 80
 endif
 
 " fugitiveいい加減になんとかなってほしい
-" if has('win32')
-" 	set shell=pwsh
-" endif
+if has('win32')
+	set shell=pwsh
+	set shellcmdflag=-NonInteractive\ -ExecutionPolicy\ RemoteSigned\ -Command
+	set shellquote=\"
+	set shellxquote=
+	set shellpipe=>%s\ 2>&1
+	set shellredir=>%s\ 2>&1
+endif
 
 " PowerShell上の問題
 set t_Co=256
