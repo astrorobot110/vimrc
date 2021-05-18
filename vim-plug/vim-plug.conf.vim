@@ -66,7 +66,7 @@ let g:previm_enable_realtime = 1
 let g:lsp_diagnostics_echo_cursor = 1
 
 " empty-prompt.vim
-if has('patch-8.2.1')
+if exists('g:empty_prompt#pattern')
 	let g:empty_prompt#pattern = &shell =~# 'sh$' ? '[\$#] $' : '>\s*$'
 	function! s:empty_prompt_mappings() abort
 		" If current line is empty prompt ...
@@ -78,9 +78,9 @@ if has('patch-8.2.1')
 
 		" ... Add more mappings you like
 	endfunction
-endif
 
-autocmd VimEnter * ++once call s:empty_prompt_mappings()
+	autocmd VimEnter * ++once call s:empty_prompt_mappings()
+endif
 
 let g:molder_show_hidden = 1
 
