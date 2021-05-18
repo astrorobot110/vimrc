@@ -87,7 +87,7 @@ if &columns < 80
 endif
 
 " fugitiveいい加減になんとかなってほしい
-if has('win32')
+if 0
 	set shell=pwsh
 	set shellcmdflag=-NonInteractive\ -ExecutionPolicy\ RemoteSigned\ -Command
 	set shellquote=\"
