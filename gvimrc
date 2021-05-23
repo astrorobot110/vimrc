@@ -1,9 +1,13 @@
 scriptencoding utf-8
 
 " フォント
-set guifont=HackGen:h11
+if g:isWin
+	set guifont=HackGen:h12
+	set renderoptions=type:directx,renmode:5
+elseif g:isUnix
+	set guifont=Hackgen\ Console\ 12
+endif
 set linespace=1
-set renderoptions=type:directx,renmode:5
 
 " guiのI/F関係
 set guioptions=c!
