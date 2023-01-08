@@ -50,6 +50,9 @@ nnoremap ZP :<C-u>PlugInstall<CR>
 " Load current vimscript
 nnoremap Zs :<C-u>source %<CR>
 
+" Execute current line as shell command
+nnoremap <expr> Z! system(expand(getline('.')))
+
 " CalcIt
 nnoremap Z= :<C-u>Calc<CR>
 
