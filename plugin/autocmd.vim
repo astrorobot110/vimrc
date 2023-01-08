@@ -18,26 +18,26 @@ endif
 
 " 脱初心者を目指すVimmerにオススメしたいVimプラグインや.vimrcの設定
 " https://qiita.com/jnchito/items/5141b3b01bced9f7f48f#最後のカーソル位置を復元する
-function s:lastCursor() abort
-	if line("'\"") > 0 && line ("'\"") <= line("$")
-		execute "normal! g'\""
-	endif
-endfunction
-
 augroup lastCursor
 	autocmd!
 	autocmd BufReadPost * call s:lastCursor()
+
+	function s:lastCursor() abort
+		if line("'\"") > 0 && line ("'\"") <= line("$")
+			execute "normal! g'\""
+		endif
+	endfunction
 augroup END
 
 " autoloader
-function s:autoLoader() abort
-	if v:servername =~? '^G\?VIM\d*$' && len(v:argv) <= 1
+if ( v:servername == '' ) || ( v:servername =~? '^G\?VIM\d*$' && len(v:argv) <= 1 )
+	augroup autoLoader
+		autocmd!
+		autocmd VimEnter * call s:autoLoader()
+	augroup END
+
+	function s:autoLoader() abort
 		edit #<1
 		filetype detect
-	endif
-endfunction
-
-augroup autoLoader
- 	autocmd!
- 	autocmd VimEnter * call s:autoLoader()
-augroup END
+	endfunction
+endif
