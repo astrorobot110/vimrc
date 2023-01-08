@@ -30,7 +30,7 @@ augroup lastCursor
 augroup END
 
 " autoloader
-if ( v:servername == '' ) || ( v:servername =~? '^G\?VIM\d*$' && len(v:argv) <= 1 )
+if ( v:servername == '' || v:servername =~? '^G\?VIM\d*$' ) && len(v:argv) <= 1
 	augroup autoLoader
 		autocmd!
 		autocmd VimEnter * call s:autoLoader()
