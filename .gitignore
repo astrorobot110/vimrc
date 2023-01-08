@@ -1,0 +1,67 @@
+# gitから除外するファイル
+
+## 基本全部無視
+
+*
+!*.vim
+
+## 除外指定
+
+!vimrc
+!gvimrc
+!.gitignore
+
+## .private.vimはだめよ
+
+.private.vim
+
+## plugin
+
+!/plugin/
+/plugin/*
+!/plugin/*.vim
+!/plugin/*.tar.gz
+
+## autoload
+
+!/autoload/
+/autoload/*
+!/autoload/*.vim
+/autoload/plug.vim
+!/autoload/_archives/
+!/autoload/_archives/*
+
+## pack
+
+!/pack
+!/pack/myplug
+!/pack/myplug/**
+/pack/myplug/**/*.sw?
+
+## ftplugin
+
+!/ftplugin/
+/ftplugin/*
+!/ftplugin/*.vim
+!/ftplugin/*.tar.gz
+
+## ftdetect
+
+!/ftdetect/
+/ftdetect/*
+!/ftdetect/*.vim
+!/ftdetect/*.tar.gz
+
+## syntax
+
+!/syntax/
+/syntax/*
+!/syntax/*.vim
+!/syntax/*.tar.gz
+
+### vim-plug
+
+!/vim-plug/
+/vim-plug/*
+!/vim-plug/*.vim
+/vim-plug/*.vim/
