@@ -25,6 +25,9 @@ cabbrev sudowrite= write !sudo tee % > /dev/null 2>&1
 cabbrev hz= source https://raw.githubusercontent.com/koron/vim-kaoriya/master/kaoriya/vim/plugins/kaoriya/plugin/hz_ja.vim
 cabbrev HZ= sp +/Japanese\ Description: https://raw.githubusercontent.com/koron/vim-kaoriya/master/kaoriya/vim/plugins/kaoriya/plugin/hz_ja.vim
 
+" フォント変更用
+cabbrev <expr> font= 'set guifont='..escape(&guifont, ' \')
+
 " privateから移転
 for [ key, value ] in items(g:private)
 	if isdirectory(expand(value)) || filereadable(expand(value))

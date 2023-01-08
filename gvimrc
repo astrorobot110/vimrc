@@ -14,9 +14,6 @@ endif
 set guioptions=c!
 set winaltkeys=no
 
-"tokyonight用
-let g:tokyonight_enable_italic = 1
-
 " Hack #120: gVim でウィンドウの位置とサイズを記憶する
 " http://vim-jp.org/vim-users-jp/2010/01/28/Hack-120.html
 let g:save_window_file = expand($VIMFILES.'/.vimwinpos')
