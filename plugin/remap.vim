@@ -40,6 +40,10 @@ nnoremap <expr> <Leader>: substitute( @:, '^\(\S\+\)', ':\1!', 'e')
 
 " 旧Zmenu
 
+" Move directory to current buffer
+nnoremap Zd :<C-u>lcd %:h<CR>
+nnoremap ZD :<C-u>cd %:h<CR>
+
 " Quick help to function-list
 nnoremap Zh :<C-u>vert bo help function-list<CR>
 
