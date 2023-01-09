@@ -17,13 +17,12 @@ call plug#begin($VIMFILES.'/vim-plug')
 	Plug 'kana/vim-textobj-user'
 	Plug 'kana/vim-textobj-function'
 	Plug 'junegunn/vim-easy-align'
-	" Plug 'tyru/open-browser.vim'
 	Plug 'previm/previm'
 	Plug 'tpope/vim-fugitive'
-	" Plug 'vim-scripts/ScrollColors'
-	" Plug 'ghifarit53/tokyonight-vim'
 	Plug 'mhinz/vim-janah'
-	" Plug 'othree/yajs.vim'
+	" Plug 'tyru/open-browser.vim'
+	" Plug 'vim-scripts/ScrollColors'
+	" Plug 'pangloss/vim-javascript'
 
 	if g:isWin
 		Plug 'PProvost/vim-ps1'
@@ -31,7 +30,7 @@ call plug#begin($VIMFILES.'/vim-plug')
 
 	" 自分の
 	" Plug 'astrorobot110/vialarm'
-	" lug 'astrorobot110/technicolor'
+	" Plug 'astrorobot110/technicolor'
 call plug#end()
 
 " vimdoc-ja

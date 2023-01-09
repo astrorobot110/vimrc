@@ -73,11 +73,7 @@ set hlsearch
 
 set diffopt=filler
 
-if &columns < 80
-	set diffopt+=vertical
-endif
-
-" タイミング調整の為にオートコマンドに
+" タイミング調整の為にオートコマンドに（わざわざautocmd.vimに書かんよ）
 autocmd VimEnter * ++once ++nested colorscheme janah
 
 " ステータスライン関係
@@ -86,7 +82,7 @@ set statusline=%4(%n%):\ %<%f\ [%{&fenc.'/'.&ff}]%h%w%m%r%=\ %l,%-7.(%c%V%)\ [%4
 set laststatus=2
 
 " ディレクトリ関係
-"
+
 " 汎用アドレス
 let $DOCS = expand('~/Documents')
 
