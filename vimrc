@@ -63,6 +63,9 @@ set background=dark
 " これだけvimrcじゃないとダメとのことで
 set guioptions+=M
 
+" 結局入れといたほうがよかったので
+set t_Co=256
+
 " 検索周り
 set ignorecase smartcase
 set incsearch
@@ -80,6 +83,7 @@ autocmd VimEnter * ++once ++nested colorscheme janah
 " ステータスライン関係
 " デフォルト -> set statusline=%f\ %h%w%m%r%=%-14.(%l,%c%V%)\ %P
 set statusline=%4(%n%):\ %<%f\ [%{&fenc.'/'.&ff}]%h%w%m%r%=\ %l,%-7.(%c%V%)\ [%4(%P%)]\ 
+set laststatus=2
 
 " ディレクトリ関係
 "
