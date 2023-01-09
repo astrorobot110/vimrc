@@ -34,10 +34,24 @@ if ( v:servername == '' || v:servername =~? '^G\?VIM\d*$' ) && len(v:argv) <= 1
 	augroup autoLoader
 		autocmd!
 		autocmd VimEnter * call s:autoLoader()
+
+		function s:autoLoader() abort
+			edit #<1
+			filetype detect
+		endfunction
 	augroup END
 
-	function s:autoLoader() abort
-		edit #<1
-		filetype detect
-	endfunction
 endif
+
+augroup diffWindow
+	autocmd!
+	autocmd WinScrolled * call s:diffWindow()
+
+	function s:diffWindow () abort
+		if &columns < 80
+			set diffopt+=vertical
+		else
+			set diffopt-=vertical
+		endif
+	endfunction
+augroup END
