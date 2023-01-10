@@ -2,7 +2,7 @@ scriptencoding utf-8
 
 " フォント
 if g:isWin
-	set guifont=UDEV\ Gothic\ NFLG:h12:qANTIALIASED
+	set guifont=UDEV\ Gothic\ NFLG:qANTIALIASED:h12
 	set renderoptions=type:directx,renmode:5
 	set linespace=4
 elseif g:isUnix
