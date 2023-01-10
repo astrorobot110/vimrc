@@ -92,12 +92,12 @@ endif
 
 let g:private = { 'doc': $DOCS }
 set backup
-let &backupdir = expand(g:private.doc..'/backup')
+set backupdir=$DOCS/backup
 
-set undodir=$VIMFILES/.autogen//
+set undodir=$VIMFILES/.undo
 set undofile
 
-set viewdir=$VIMFILES/view
+set viewdir=$VIMFILES/.view
 
 " viminfo
 set viminfo+=n$VIMFILES/viminfo
