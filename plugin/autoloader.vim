@@ -11,3 +11,6 @@ command! -nargs=? Tutorial call vimtutor#main(<f-args>)
 
 " calcIt
 command! -nargs=? Calc call calcIt#main(<q-args>)
+
+" denchu
+command! -nargs=1 Denchu call denchu#main(<args>)
