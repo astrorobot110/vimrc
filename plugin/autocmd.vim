@@ -66,15 +66,17 @@ augroup cs-janah
 	endfunction
 augroup END
 
-augroup diffWindow
-	autocmd!
-	autocmd WinScrolled * call s:diffWindow()
+if v:version >= 900
+	augroup diffWindow
+		autocmd!
+		autocmd WinScrolled * call s:diffWindow()
 
-	function s:diffWindow () abort
-		if &columns < 80
-			set diffopt+=vertical
-		else
-			set diffopt-=vertical
-		endif
-	endfunction
-augroup END
+		function s:diffWindow () abort
+			if &columns < 80
+				set diffopt+=vertical
+			else
+				set diffopt-=vertical
+			endif
+		endfunction
+	augroup END
+endif

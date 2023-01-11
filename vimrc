@@ -7,16 +7,13 @@ scriptencoding utf-8
 
 let $VIMFILES = expand('<sfile>:p:h')
 
-let g:isWin = has('win32') || has('win64')
-let g:isUnix = has('unix')
-
 " デバイス識別
-if g:isWin
+if has('win32')
 	let g:device = tolower($COMPUTERNAME)
 	set fileformat=dos
 	set fileformats=dos,unix,mac
 	set termguicolors
-elseif g:isUnix
+elseif has('unix')
 	let g:device = tolower(system('echo $(hostname)')) ->trim()
 	language ja_JP.utf8
 	set fileformat=unix
@@ -91,16 +88,27 @@ if isdirectory($DOCS..'/Documents')
 endif
 
 let g:private = { 'doc': $DOCS }
+
 set backup
 set backupdir=$DOCS/backup
 
-set undodir=$VIMFILES/.undo
 set undofile
+set undodir=$VIMFILES/.undo
 
 set viewdir=$VIMFILES/.view
 
 " viminfo
 set viminfo+=n$VIMFILES/viminfo
+
+" 殆ど使ってないwslのgitめんどくさいしこうするよりない……
+if g:device ==? 'astrobase'
+	let g:currentOS =
+				\ ( has('win32') ? '.w' : '' )..
+				\ ( has('unix') ? '.u' : '')
+	let &undodir .= g:currentOS
+	let &viewdir .= g:currentOS
+	let &viminfo .= g:currentOS
+endif
 
 " リマップ分割によりマップリーダーのトラブル頻発中
 let g:mapleader = "\<space>"

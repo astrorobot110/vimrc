@@ -1,11 +1,11 @@
 scriptencoding utf-8
 
 " フォント
-if g:isWin
+if has('win32')
 	set guifont=UDEV\ Gothic\ NFLG:qANTIALIASED:h12
 	set renderoptions=type:directx,renmode:5
 	set linespace=4
-elseif g:isUnix
+elseif has('unix')
 	set guifont=UDEV\ Gothic\ NF\ 12
 	set linespace=1
 endif

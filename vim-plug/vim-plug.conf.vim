@@ -24,7 +24,7 @@ call plug#begin($VIMFILES.'/vim-plug')
 	" Plug 'vim-scripts/ScrollColors'
 	" Plug 'pangloss/vim-javascript'
 
-	if g:isWin
+	if has('win32')
 		Plug 'PProvost/vim-ps1'
 	endif
 
