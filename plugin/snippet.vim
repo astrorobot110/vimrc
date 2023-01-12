@@ -15,7 +15,7 @@ cabbrev regurl= 'https\?:\/\/[0-9A-Za-z_\/:%#\$&?()\~\.=+-]\+'
 cabbrev hankana= [ｦ-ﾟ]
 cabbrev gas= $put ='// vim: set filetype=javascript ts=2 sts=2 sw=2 expandtab :'<CR>
 if isdirectory(g:private.doc..'/obsidian/daily/')
-	cabbrev memo= edit <C-r>=printf('%s/obsidian/daily/%s.md', g:private.doc, strftime('%y%m%d'))<CR>
+	cabbrev <expr>memo= printf('%s/obsidian/daily/%s.md', g:private.doc, strftime('%y%m%d'))
 endif
 
 " sudoめんどい
