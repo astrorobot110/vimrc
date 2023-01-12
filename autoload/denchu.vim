@@ -13,11 +13,21 @@ function! s:getInfo(number) abort
 	return info
 endfunction
 
-function! denchu#main(number) abort
+function! s:getText(info) abort
+	return join( [
+				\ printf('number:  %s',   a:info.number ),
+				\ printf('address: %s',   a:info.address ),
+				\ printf('url:     <%s>', a:info.url ) ],
+				\ nr2char(0x0a) )
+endfunction
+
+function! denchu#main(number, isBang = '') abort
 	let info = s:getInfo(a:number)
-	new
-	call setline(1,  printf('number:  %s',   info.number ))
-	call append('$', printf('address: %s',   info.address ))
-	call append('$', printf('url:     <%s>', info.url ))
-	call printf('powershell -c "start %s"', "'"..info.url.."'")->system()
+	if a:isBang ==? '!'
+		call execute('split denchu_'..info.number)
+		call setline(1, split(s:getText(info), nr2char(0x0a)))
+		call system(printf('pwsh -c "start \"%s\""', info.url))
+	else
+		call execute('put =s:getText(info)')
+	endif
 endfunction
