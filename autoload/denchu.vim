@@ -14,20 +14,19 @@ function! s:getInfo(number) abort
 endfunction
 
 function! s:getText(info) abort
-	return join( [
+	return [
 				\ printf('number:  %s',   a:info.number ),
 				\ printf('address: %s',   a:info.address ),
-				\ printf('url:     <%s>', a:info.url ) ],
-				\ nr2char(0x0a) )
+				\ printf('url:     <%s>', a:info.url ) ]
 endfunction
 
-function! denchu#main(number, isBang = '') abort
+function! denchu#main(number, mod, isBang) abort
 	let info = s:getInfo(a:number)
-	if a:isBang ==? '!'
-		call execute('split denchu_'..info.number)
-		call setline(1, split(s:getText(info), nr2char(0x0a)))
-		call system(printf('pwsh -c "start \"%s\""', info.url))
+	if a:isBang !=? '!'
+		call append('.', s:getText(info))
 	else
-		call execute('put =s:getText(info)')
+		call execute(printf('%s split denchu_%s', a:mod, a:number))
+		setlocal buftype=nofile
+		call setline(1, s:getText(s:getInfo(a:number)))
 	endif
 endfunction
