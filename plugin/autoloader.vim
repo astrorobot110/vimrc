@@ -10,7 +10,7 @@ command! -nargs=1 ABC call abc#main(<q-args>)
 command! -nargs=? Tutorial call vimtutor#main(<f-args>)
 
 " calcIt
-command! -nargs=? Calc call calcIt#main(<q-args>)
+command! -nargs=? Calc call calcIt#main()
 
 " denchu
 command! -nargs=1 -bang Denchu call denchu#main(<args>, '<mods>', '<bang>')

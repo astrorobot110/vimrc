@@ -1,19 +1,19 @@
 scriptencoding utf-8
 
-function! calcIt#main(...) abort
-	let formula = len(join(a:000)) > 0 ? join(a:000) : matchstr(getline('.'), '^=\?\zs.*')
-	let answer = len(join(a:000)) > 0 ? [ formula ] : []
-
+function! calcIt#main() abort
+	let answer = eval(substitute(getline('.'), '^=', '', 'e'))
 	try
-		call add(answer, '='..string(eval(formula)))
-
 		if mode() ==? 'i'
-			return "\n"..answer[-1]
+			return "\n"..answer
 		else
-			call append(line('.'), answer)
+			call append('.', '='..answer)
+			call setpos('.', [0, getcurpos()[1]+1, len(getline(line('.'))), 0])
 		endif
 	catch /E\(15\|121\)/
 		echo '=42.0'
 		return ''
 	endtry
 endfunction
+
+nnoremap <plug>(calcIt-inNormal) :<C-u>call calcIt#main()<CR>
+inoremap <expr> <plug>(calcIt-inInsert) calcIt#main()

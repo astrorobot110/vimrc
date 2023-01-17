@@ -58,7 +58,7 @@ nnoremap Zs :<C-u>source %<CR>
 nnoremap <expr> Z! system(expand(getline('.')))
 
 " CalcIt
-nnoremap Z= :<C-u>Calc<CR>
+nnoremap Z= :<C-u>put =eval(getline('.'))<CR>$
 
 " Open current buffer's directory
 nnoremap Z% :<C-u>edit %:h<CR>
@@ -85,7 +85,7 @@ imap <Nul> <Nop>
 inoremap <C-l> <del>
 
 " calcIt (コマンドモードなら<C-r>=あるので)
-inoremap <expr> <C-z>= calcIt#main()
+inoremap <expr> <C-z>= nr2char(10)..eval(getline('.'))
 
 " }}}
 
