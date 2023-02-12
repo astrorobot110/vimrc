@@ -5,7 +5,7 @@ set fileencodings=ucs-bom,utf-8,utf-16,cp932,iso-2022-jp,euc-jisx0213,euc-jp
 
 scriptencoding utf-8
 
-let $VIMFILES = expand('<sfile>:p:h')
+let $VIMFILES = expand('<script>:p:h')
 
 " デバイス識別
 if has('win32')
