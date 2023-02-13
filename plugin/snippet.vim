@@ -20,8 +20,16 @@ if isdirectory(g:private.doc..'/obsidian/daily/')
 	cabbrev <expr> memo+ printf('%s/obsidian/daily/%s.md', g:private.doc, strftime('%y%m%d'))
 endif
 
-" sudoめんどい
-cabbrev sudowrite= write !sudo tee % > /dev/null 2>&1
+if has('win32')
+	" いいアイデアもろた
+	cabbrev term= term pwsh
+	cabbrev pwsh= set shell=pwsh\|shell\|set shell=C:\\WINDOWS\\system32\\cmd.exe
+endif
+
+if has('unix')
+	" sudoめんどい
+	cabbrev sudowrite= write !sudo tee % > /dev/null 2>&1
+endif
 
 " 必要な時だけ半角全角変換を読み込むやつ
 cabbrev hz= source https://raw.githubusercontent.com/koron/vim-kaoriya/master/kaoriya/vim/plugins/kaoriya/plugin/hz_ja.vim
