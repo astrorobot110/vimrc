@@ -20,6 +20,7 @@ call plug#begin($VIMFILES.'/vim-plug')
 	Plug 'previm/previm'
 	Plug 'tpope/vim-fugitive'
 	Plug 'mhinz/vim-janah'
+	Plug 'yuratomo/w3m.vim'
 	" Plug 'tyru/open-browser.vim'
 	" Plug 'vim-scripts/ScrollColors'
 	" Plug 'pangloss/vim-javascript'
@@ -35,3 +36,9 @@ call plug#end()
 
 " vimdoc-ja
 set helplang=ja,en
+
+" W3m.vim
+if has('win32')
+	let g:w3m#command = 'C:\Cygwin64\bin\w3m.exe'
+	let w3m#external_browser = 'C:\Program Files\Mozilla Firefox\firefox.exe'
+endif

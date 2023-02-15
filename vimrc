@@ -100,16 +100,6 @@ set viewdir=$VIMFILES/.view
 " viminfo
 set viminfo+=n$VIMFILES/viminfo
 
-" 殆ど使ってないwslのgitめんどくさいしこうするよりない……
-if g:device ==? 'astrobase'
-	let g:currentOS =
-				\ ( has('win32') ? '.w' : '' )..
-				\ ( has('unix') ? '.u' : '')
-	let &undodir .= g:currentOS
-	let &viewdir .= g:currentOS
-	let &viminfo .= g:currentOS
-endif
-
 " リマップ分割によりマップリーダーのトラブル頻発中
 let g:mapleader = "\<space>"
 

@@ -16,32 +16,11 @@ if has('clientserver') && v:servername =~? 'VIM_TEA\d*$'
 	augroup END
 endif
 
-" 脱初心者を目指すVimmerにオススメしたいVimプラグインや.vimrcの設定
-" https://qiita.com/jnchito/items/5141b3b01bced9f7f48f#最後のカーソル位置を復元する
-augroup lastCursor
-	autocmd!
-	autocmd BufReadPost * call s:lastCursor()
-
-	function s:lastCursor() abort
-		if line("'\"") > 0 && line ("'\"") <= line("$")
-			execute "normal! g'\""
-		endif
-	endfunction
+" save state via mkview/loadview (testing)
+augroup loadviewer
+	autocmd BufWinLeave * silent! mkview
+	autocmd BufWinEnter * silent! loadview
 augroup END
-
-" autoloader
-if len(v:argv) <= 1
-	augroup autoLoader
-		autocmd!
-		autocmd VimEnter * call s:autoLoader()
-
-		function s:autoLoader() abort
-			edit #<1
-			filetype detect
-		endfunction
-	augroup END
-
-endif
 
 " Some trick in colorscheme 'janah'.
 augroup cs-janah
