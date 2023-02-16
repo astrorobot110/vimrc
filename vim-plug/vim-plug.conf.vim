@@ -38,11 +38,18 @@ call plug#begin($VIMFILES.'/vim-plug')
 	" Plug 'astrorobot110/technicolor'
 call plug#end()
 
+" vim-lsp
+let g:lsp_signs_enabled = 1
+let g:lsp_diagnostics_echo_cursor = 0
+let g:lsp_signs_error = {'text': '✗'}
+let g:lsp_signs_warning = {'text': '‼', 'icon': '/path/to/some/icon'}
+let g:lsp_signs_hint = {'icon': '/path/to/some/other/icon'}
+
 " vimdoc-ja
 set helplang=ja,en
 
 " W3m.vim
 if has('win32')
 	let g:w3m#command = 'C:\Cygwin64\bin\w3m.exe'
-	let w3m#external_browser = 'C:\Program Files\Mozilla Firefox\firefox.exe'
+	let g:w3m#external_browser = 'C:\Program Files\Mozilla Firefox\firefox.exe'
 endif
