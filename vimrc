@@ -100,6 +100,7 @@ set undofile
 set undodir=$VIMFILES/.undo
 
 set viewdir=$VIMFILES/.view
+set viewoptions=folds,cursor,curdir
 
 " viminfo
 set viminfo+=n$VIMFILES/viminfo
