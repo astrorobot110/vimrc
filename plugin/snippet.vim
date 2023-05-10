@@ -15,7 +15,7 @@ cabbrev regurl= 'https\?:\/\/[0-9A-Za-z_\/:%#\$&?()\~\.=+-]\+'
 cabbrev hankana= [ｦ-ﾟ]
 cabbrev gas= call append('$', '// vim: set filetype=javascript ts=2 sts=2 sw=2 expandtab :')
 
-if isdirectory(g:private.doc..'/obsidian/daily/')
+if isdirectory(g:private.doc..'/obsidian/')
 	cabbrev <expr> memo= printf('%s/obsidian', g:private.doc)
 	cabbrev <expr> daily= printf('%s/obsidian/daily', g:private.doc)
 	cabbrev <expr> today= printf('%s/obsidian/daily/%s.md', g:private.doc, strftime("%y%m%d"))
