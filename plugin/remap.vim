@@ -13,12 +13,13 @@ noremap <ESC><ESC> :<C-u>noh<CR>
 nnoremap g= g+
 
 " Insertモードが絡むremap
+
+nnoremap <Leader><Space> i <Esc>
+
 nnoremap <Leader>, i,<Esc>
 nnoremap <Leader>. i.<Esc>
 nnoremap <Leader>? i?<Esc>
 nnoremap <Leader>! i!<Esc>
-nnoremap <Leader><Space> i <Esc>
-nnoremap <Leader><CR> i<CR><Esc>
 
 noremap <Leader>i :<C-u>set iminsert=2<CR>i
 noremap <Leader>I :<C-u>set iminsert=2<CR>I
@@ -31,6 +32,23 @@ noremap <Leader>c :<C-u>set iminsert=2<CR>c
 noremap <Leader>C :<C-u>set iminsert=2<CR>C
 noremap <Leader>s :<C-u>set iminsert=2<CR>s
 noremap <Leader>S :<C-u>set iminsert=2<CR>S
+
+" ビジュアルモード対策が必要
+
+vnoremap <Leader>i :<C-u>set iminsert=2<CR>gvi
+vnoremap <Leader>I :<C-u>set iminsert=2<CR>gvI
+vnoremap <Leader>a :<C-u>set iminsert=2<CR>gva
+vnoremap <Leader>A :<C-u>set iminsert=2<CR>gvA
+vnoremap <Leader>o :<C-u>set iminsert=2<CR>gvo
+vnoremap <Leader>O :<C-u>set iminsert=2<CR>gvO
+vnoremap <Leader>R :<C-u>set iminsert=2<CR>gvR
+vnoremap <Leader>c :<C-u>set iminsert=2<CR>gvc
+vnoremap <Leader>C :<C-u>set iminsert=2<CR>gvC
+vnoremap <Leader>s :<C-u>set iminsert=2<CR>gvs
+vnoremap <Leader>S :<C-u>set iminsert=2<CR>gvS
+
+" deStain
+nnoremap <Leader>` :<C-u>call deStain#main()<CR>
 
 " 設定群への移動専用
 nnoremap <Leader>v :<C-u>e v
@@ -63,11 +81,17 @@ nnoremap Z= :<C-u>put =eval(getline('.'))<CR>$
 " Open current buffer's directory
 nnoremap Z% :<C-u>edit %:h<CR>
 
+" Open parent folder by Explorer
+nnoremap Ze :<C-u>!explorer %:h<CR>
+
 " Open recent
 nnoremap Z# :<C-u>edit #<1<CR>
 
 " Open secret launcher
-nnoremap Zb :<C-u>tabedit ~\Documents\Documents\bookmark.md<CR>
+nnoremap Zb :<C-u>edit ~\Documents\Documents\bookmark.md<CR>
+
+" Open with Previm
+nnoremap Zp :<C-u>PrevimOpen<CR>
 
 " }}}
 
