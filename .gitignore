@@ -1,17 +1,9 @@
 # gitから除外するファイル
 
-## 基本全部無視
+.*/
+*.sw[a-z]
+.*
+viminfo
 
-*
-
-## 除外指定
-
-!vimrc
-!gvimrc
-!.gitignore
-!./**/*.vim
-!./**/*.tar.gz
-
-## .private.vimはだめよ
-
-.private.vim
+/vim-plug/
+!/vim-plug/vim-plug.conf.vim
