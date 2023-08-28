@@ -47,6 +47,9 @@ vnoremap <Leader>C :<C-u>set iminsert=2<CR>gvC
 vnoremap <Leader>s :<C-u>set iminsert=2<CR>gvs
 vnoremap <Leader>S :<C-u>set iminsert=2<CR>gvS
 
+" ターミナルモードあるっぽい？
+tnoremap <Esc><Esc> <C-w>N
+
 " deStain
 nnoremap <Leader>` :<C-u>call deStain#main()<CR>
 
