@@ -8,6 +8,23 @@ if empty(glob(expand($VIMFILES.'/autoload/plug.vim')))
 	source $VIMFILES/autoload/plug.vim
 endif
 
+" 個別設定は`plug#begin()`前に
+
+" let g:lsp_signs_enabled = 1
+" let g:lsp_diagnostics_echo_cursor = 0
+" let g:lsp_signs_error = {'text': '✗'}
+" let g:lsp_signs_warning = {'text': '‼', 'icon': '/path/to/some/icon'}
+" let g:lsp_signs_hint = {'icon': '/path/to/some/other/icon'}
+
+" vimdoc-ja
+set helplang=ja,en
+
+" W3m.vim
+if has('win32')
+"	let g:w3m#command = 'C:\Cygwin64\bin\w3m.exe'
+	let g:w3m#external_browser = 'C:\Program Files\Mozilla Firefox\firefox.exe'
+endif
+
 call plug#begin($VIMFILES.'/vim-plug')
 	Plug 'vim-jp/autofmt'
 	Plug 'vim-jp/vimdoc-ja'
@@ -21,7 +38,6 @@ call plug#begin($VIMFILES.'/vim-plug')
 	Plug 'mhinz/vim-janah'
 	Plug 'previm/previm'
 	Plug 'tyru/open-browser.vim'
-	Plug 'yuratomo/w3m.vim'
 	" Plug 'prabirshrestha/vim-lsp'
 	" Plug 'mattn/vim-lsp-settings'
 	" Plug 'prabirshrestha/asyncomplete.vim'
@@ -29,27 +45,17 @@ call plug#begin($VIMFILES.'/vim-plug')
 	" Plug 'vim-scripts/ScrollColors'
 	" Plug 'pangloss/vim-javascript'
 
+	" ここから環境依存系
+
 	if has('win32')
 		Plug 'PProvost/vim-ps1'
+	endif
+
+	if executable('w3m')
+		Plug 'yuratomo/w3m.vim'
 	endif
 
 	" 自分の
 	" Plug 'astrorobot110/vialarm'
 	" Plug 'astrorobot110/technicolor'
 call plug#end()
-
-" vim-lsp
-let g:lsp_signs_enabled = 1
-let g:lsp_diagnostics_echo_cursor = 0
-let g:lsp_signs_error = {'text': '✗'}
-let g:lsp_signs_warning = {'text': '‼', 'icon': '/path/to/some/icon'}
-let g:lsp_signs_hint = {'icon': '/path/to/some/other/icon'}
-
-" vimdoc-ja
-set helplang=ja,en
-
-" W3m.vim
-if has('win32')
-	let g:w3m#command = 'C:\Cygwin64\bin\w3m.exe'
-	let g:w3m#external_browser = 'C:\Program Files\Mozilla Firefox\firefox.exe'
-endif

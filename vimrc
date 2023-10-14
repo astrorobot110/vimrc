@@ -19,7 +19,10 @@ if has('win32')
 	set termguicolors
 elseif has('unix')
 	let g:device = tolower(system('echo $(hostname)')) ->trim()
-	language ja_JP.utf8
+	try
+		language ja_JP.utf8
+	catch /E197/
+	endtry
 	set fileformat=unix
 	set fileformats=unix,dos,mac
 endif
