@@ -21,6 +21,8 @@ if isdirectory(g:private.doc..'/obsidian/')
 	cabbrev <expr> today= printf('%s/obsidian/daily/%s.md', g:private.doc, strftime("%y%m%d"))
 endif
 
+let g:private.obs = expand('$DOCS\obs\')
+
 if has('win32')
 	" いいアイデアもろた
 	cabbrev term= term pwsh

@@ -14,22 +14,24 @@ endif
 set guioptions=c!
 set winaltkeys=no
 
+set columns=161
+set lines=42
 " Hack #120: gVim でウィンドウの位置とサイズを記憶する
 " http://vim-jp.org/vim-users-jp/2010/01/28/Hack-120.html
-let g:save_window_file = expand($VIMFILES.'/.vimwinpos')
-augroup SaveWindow
-	autocmd!
-	autocmd VimLeavePre * call s:save_window()
-	function! s:save_window()
-		let options = [
-			\ 'set columns=' . &columns,
-			\ 'set lines=' . &lines,
-			\ 'winpos ' . getwinposx() . ' ' . getwinposy(),
-			\ ]
-		call writefile(options, g:save_window_file)
-	endfunction
-augroup END
-
-if filereadable(g:save_window_file)
-	execute 'source' g:save_window_file
-endif
+" let g:save_window_file = expand($VIMFILES.'/.vimwinpos')
+" augroup SaveWindow
+" 	autocmd!
+" 	autocmd VimLeavePre * call s:save_window()
+" 	function! s:save_window()
+" 		let options = [
+" 			\ 'set columns=' . &columns,
+" 			\ 'set lines=' . &lines,
+" 			\ 'winpos ' . getwinposx() . ' ' . getwinposy(),
+" 			\ ]
+" 		call writefile(options, g:save_window_file)
+" 	endfunction
+" augroup END
+" 
+" if filereadable(g:save_window_file)
+" 	execute 'source' g:save_window_file
+" endif
