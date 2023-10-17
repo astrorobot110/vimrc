@@ -16,11 +16,6 @@ nnoremap g= g+
 
 nnoremap <Leader><Space> i <Esc>
 
-nnoremap <Leader>, i,<Esc>
-nnoremap <Leader>. i.<Esc>
-nnoremap <Leader>? i?<Esc>
-nnoremap <Leader>! i!<Esc>
-
 noremap <Leader>i :<C-u>set iminsert=2<CR>i
 noremap <Leader>I :<C-u>set iminsert=2<CR>I
 noremap <Leader>a :<C-u>set iminsert=2<CR>a
@@ -49,9 +44,6 @@ vnoremap <Leader>S :<C-u>set iminsert=2<CR>gvS
 
 " ターミナルモードあるっぽい？
 tnoremap <Esc><Esc> <C-w>N
-
-" deStain
-nnoremap <Leader>` :<C-u>call deStain#main()<CR>
 
 " 設定群への移動専用
 nnoremap <Leader>v :<C-u>e v

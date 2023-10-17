@@ -49,11 +49,16 @@ call plug#begin($VIMFILES.'/vim-plug')
 
 	if has('win32')
 		Plug 'PProvost/vim-ps1'
+
+		if executable(expand('~/AppData/Local/Discord/Update.exe'))
+			Plug 'Stoozy/vimcord'
+		endif
 	endif
 
 	if executable('w3m')
 		Plug 'yuratomo/w3m.vim'
 	endif
+
 
 	" 自分の
 	" Plug 'astrorobot110/vialarm'
