@@ -26,6 +26,7 @@ noremap <Leader>a :<C-u>set iminsert=2<CR>a
 noremap <Leader>A :<C-u>set iminsert=2<CR>A
 noremap <Leader>o :<C-u>set iminsert=2<CR>o
 noremap <Leader>O :<C-u>set iminsert=2<CR>O
+noremap <Leader>r :<C-u>set iminsert=2<CR>r
 noremap <Leader>R :<C-u>set iminsert=2<CR>R
 noremap <Leader>c :<C-u>set iminsert=2<CR>c
 noremap <Leader>C :<C-u>set iminsert=2<CR>C
