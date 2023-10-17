@@ -15,6 +15,8 @@ nnoremap g= g+
 " Insertモードが絡むremap
 
 nnoremap <Leader><Space> i <Esc>
+nnoremap <Leader>, i,<Esc>
+nnoremap <Leader>. i.<Esc>
 
 noremap <Leader>i :<C-u>set iminsert=2<CR>i
 noremap <Leader>I :<C-u>set iminsert=2<CR>I
