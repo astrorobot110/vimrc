@@ -20,6 +20,8 @@ nnoremap <Leader>. i.<Esc>
 
 noremap <Leader>i :<C-u>set iminsert=2<CR>i
 noremap <Leader>I :<C-u>set iminsert=2<CR>I
+noremap <Leader>gi :<C-u>set iminsert=2<CR>gi
+noremap <Leader>gI :<C-u>set iminsert=2<CR>gI
 noremap <Leader>a :<C-u>set iminsert=2<CR>a
 noremap <Leader>A :<C-u>set iminsert=2<CR>A
 noremap <Leader>o :<C-u>set iminsert=2<CR>o
