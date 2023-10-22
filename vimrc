@@ -11,14 +11,20 @@ else
 	let $VIMFILES = expand('<sfile>:p:h')
 endif
 
+
 " デバイス識別
+if exists('$hostname')
+	let g:device = $hostname
+else
+	let g:device = tolower(system('hostname')) ->trim()
+endif
+
+" OS毎の設定
 if has('win32')
-	let g:device = tolower($COMPUTERNAME)
 	set fileformat=dos
 	set fileformats=dos,unix,mac
 	set termguicolors
 elseif has('unix')
-	let g:device = tolower(system('echo $(hostname)')) ->trim()
 	try
 		language ja_JP.utf8
 	catch /E197/
