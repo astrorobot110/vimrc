@@ -94,7 +94,11 @@ set laststatus=2
 " ディレクトリ関係
 
 " 汎用アドレス
-let $DOCS = expand('~/Documents')
+if isdirectory(expand('~/internalStorage/Documents'))
+	let $DOCS = expand('~/internalStorage/Documents')
+else
+	let $DOCS = expand('~/Documents')
+endif
 
 if isdirectory($DOCS..'/Documents')
 	let $DOCS .= '/Documents'
