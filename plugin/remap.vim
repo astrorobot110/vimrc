@@ -32,6 +32,10 @@ noremap <Leader>c :<C-u>set iminsert=2<CR>c
 noremap <Leader>C :<C-u>set iminsert=2<CR>C
 noremap <Leader>s :<C-u>set iminsert=2<CR>s
 noremap <Leader>S :<C-u>set iminsert=2<CR>S
+noremap <Leader>f :<C-u>set iminsert=2<CR>f
+noremap <Leader>F :<C-u>set iminsert=2<CR>F
+noremap <Leader>t :<C-u>set iminsert=2<CR>t
+noremap <Leader>T :<C-u>set iminsert=2<CR>T
 
 " ビジュアルモード対策が必要
 

@@ -3,9 +3,7 @@ scriptencoding utf-8
 " autoIM
 augroup autoIM
 	autocmd!
-	autocmd InsertLeave * set iminsert=0
-	autocmd CmdlineLeave * set iminsert=0
-	autocmd TextChanged * set iminsert=0
+	autocmd ModeChanged *:n* set iminsert=0
 augroup END
 
 " autoYank for TEA
