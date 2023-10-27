@@ -131,6 +131,3 @@ set matchpairs+=（:）,〔:〕,［:］,｛:｝,〈:〉,《:》,「:」,『:』,
 " netrwPlugin.vim用
 let g:netrw_liststyle = 1
 let g:netrw_mousemaps = 0
-
-"Test for droidVim
-
