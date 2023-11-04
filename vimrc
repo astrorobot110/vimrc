@@ -87,8 +87,14 @@ set diffopt=filler
 autocmd VimEnter * ++once ++nested colorscheme janah
 
 " ステータスライン関係
+" 表示用
+
+function! Stl_showMode() abort
+	return printf("mode: %s", mode())
+endfunction
+
 " デフォルト -> set statusline=%f\ %h%w%m%r%=%-14.(%l,%c%V%)\ %P
-set statusline=%4(%n%):\ %<%f\ [%{&fenc.'/'.&ff}]%h%w%m%r%=\ %l,%-7.(%c%V%)\ [%4(%P%)]\ 
+set statusline=%4(%n%):\ %<%f\ [%{&fenc.'/'.&ff}]%h%w%m%r%=\ %l,%-8.(%c%V%)%{%Stl_showMode()%}\ [%4(%P%)]\ 
 set laststatus=2
 
 " ディレクトリ関係
