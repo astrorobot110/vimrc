@@ -68,8 +68,8 @@ nnoremap ZD :<C-u>cd %:h<CR>
 nnoremap Zh :<C-u>vert bo help function-list<CR>
 
 " PlugInstall
-nnoremap Zp :<C-u>PlugUpdate<CR>
 nnoremap ZP :<C-u>PlugInstall<CR>
+nnoremap Z<C-p> :<C-u>PlugUpdate<CR>
 
 " Load current vimscript
 nnoremap Zs :<C-u>source %<CR>
@@ -92,8 +92,7 @@ nnoremap Z# :<C-u>edit #<1<CR>
 " Open secret launcher
 nnoremap Zb :<C-u>edit ~\Documents\Documents\bookmark.md<CR>
 
-" Open with Previm
-nnoremap Zp :<C-u>PrevimOpen<CR>
+" Previm用キーマップの`Zp`はftpluginに移動しました。
 
 " }}}
 
