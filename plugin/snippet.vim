@@ -19,6 +19,7 @@ if isdirectory(g:private.doc..'/obsidian/')
 	cabbrev <expr> memo= printf('%s/obsidian', g:private.doc)
 	cabbrev <expr> daily= printf('%s/obsidian/daily', g:private.doc)
 	cabbrev <expr> today= printf('%s/obsidian/daily/%s.md', g:private.doc, strftime("%y%m%d"))
+	cabbrev <expr> nsfw= printf('%s/obsidian/asobi/NSFW.md', g:private.doc)
 endif
 
 let g:private.obs = expand('$DOCS\obs\')
