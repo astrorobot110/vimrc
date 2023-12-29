@@ -59,6 +59,26 @@ call plug#begin($VIMFILES.'/vim-plug')
 		Plug 'yuratomo/w3m.vim'
 	endif
 
+	" Previmの追加ライブラリ
+
+let g:previm_extra_libraries = [
+\  {
+\    'name': 'foobar',
+\    'files': [
+\      {
+\        'type': 'js',
+\        'path': '_/js/extra/foobar.js',
+\        'url': 'https://cdn.jsdelivr.net/gh/foobar/cdn-release@latest/build/foobar.min.js',
+\        'code': ['foobar.init();'],
+\      },
+\      {
+\        'type': 'css',
+\        'path': '_/css/extra/foobar.css',
+\        'url': 'https://cdn.jsdelivr.net/gh/foobar/cdn-release@latest/build/styles/default.min.css',
+\      },
+\    ],
+\  },
+\]
 
 	" 自分の
 	" Plug 'astrorobot110/vialarm'
