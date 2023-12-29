@@ -6,6 +6,7 @@
 viminfo
 
 /autoload/plug.vim
+/autoload/plug.vim.old
 
 /vim-plug/
 !/vim-plug/vim-plug.conf.vim
