@@ -8,3 +8,6 @@ command! -nargs=1 ABC call abc#main(<q-args>)
 
 " vimtutor
 command! -nargs=? Tutorial call vimtutor#main(<f-args>)
+
+"Phonetic
+command! -nargs=? -bang Phone call phonetic#main(<f-args>, "<bang>")
