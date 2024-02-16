@@ -61,8 +61,6 @@ call plug#begin($VIMFILES.'/vim-plug')
 
 	if filereadable($VIMFILES..'/.private/textra_setup.vim')
 		Plug 'kawarimidoll/textra.vim'
-
-		source $VIMFILES/.private/textra_setup.vim
 	endif
 
 	" Previmの追加ライブラリ
@@ -90,3 +88,9 @@ let g:previm_extra_libraries = [
 	" Plug 'astrorobot110/vialarm'
 	" Plug 'astrorobot110/technicolor'
 call plug#end()
+
+try
+	source $VIMFILES/.private/textra_setup.vim
+	source $VIMFILES/.private/asdf.vim
+catch /E484/
+endtry
