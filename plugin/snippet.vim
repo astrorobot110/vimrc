@@ -22,7 +22,7 @@ if isdirectory(g:private.doc..'/obsidian/')
 	cabbrev <expr> nsfw= printf('%s/obsidian/asobi/NSFW.md', g:private.doc)
 endif
 
-let g:private.obs = expand('$DOCS\obs\')
+let g:private.obs = expand('$DOCS\obs\obs.txt')
 
 if has('win32')
 	" いいアイデアもろた
