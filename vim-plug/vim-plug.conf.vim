@@ -65,7 +65,6 @@ call plug#begin($VIMFILES.'/vim-plug')
 		source $VIMFILES/.private/textra_setup.vim
 	endif
 
-
 	" Previmの追加ライブラリ
 
 let g:previm_extra_libraries = [
