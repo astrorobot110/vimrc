@@ -10,3 +10,5 @@ viminfo
 
 /vim-plug/
 !/vim-plug/vim-plug.conf.vim
+
+/.private/
