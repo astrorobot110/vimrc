@@ -8,17 +8,27 @@ let s:phone = [
 				\ "Yankee", "Zulu"
 			\ ]
 
-function s:generate(length = 1) abort
+function phonetic#generate(arg = 1) abort
 	let content = []
-	for n in range(a:length)
-		let content += [ s:phone[rand() % len(s:phone)] ]
-	endfor
+
+	if type(a:arg) == v:t_number
+		for n in range(a:arg)
+			call add(content, s:phone[rand() % len(s:phone)])
+		endfor
+	elseif match(a:arg, '^\s*\a*\s*$') >= 0
+		for n in trim(a:arg)->toupper()
+			call add(content, s:phone[char2nr(n)-char2nr('A')])
+		endfor
+	else
+		echoerr 'Args must be only number or alphabet.'
+	endif
 
 	return join(content, "-")
 endfunction
 
-function phonetic#main(length = 1, isBang = "") abort
-	let content = s:generate(a:length)
+function phonetic#main(arg = 1, isBang = "") abort
+	let content = phonetic#generate(a:arg)
+
 	if a:isBang !=? "!"
 		call append(".", content)
 	else

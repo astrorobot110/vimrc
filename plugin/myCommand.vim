@@ -11,3 +11,4 @@ command! -nargs=? Tutorial call vimtutor#main(<f-args>)
 
 "Phonetic
 command! -nargs=? -bang Phone call phonetic#main(<f-args>, "<bang>")
+command! -nargs=1 PhoneEcho echo phonetic#generate(<f-args>)
