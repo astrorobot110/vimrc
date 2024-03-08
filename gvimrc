@@ -10,11 +10,7 @@ if has('win32')
 	set renderoptions=type:directx,renmode:5
 	set linespace=4
 elseif has('unix')
-	try
-		set guifont=Moralerspace_Argon_HWJPDOC\ 12
-	catch \E596\
-		set guifont=UDEV\ Gothic\ 12
-	endtry
+	set guifont=UDEV\ Gothic\ NF\ 12
 	set linespace=1
 endif
 
