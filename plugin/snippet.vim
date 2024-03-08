@@ -28,6 +28,7 @@ if has('win32')
 	" いいアイデアもろた
 	cabbrev term= term pwsh
 	cabbrev pwsh= set shell=pwsh\|shell\|set shell=C:\\WINDOWS\\system32\\cmd.exe
+	cabbrev wt= ~\AppData\Local\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\settings.json
 endif
 
 if has('unix')
