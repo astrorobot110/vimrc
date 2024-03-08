@@ -3,14 +3,14 @@ scriptencoding utf-8
 " フォント
 if has('win32')
 	try
-		set guifont=Moralerspace_Argon_HWJPDOC:qANTIALIASED:h12
+		set guifont=Moralerspace_Argon_HWJPDOC:qANTIALIASED:h13
 	catch \E596\
-		set guifont=UDEV\ Gothic\ NF:qANTIALIASED:h12
+		set guifont=UDEV\ Gothic\ NF:qANTIALIASED:h13
 	endtry
 	set renderoptions=type:directx,renmode:5
 	set linespace=4
 elseif has('unix')
-	set guifont=UDEV\ Gothic\ NF\ 12
+	set guifont=UDEV\ Gothic\ NF\ 13
 	set linespace=1
 endif
 
