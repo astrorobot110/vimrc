@@ -1,17 +1,17 @@
 scriptencoding utf-8
 
 let s:phone = [
-				\ "Alfa", "Bravo", "Charlie", "Delta", "Echo", "Foxtrot",
-				\ "Golf", "Hotel", "India", "Juliett", "Kilo", "Lima",
-				\ "Mike", "November", "Oscar", "Papa", "Quebec", "Romeo",
-				\ "Sierra", "Tango", "Uniform", "Victor", "Whiskey", "Xray",
-				\ "Yankee", "Zulu"
+				\ 'Alfa', 'Bravo', 'Charlie', 'Delta', 'Echo', 'Foxtrot',
+				\ 'Golf', 'Hotel', 'India', 'Juliett', 'Kilo', 'Lima',
+				\ 'Mike', 'November', 'Oscar', 'Papa', 'Quebec', 'Romeo',
+				\ 'Sierra', 'Tango', 'Uniform', 'Victor', 'Whiskey', 'Xray',
+				\ 'Yankee', 'Zulu'
 			\ ]
 
-function phonetic#generate(arg = 1) abort
+function s:generate(arg) abort
 	let content = []
 
-	if type(a:arg) == v:t_number
+	if str2nr(a:arg) > 0
 		for n in range(a:arg)
 			call add(content, s:phone[rand() % len(s:phone)])
 		endfor
@@ -23,16 +23,16 @@ function phonetic#generate(arg = 1) abort
 		echoerr 'Args must be only number or alphabet.'
 	endif
 
-	return join(content, "-")
+	return join(content, '-')
 endfunction
 
-function phonetic#main(arg = 1, isBang = "") abort
-	let content = phonetic#generate(a:arg)
+function phonetic#main(arg = '', isBang = '') abort
+	let content = s:generate(a:arg != '' ? a:arg : 1)
 
-	if a:isBang !=? "!"
-		call append(".", content)
+	if a:isBang !=? '!'
+		echo content
 	else
-		call setline(".", printf("%s %s", getline("."), content))
+		call append('.', content)
 	endif
 
 	return
