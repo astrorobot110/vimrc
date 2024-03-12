@@ -15,20 +15,11 @@ cabbrev regurl= 'https\?:\/\/[0-9A-Za-z_\/:%#\$&?()\~\.=+-]\+'
 cabbrev hankana= [ｦ-ﾟ]
 cabbrev gas= call append('$', '// vim: set filetype=javascript ts=2 sts=2 sw=2 expandtab :')
 
-if isdirectory(g:private.doc..'/obsidian/')
-	cabbrev <expr> memo= printf('%s/obsidian', g:private.doc)
-	cabbrev <expr> daily= printf('%s/obsidian/daily', g:private.doc)
-	cabbrev <expr> today= printf('%s/obsidian/daily/%s.md', g:private.doc, strftime("%y%m%d"))
-	cabbrev <expr> nsfw= printf('%s/obsidian/asobi/NSFW.md', g:private.doc)
-endif
-
-let g:private.obs = expand('$DOCS\obs\obs.txt')
 
 if has('win32')
 	" いいアイデアもろた
 	cabbrev term= term pwsh
 	cabbrev pwsh= set shell=pwsh\|shell\|set shell=C:\\WINDOWS\\system32\\cmd.exe
-	cabbrev wt= ~\AppData\Local\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\settings.json
 endif
 
 if has('unix')
@@ -44,6 +35,12 @@ cabbrev HZ= sp +/Japanese\ Description: https://raw.githubusercontent.com/koron/
 cabbrev <expr> font= 'set guifont='..escape(&guifont, ' \')
 
 " privateから移転
+
+try
+	call localDirectory#abbrev()
+" catch /E117/
+endtry
+
 for [ key, value ] in items(g:private)
 	if isdirectory(expand(value)) || filereadable(expand(value))
 		call execute(printf('cabbrev %s= %s', key, value))

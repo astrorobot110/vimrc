@@ -12,6 +12,11 @@ noremap <ESC><ESC> :<C-u>noh<CR>
 " どうしてもg+が押せなかったので
 nnoremap g= g+
 
+" ええこときいた
+
+nnoremap gy "+y
+vnoremap gy "+y
+
 " Insertモードが絡むremap
 
 nnoremap <Leader><Space> i <Esc>

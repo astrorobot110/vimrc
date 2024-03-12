@@ -99,21 +99,16 @@ set laststatus=2
 
 " ディレクトリ関係
 
-" 汎用アドレス
-if isdirectory(expand('~/internalStorage/Documents'))
-	let $DOCS = expand('~/internalStorage/Documents')
-else
-	let $DOCS = expand('~/Documents')
-endif
+" 汎用アドレス系は.privateディレクトリに行きました。
 
-if isdirectory($DOCS..'/Documents')
-	let $DOCS .= '/Documents'
-endif
-
-let g:private = { 'doc': $DOCS }
+let g:private = {}
 
 set backup
-set backupdir=$DOCS/backup
+
+try
+	source $VIMFILES/.private/localDirectory.vim
+catch /E484/
+endtry
 
 set undofile
 set undodir=$VIMFILES/.undo
