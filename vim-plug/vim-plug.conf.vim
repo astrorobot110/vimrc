@@ -91,6 +91,5 @@ call plug#end()
 
 try
 	source $VIMFILES/.private/textra_setup.vim
-	source $VIMFILES/.private/asdf.vim
 catch /E484/
 endtry
