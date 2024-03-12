@@ -44,6 +44,19 @@ augroup cs-janah
 	endfunction
 augroup END
 
+" backup回り
+augroup backupdir
+	autocmd!
+	autocmd BufWritePre * ++once call s:chkBackupDir()
+
+	function s:chkBackupDir() abort
+		if !expand(&backupdir)->isdirectory()
+			let option = has('win32') ? '' : '-p'
+			let g:test = system(printf('mkdir %s %s', option, &backupdir))
+		endif
+	endfunction
+augroup END
+
 if v:version >= 900
 	augroup diffWindow
 		autocmd!
