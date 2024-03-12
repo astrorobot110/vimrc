@@ -29,14 +29,15 @@ let s:scaleDict = {
 		\		"Fm"  : { "F": "Fm", "G": "Gm7-5", "A": "Ab", "B": "Bbm", "C": "Cm", "D": "Db", "E": "Eb" }
 		\	}
 
-function! abc#main(scale) abort
+function! abc#main(scale, isBang) abort
 	let targetScale = s:scaleDict[a:scale]
+	let [ bracketStart, bracketEnd ] = a:isBang == '!' ? [ '[', ']' ] : [ '', '' ]
 
-	let @a = "["..targetScale.A.."]"
-	let @b = "["..targetScale.B.."]"
-	let @c = "["..targetScale.C.."]"
-	let @d = "["..targetScale.D.."]"
-	let @e = "["..targetScale.E.."]"
-	let @f = "["..targetScale.F.."]"
-	let @g = "["..targetScale.G.."]"
+	let @a = bracketStart..targetScale.A..bracketEnd
+	let @b = bracketStart..targetScale.B..bracketEnd
+	let @c = bracketStart..targetScale.C..bracketEnd
+	let @d = bracketStart..targetScale.D..bracketEnd
+	let @e = bracketStart..targetScale.E..bracketEnd
+	let @f = bracketStart..targetScale.F..bracketEnd
+	let @g = bracketStart..targetScale.G..bracketEnd
 endfunction
