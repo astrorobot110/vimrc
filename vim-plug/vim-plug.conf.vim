@@ -1,7 +1,7 @@
 scriptencoding utf-8
 
 " https://github.com/junegunn/vim-plug/wiki/tips#automatic-installation
-if empty(glob(expand('$HOME/.vim./autoload/plug.vim')))
+if empty(glob(expand('$HOME/.vim/autoload/plug.vim')))
 	cd $HOME/.vim
 	silent !curl -fLo autoload/plug.vim --create-dirs
 		\ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
