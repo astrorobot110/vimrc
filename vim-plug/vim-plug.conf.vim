@@ -1,11 +1,11 @@
 scriptencoding utf-8
 
 " https://github.com/junegunn/vim-plug/wiki/tips#automatic-installation
-if empty(glob(expand($VIMFILES.'/autoload/plug.vim')))
-	cd $VIMFILES
+if empty(glob(expand('$HOME/.vim./autoload/plug.vim')))
+	cd $HOME/.vim
 	silent !curl -fLo autoload/plug.vim --create-dirs
 		\ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-	source $VIMFILES/autoload/plug.vim
+	source $HOME/.vim/autoload/plug.vim
 endif
 
 " 個別設定は`plug#begin()`前に
@@ -25,7 +25,7 @@ if has('win32')
 	let g:w3m#external_browser = 'C:\Program Files\Mozilla Firefox\firefox.exe'
 endif
 
-call plug#begin($VIMFILES.'/vim-plug')
+call plug#begin('$HOME/.vim/vim-plug')
 	Plug 'vim-jp/autofmt'
 	Plug 'vim-jp/vimdoc-ja'
 	Plug 'tpope/vim-unimpaired'
@@ -59,7 +59,7 @@ call plug#begin($VIMFILES.'/vim-plug')
 		Plug 'yuratomo/w3m.vim'
 	endif
 
-	if filereadable($VIMFILES..'/.private/textra_setup.vim')
+	if expand('$HOME/.vim/.private/textra_setup.vim')->filereadable()
 		Plug 'kawarimidoll/textra.vim'
 	endif
 
@@ -90,6 +90,6 @@ let g:previm_extra_libraries = [
 call plug#end()
 
 try
-	source $VIMFILES/.private/textra_setup.vim
+	source $HOME/.vim/.private/textra_setup.vim
 catch /E484/
 endtry

@@ -5,13 +5,6 @@ set fileencodings=ucs-bom,utf-8,utf-16,cp932,iso-2022-jp,euc-jisx0213,euc-jp
 
 scriptencoding utf-8
 
-if v:version >= 900
-	let $VIMFILES = expand('<script>:p:h')
-else
-	let $VIMFILES = expand('<sfile>:p:h')
-endif
-
-
 " デバイス識別
 if exists('$hostname')
 	let g:device = $hostname
@@ -37,7 +30,7 @@ endif
 if !v:vim_did_enter
 
 " vim-plug
-	source $VIMFILES/vim-plug/vim-plug.conf.vim
+	source $HOME/.vim/vim-plug/vim-plug.conf.vim
 endif
 
 " 編集関係
@@ -101,23 +94,22 @@ set laststatus=2
 
 " 汎用アドレス系は.privateディレクトリに行きました。
 
-let g:private = {}
-
 set backup
 
 try
-	source $VIMFILES/.private/localDirectory.vim
+	let g:private = {}
+	source $HOME/.vim/.private/localDirectory.vim
 catch /E484/
 endtry
 
 set undofile
-set undodir=$VIMFILES/.undo
+set undodir=$HOME/.vim/.undo
 
-set viewdir=$VIMFILES/.view
+set viewdir=$HOME/.vim/.view
 set viewoptions=folds,cursor,curdir
 
 " viminfo
-set viminfo+=n$VIMFILES/viminfo
+set viminfo+=n$HOME/.vim/viminfo
 
 " リマップ分割によりマップリーダーのトラブル頻発中
 let g:mapleader = "\<space>"
