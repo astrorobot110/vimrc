@@ -15,6 +15,12 @@ if has('clientserver') && v:servername =~? 'VIM_TEA\d*$'
 	augroup END
 endif
 
+" vimscript to unix fileformat
+augroup vimscriptFileFormat
+	autocmd!
+	autocmd BufWritePre *.vim set fileformat=unix
+augroup END
+
 " save state via mkview/loadview (testing)
 augroup loadviewer
 	autocmd BufWinLeave * silent! mkview
