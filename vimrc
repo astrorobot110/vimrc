@@ -26,13 +26,6 @@ elseif has('unix')
 	set fileformats=unix,dos,mac
 endif
 
-" 起動時だけ読むやつ
-if !v:vim_did_enter
-
-" vim-plug
-	source $HOME/.vim/vim-plug/vim-plug.conf.vim
-endif
-
 " 編集関係
 set autoindent
 set backspace=indent,eol,start
@@ -94,22 +87,35 @@ set laststatus=2
 
 " 汎用アドレス系は.privateディレクトリに行きました。
 
-set backup
+" やっぱ~/vimfiles対策要るわ
+
+let $vimrc = expand('$HOME/vimfiles')->isdirectory() ?
+		\ expand('$HOME/vimfiles') :
+		\ expand('$HOME/.vim')
+
+" $vimrcディレクトリ決まってからvim-plug
+
+if !v:vim_did_enter
+	source $HOME/.vim/vim-plug/vim-plug.conf.vim
+endif
 
 try
 	let g:private = {}
-	source $HOME/.vim/.private/localDirectory.vim
+	source $vimrc/.private/localDirectory.vim
 catch /E484/
 endtry
 
-set undofile
-set undodir=$HOME/.vim/.undo
+set backup
+let &backupdir = g:private.doc..'/backup'
 
-set viewdir=$HOME/.vim/.view
+set undofile
+set undodir=$vimrc/.undo
+
+set viewdir=$vimrc/.view
 set viewoptions=folds,cursor,curdir
 
 " viminfo
-set viminfo+=n$HOME/.vim/viminfo
+set viminfo+=n$vimrc/viminfo
 
 " リマップ分割によりマップリーダーのトラブル頻発中
 let g:mapleader = "\<space>"

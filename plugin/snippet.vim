@@ -47,11 +47,11 @@ for [ key, value ] in items(g:private)
 	endif
 endfor
 
-cabbrev vv= $HOME/.vim
-cabbrev vV= $HOME/.vim/vimrc
-cabbrev vs= $HOME/.vim/plugin
-cabbrev vS= $HOME/.vim/pack/myplug/opt
-cabbrev va= $HOME/.vim/autoload
-cabbrev vA= $HOME/.vim/plugin/command.vim
-cabbrev vp= $HOME/.vim/vim-plug
-cabbrev vP= $HOME/.vim/vim-plug/vim-plug.conf.vim
+cabbrev vv= $vimrc
+cabbrev vV= $vimrc/vimrc
+cabbrev vs= $vimrc/plugin
+cabbrev vS= $vimrc/pack/myplug/opt
+cabbrev va= $vimrc/autoload
+cabbrev vA= $vimrc/plugin/command.vim
+cabbrev vp= $vimrc/vim-plug
+cabbrev vP= $vimrc/vim-plug/vim-plug.conf.vim
