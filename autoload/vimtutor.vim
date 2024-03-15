@@ -21,7 +21,7 @@ function! vimtutor#main(...) abort
 
 	call execute('split $VIMRUNTIME/tutor/'..filename)
 	set noreadonly
-	0file
+	file tutor
 
 	return
 endfunction
