@@ -94,8 +94,9 @@ nnoremap Ze :<C-u>!explorer %:h<CR>
 " Open recent
 nnoremap Z# :<C-u>edit #<1<CR>
 
-" Open secret launcher
-nnoremap Zb :<C-u>edit ~\Documents\Documents\bookmark.md<CR>
+" Open URL by openbrowser.vim
+
+nnoremap Zu <plug>(openbrowser-open)
 
 " Previm用キーマップの`Zp`はftpluginに移動しました。
 

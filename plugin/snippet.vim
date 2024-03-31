@@ -36,22 +36,9 @@ cabbrev <expr> font= 'set guifont='..escape(&guifont, ' \')
 
 " privateから移転
 
-try
-	call localDirectory#abbrev()
-" catch /E117/
-endtry
-
 for [ key, value ] in items(g:private)
 	if isdirectory(expand(value)) || filereadable(expand(value))
 		call execute(printf('cabbrev %s= %s', key, value))
 	endif
 endfor
 
-cabbrev vv= $vimrc
-cabbrev vV= $vimrc/vimrc
-cabbrev vs= $vimrc/plugin
-cabbrev vS= $vimrc/pack/myplug/opt
-cabbrev va= $vimrc/autoload
-cabbrev vA= $vimrc/plugin/command.vim
-cabbrev vp= $vimrc/vim-plug
-cabbrev vP= $vimrc/vim-plug/vim-plug.conf.vim
