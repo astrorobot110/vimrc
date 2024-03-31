@@ -5,7 +5,7 @@ if isdirectory(g:private.daily)
 	let b:daily = {}
 	let dir = substitute(g:private.daily, '\\', '/', 'g')
 	let buf = substitute(expand('%:p'), '\\', '/', 'g')
-	if match(buf, dir) >= 0
+	if match(buf, dir[match(dir, 'obsidian'):-1]) >= 0
 		lcd %:h
 		let b:daily.files = glob('*.md', 0, 1)->sort()
 		if index(b:daily.files, expand('%:t')) < 0
