@@ -90,9 +90,9 @@ set laststatus=2
 " やっぱ~/vimfiles対策要るわ
 
 if v:version >= 900
-	let $vimrc = expand('<script>')
+	let $vimrc = expand('<script>:p:h')
 else
-	let $vimrc = expand('<sfile>')
+	let $vimrc = expand('<sfile>:p:h')
 endif
 
 " $vimrcディレクトリ決まってからvim-plug
