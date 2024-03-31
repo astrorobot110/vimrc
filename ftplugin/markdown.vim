@@ -3,7 +3,7 @@ nnoremap <buffer> gx :<C-u>PrevimOpen<CR>
 
 if isdirectory(g:private.daily)
 	let b:daily = {}
-	let dir = substitute(g:private.daily, '\\', '/', 'g')->escape('/')
+	let dir = substitute(g:private.daily, '\\', '/', 'g')
 	let buf = substitute(expand('%:p'), '\\', '/', 'g')
 	if match(buf, dir) >= 0
 		lcd %:h
@@ -12,6 +12,8 @@ if isdirectory(g:private.daily)
 			call add(b:daily.files, expand('%:t'))->sort()
 		endif
 		let b:daily.current = index(b:daily.files, expand('%:t'))
+	else
+		echo printf('no hits. (dir:%s, buf:%s)', dir, buf)
 	endif
 
 	nnoremap <buffer> <silent> [d :<C-u>call dailyMover#main(v:count == 0 ? -1 : -v:count)<CR>
