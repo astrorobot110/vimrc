@@ -89,9 +89,11 @@ set laststatus=2
 
 " やっぱ~/vimfiles対策要るわ
 
-let $vimrc = expand('$HOME/vimfiles')->isdirectory() ?
-		\ expand('$HOME/vimfiles') :
-		\ expand('$HOME/.vim')
+if v:version >= 900
+	let $vimrc = expand('<script>')
+else
+	let $vimrc = expand('<sfile>')
+endif
 
 " $vimrcディレクトリ決まってからvim-plug
 
