@@ -37,8 +37,6 @@ cabbrev <expr> font= 'set guifont='..escape(&guifont, ' \')
 " privateから移転
 
 for [ key, value ] in items(g:private)
-	if isdirectory(expand(value)) || filereadable(expand(value))
-		call execute(printf('cabbrev %s= %s', key, value))
-	endif
+	call execute(printf('cabbrev %s= %s', key, value))
 endfor
 

@@ -100,7 +100,6 @@ if !v:vim_did_enter
 endif
 
 try
-	let g:private = {}
 	source $vimrc/.private/localDirectory.vim
 catch /E484/
 endtry
