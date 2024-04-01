@@ -19,7 +19,17 @@ EOF
 	return dateTo
 endfunction
 
-function! dailyMover#main(delta) abort
+function! dailyMover#load() abort
+	lcd %:h
+	let b:daily = {}
+	let b:daily.files = glob('*.md', 0, 1)->sort()
+	if index(b:daily.files, expand('%:t')) < 0
+		call add(b:daily.files, expand('%:t'))->sort()
+	endif
+	let b:daily.current = index(b:daily.files, expand('%:t'))
+endfunction
+
+function! dailyMover#move(delta) abort
 	try
 		let openTo = b:daily.files[b:daily.current+a:delta]
 	catch /^Vim\%((\a\+)\)\=:E684:/
