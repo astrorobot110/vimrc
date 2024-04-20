@@ -21,38 +21,46 @@ vnoremap gy "+y
 
 nnoremap <Leader><Space> i <Esc>
 
-noremap <Leader>i :<C-u>set iminsert=2<CR>i
-noremap <Leader>I :<C-u>set iminsert=2<CR>I
-noremap <Leader>gi :<C-u>set iminsert=2<CR>gi
-noremap <Leader>gI :<C-u>set iminsert=2<CR>gI
-noremap <Leader>a :<C-u>set iminsert=2<CR>a
-noremap <Leader>A :<C-u>set iminsert=2<CR>A
-noremap <Leader>o :<C-u>set iminsert=2<CR>o
-noremap <Leader>O :<C-u>set iminsert=2<CR>O
-noremap <Leader>r :<C-u>set iminsert=2<CR>r
-noremap <Leader>R :<C-u>set iminsert=2<CR>R
-noremap <Leader>c :<C-u>set iminsert=2<CR>c
-noremap <Leader>C :<C-u>set iminsert=2<CR>C
-noremap <Leader>s :<C-u>set iminsert=2<CR>s
-noremap <Leader>S :<C-u>set iminsert=2<CR>S
-noremap <Leader>f :<C-u>set iminsert=2<CR>f
-noremap <Leader>F :<C-u>set iminsert=2<CR>F
-noremap <Leader>t :<C-u>set iminsert=2<CR>t
-noremap <Leader>T :<C-u>set iminsert=2<CR>T
+function! ImOperation(operator) abort
+	set iminsert=2
+	return a:operator
+endfunction
 
-" ビジュアルモード対策が必要
+noremap <expr> <Leader>i ImOperation('i')
+noremap <expr> <Leader>I ImOperation('I')
+noremap <expr> <Leader>gi ImOperation('gi')
+noremap <expr> <Leader>gI ImOperation('gI')
+noremap <expr> <Leader>a ImOperation('a')
+noremap <expr> <Leader>A ImOperation('A')
+noremap <expr> <Leader>o ImOperation('o')
+noremap <expr> <Leader>O ImOperation('O')
+noremap <expr> <Leader>r ImOperation('r')
+noremap <expr> <Leader>R ImOperation('R')
+noremap <expr> <Leader>gR ImOperation('gR')
+noremap <expr> <Leader>c ImOperation('c')
+noremap <expr> <Leader>C ImOperation('C')
+noremap <expr> <Leader>s ImOperation('s')
+noremap <expr> <Leader>S ImOperation('S')
+noremap <expr> <Leader>f ImOperation('f')
+noremap <expr> <Leader>F ImOperation('F')
+noremap <expr> <Leader>t ImOperation('t')
+noremap <expr> <Leader>T ImOperation('T')
 
-vnoremap <Leader>i :<C-u>set iminsert=2<CR>gvi
-vnoremap <Leader>I :<C-u>set iminsert=2<CR>gvI
-vnoremap <Leader>a :<C-u>set iminsert=2<CR>gva
-vnoremap <Leader>A :<C-u>set iminsert=2<CR>gvA
-vnoremap <Leader>o :<C-u>set iminsert=2<CR>gvo
-vnoremap <Leader>O :<C-u>set iminsert=2<CR>gvO
-vnoremap <Leader>R :<C-u>set iminsert=2<CR>gvR
-vnoremap <Leader>c :<C-u>set iminsert=2<CR>gvc
-vnoremap <Leader>C :<C-u>set iminsert=2<CR>gvC
-vnoremap <Leader>s :<C-u>set iminsert=2<CR>gvs
-vnoremap <Leader>S :<C-u>set iminsert=2<CR>gvS
+vnoremap <expr> <Leader>i ImOperation('i')
+vnoremap <expr> <Leader>I ImOperation('I')
+vnoremap <expr> <Leader>gi ImOperation('gi')
+vnoremap <expr> <Leader>gI ImOperation('gI')
+vnoremap <expr> <Leader>a ImOperation('a')
+vnoremap <expr> <Leader>A ImOperation('A')
+vnoremap <expr> <Leader>o ImOperation('o')
+vnoremap <expr> <Leader>O ImOperation('O')
+vnoremap <expr> <Leader>r ImOperation('r')
+vnoremap <expr> <Leader>R ImOperation('R')
+vnoremap <expr> <Leader>gR ImOperation('gR')
+vnoremap <expr> <Leader>c ImOperation('c')
+vnoremap <expr> <Leader>C ImOperation('C')
+vnoremap <expr> <Leader>s ImOperation('s')
+vnoremap <expr> <Leader>S ImOperation('S')
 
 " ターミナルモードあるっぽい？
 tnoremap <Esc><Esc> <C-w>N
