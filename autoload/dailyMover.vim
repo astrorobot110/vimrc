@@ -33,6 +33,7 @@ function! dailyMover#load() abort
 	nnoremap <buffer> <silent> ]D :<C-u>call dailyMover#moveAbsolute(v:count == 0 ? 1 : v:count)<CR>
 	nnoremap <buffer> <silent> [<C-d> :<C-u>call dailyMover#open(g:dailyMoverLs[0])<CR>
 	nnoremap <buffer> <silent> ]<C-d> :<C-u>call dailyMover#open(g:dailyMoverLs[-1])<CR>
+	nnoremap <buffer> <expr> <silent> Zo dailyMover#makeURI(expand('%:p'))
 endfunction
 
 function! dailyMover#moveRelative(delta) abort
@@ -61,3 +62,9 @@ function! dailyMover#open(file) abort
 	endtry
 endfunction
 
+function! dailyMover#makeURI(file) abort
+	let path = split(a:file, ':\?[\/\\]')
+	call remove(path, 0, match(path, 'obsidian')-1)
+	let uri = printf('obsidian://vault/%s', join(path, '/'))
+	call printf("Start-Process '%s'", uri)->system()
+endfunction
