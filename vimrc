@@ -17,6 +17,9 @@ if has('win32')
 	set fileformat=dos
 	set fileformats=dos,unix,mac
 	set termguicolors
+
+	" そろそろ行ける？
+	set shell=pwsh
 elseif has('unix')
 	try
 		language ja_JP.utf8
