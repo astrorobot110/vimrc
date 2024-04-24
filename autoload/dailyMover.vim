@@ -66,5 +66,9 @@ function! dailyMover#makeURI(file) abort
 	let path = split(a:file, ':\?[\/\\]')
 	call remove(path, 0, match(path, 'obsidian')-1)
 	let uri = printf('obsidian://vault/%s', join(path, '/'))
-	call printf("Start-Process '%s'", uri)->system()
+	if &shell =~ '\(powershell\|pwsh\)'
+		call printf("Start-Process '%s'", uri)->system()
+	else
+		echom printf("URI: '%s'", uri)
+	endif
 endfunction
