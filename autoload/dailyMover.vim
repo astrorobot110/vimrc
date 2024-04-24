@@ -69,6 +69,6 @@ function! dailyMover#makeURI(file) abort
 	if &shell =~ '\(powershell\|pwsh\)'
 		call printf("Start-Process '%s'", uri)->system()
 	else
-		echom printf("URI: '%s'", uri)
+		echom printf("URI: %s", uri)
 	endif
 endfunction
