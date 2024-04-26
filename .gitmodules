@@ -1,51 +1,51 @@
 [submodule "pack/vim-janah/start/vim-janah"]
 	path = pack/vim-janah/start/vim-janah
-	url = git:mhinz/vim-janah
+	url = https://github.commhinz/vim-janah
 [submodule "pack/vim-fugitive/start/vim-fugitive"]
 	path = pack/vim-fugitive/start/vim-fugitive
-	url = git:tpope/vim-fugitive
+	url = https://github.comtpope/vim-fugitive
 [submodule "pack/vimdoc-ja/start/vimdoc-ja"]
 	path = pack/vimdoc-ja/start/vimdoc-ja
-	url = git:vim-jp/vimdoc-ja
+	url = https://github.comvim-jp/vimdoc-ja
 [submodule "pack/autofmt/start/autofmt"]
 	path = pack/autofmt/start/autofmt
-	url = git:vim-jp/autofmt
+	url = https://github.comvim-jp/autofmt
 [submodule "pack/vim-unimpaired/start/vim-unimpaired"]
 	path = pack/vim-unimpaired/start/vim-unimpaired
-	url = git:tpope/vim-unimpaired
+	url = https://github.comtpope/vim-unimpaired
 [submodule "pack/jasegment.vim/start/jasegment.vim"]
 	path = pack/jasegment.vim/start/jasegment.vim
-	url = git:deton/jasegment.vim
+	url = https://github.comdeton/jasegment.vim
 [submodule "pack/jasentence.vim/start/jasentence.vim"]
 	path = pack/jasentence.vim/start/jasentence.vim
-	url = git:deton/jasentence.vim
+	url = https://github.comdeton/jasentence.vim
 [submodule "pack/vim-textobj-user/start/vim-textobj-user"]
 	path = pack/vim-textobj-user/start/vim-textobj-user
-	url = git:kana/vim-textobj-user
+	url = https://github.comkana/vim-textobj-user
 [submodule "pack/vim-textobj-function/start/vim-textobj-function"]
 	path = pack/vim-textobj-function/start/vim-textobj-function
-	url = git:kana/vim-textobj-function
+	url = https://github.comkana/vim-textobj-function
 [submodule "pack/vim-easy-align/start/vim-easy-align"]
 	path = pack/vim-easy-align/start/vim-easy-align
-	url = git:junegunn/vim-easy-align
+	url = https://github.comjunegunn/vim-easy-align
 [submodule "pack/previm/start/previm"]
 	path = pack/previm/start/previm
-	url = git:previm/previm
+	url = https://github.comprevim/previm
 [submodule "pack/vim-ps1/opt/vim-ps1"]
 	path = pack/vim-ps1/opt/vim-ps1
-	url = git:PProvost/vim-ps1
+	url = https://github.comPProvost/vim-ps1
 [submodule "pack/vimcord/opt/vimcord"]
 	path = pack/vimcord/opt/vimcord
-	url = git:Stoozy/vimcord
+	url = https://github.comStoozy/vimcord
 [submodule "pack/w3m.vim/opt/w3m.vim"]
 	path = pack/w3m.vim/opt/w3m.vim
-	url = git:yuratomo/w3m.vim
+	url = https://github.comyuratomo/w3m.vim
 [submodule "pack/open-browser.vim/start/open-browser.vim"]
 	path = pack/open-browser.vim/start/open-browser.vim
-	url = git:tyru/open-browser.vim
+	url = https://github.comtyru/open-browser.vim
 [submodule "pack/textra.vim/opt/textra.vim"]
 	path = pack/textra.vim/opt/textra.vim
-	url = git:kawarimidoll/textra.vim
+	url = https://github.comkawarimidoll/textra.vim
 [submodule "pack/vialarm/opt/vialarm"]
 	path = pack/vialarm/opt/vialarm
-	url = git:astrorobot110/vialarm
+	url = https://github.comastrorobot110/vialarm
