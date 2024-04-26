@@ -72,6 +72,8 @@ set hlsearch
 
 set diffopt=filler
 
+" なんで？
+syntax on
 " タイミング調整の為にオートコマンドに（わざわざautocmd.vimに書かんよ）
 autocmd VimEnter * ++once ++nested colorscheme janah
 
@@ -100,9 +102,9 @@ endif
 
 " $vimrcディレクトリ決まってからvim-plug
 
-if !v:vim_did_enter
-	source $vimrc/vim-plug/vim-plug.conf.vim
-endif
+" if !v:vim_did_enter
+" 	source $vimrc/vim-plug/vim-plug.conf.vim
+" endif
 
 try
 	source $vimrc/.private/localDirectory.vim

@@ -1,0 +1,9 @@
+[submodule "pack/vim-janah/start/vim-janah"]
+	path = pack/vim-janah/start/vim-janah
+	url = git:mhinz/vim-janah
+[submodule "pack/vim-fugitive/start/vim-fugitive"]
+	path = pack/vim-fugitive/start/vim-fugitive
+	url = git:tpope/vim-fugitive
+[submodule "pack/vimdoc-ja/start/vimdoc-ja"]
+	path = pack/vimdoc-ja/start/vimdoc-ja
+	url = git:vim-jp/vimdoc-ja
