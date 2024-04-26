@@ -101,12 +101,6 @@ else
 	let $vimrc = expand('<sfile>:p:h')
 endif
 
-" $vimrcディレクトリ決まってからvim-plug
-
-" if !v:vim_did_enter
-" 	source $vimrc/vim-plug/vim-plug.conf.vim
-" endif
-
 try
 	source $vimrc/.private/localDirectory.vim
 catch /E484/
