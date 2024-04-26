@@ -74,6 +74,7 @@ set diffopt=filler
 
 " なんで？
 syntax on
+
 " タイミング調整の為にオートコマンドに（わざわざautocmd.vimに書かんよ）
 autocmd VimEnter * ++once ++nested colorscheme janah
 
