@@ -80,10 +80,6 @@ nnoremap ZD :<C-u>cd %:h<CR>
 " Quick help to function-list
 nnoremap Zh :<C-u>vert bo help function-list<CR>
 
-" PlugInstall
-nnoremap ZP :<C-u>PlugInstall<CR>
-nnoremap Z<C-p> :<C-u>PlugUpdate<CR>
-
 " Load current vimscript
 nnoremap Zs :<C-u>source %<CR>
 
