@@ -72,7 +72,8 @@ set hlsearch
 
 set diffopt=filler
 
-" なんで？
+" なんかデフォルト値かわった？
+filetype plugin indent on
 syntax on
 
 " タイミング調整の為にオートコマンドに（わざわざautocmd.vimに書かんよ）
