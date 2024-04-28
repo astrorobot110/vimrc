@@ -37,7 +37,3 @@ if executable('w3m')
 	packadd w3m.vim
 endif
 
-if expand('$vimrc/.private/textra_setup.vim')->filereadable()
-	packadd textra.vim
-	source $vimrc/.private/textra_setup.vim
-endif
