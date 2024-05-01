@@ -32,7 +32,7 @@ function! translator#translate(text, langFrom = '', langTo = '') abort
 		let target = a:langTo == '' ? 'en' : s:langTo
 	endif
 
-	let query =  printf('text=%s&source=%s&target=%s',  text, source, target)
+	let query =  printf('text=%s&source=%s&target=%s', text, source, target)
 	let url = printf('%s?%s', g:translatorUrl, query)
 
 	let command = printf('curl -s -L ''%s''', url)
