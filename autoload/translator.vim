@@ -19,28 +19,70 @@ EOF
 	return enc
 endfunction
 
-function! translator#translate(text, langFrom = '', langTo = '') abort
+function! s:translate(text, source, target) abort
 	if !exists('g:translatorUrl')
 		call s:getUrl()
 	endif
 
 	let text = s:urlEncode(a:text)
-	let source =   a:langFrom == '' ? 'en' : a:langFrom
-	if source != 'ja'
-		let target = a:langTo == '' ? 'ja' : s:langTo
-	else
-		let target = a:langTo == '' ? 'en' : s:langTo
-	endif
 
-	let query =  printf('text=%s&source=%s&target=%s', text, source, target)
+	let query =  printf('text=%s&source=%s&target=%s', text, a:source, a:target)
 	let url = printf('%s?%s', g:translatorUrl, query)
 
 	let command = printf('curl -s -L ''%s''', url)
 	let response = system(command)->json_decode()
+	let response.text = split(response.text, "\n")
 
 	return response
 endfunction
 
-function! translator#encTest(text) abort
-	return s:urlEncode(a:text)
+function! s:getParagraph()
+	let pos = { 'start': getpos("'<"), 'end': getpos("'>") }
+	let pos.end[2] = min([pos.end[2], len(getline(pos.end[1]))])
+
+	let mode = mode()[0]
+	if mode !~ '[vV]'
+		let mode = visualmode()
+	endif
+
+	let opts = { 'type': mode }
+
+	let region = getregion(pos.start, pos.end, opts)
+	call map(region, { _, val -> trim(val) })
+	let region = join(region, "\n")
+
+	return region
 endfunction
+
+function! translator#main(range = 0, bang = '', langFrom = '', langTo = '') range abort
+	let current = getpos('.')
+	let visual = { 'from': getpos("'<"), 'to': getpos("'>") }
+
+	if a:range == 0
+		normal vip
+		call setpos('.', current)
+	endif
+
+	let text = s:getParagraph()
+
+	let source =   a:langFrom == '' ? 'en' : a:langFrom
+	if source != 'ja'
+		let target = a:langTo == '' ? 'ja' : a:langTo
+	else
+		let target = a:langTo == '' ? 'en' : a:langTo
+	endif
+
+	let translate = s:translate(text, source, target)
+
+	if a:range == 0
+		call setpos("'<", visual.from)
+		call setpos("'>", visual.to)
+	endif
+
+	if a:bang == '!'
+		call append(visual.to[1], [''] + translate.text)
+	else
+		echo join(translate.text, "\n")
+	endif
+endfunction
+
