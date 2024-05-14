@@ -49,3 +49,6 @@
 [submodule "pack/vialarm/opt/vialarm"]
 	path = pack/vialarm/opt/vialarm
 	url = https://github.com/astrorobot110/vialarm
+[submodule "pack/gruvbox/start/gruvbox"]
+	path = pack/gruvbox/start/gruvbox
+	url = https://github.com/morhetz/gruvbox.git
