@@ -82,7 +82,7 @@ filetype plugin indent on
 syntax on
 
 " タイミング調整の為にオートコマンドに（わざわざautocmd.vimに書かんよ）
-autocmd VimEnter * ++once ++nested colorscheme janah
+autocmd VimEnter * ++once ++nested colorscheme toast
 
 " ステータスライン関係
 " 表示用
