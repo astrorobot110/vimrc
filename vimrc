@@ -57,7 +57,12 @@ set scrolloff=8
 set ambiwidth=double
 set emoji
 set display+=lastline
-set background=dark
+
+if g:device != 'aquos'
+	set background=dark
+else
+	set background=light
+endif
 
 " これだけvimrcじゃないとダメとのことで
 set guioptions+=M
