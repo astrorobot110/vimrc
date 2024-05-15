@@ -58,12 +58,6 @@ set ambiwidth=double
 set emoji
 set display+=lastline
 
-if g:device != 'aquos'
-	set background=dark
-else
-	set background=light
-endif
-
 " これだけvimrcじゃないとダメとのことで
 set guioptions+=M
 
@@ -81,8 +75,17 @@ set diffopt=filler
 filetype plugin indent on
 syntax on
 
+" カラースキーム関係
 " タイミング調整の為にオートコマンドに（わざわざautocmd.vimに書かんよ）
-autocmd VimEnter * ++once ++nested colorscheme toast
+
+if g:device != 'aquos'
+	set background=dark
+	autocmd VimEnter * ++once ++nested colorscheme base16-decaf
+else
+	set background=light
+	autocmd VimEnter * ++once ++nested colorscheme base16-ia-light
+endif
+
 
 " ステータスライン関係
 " 表示用
