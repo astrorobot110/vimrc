@@ -80,10 +80,11 @@ syntax on
 
 if g:device != 'aquos'
 	set background=dark
-	autocmd VimEnter * ++once ++nested colorscheme base16-decaf
+	autocmd VimEnter * ++once ++nested colorscheme janah
 else
 	set background=light
-	autocmd VimEnter * ++once ++nested colorscheme base16-ia-light
+	autocmd VimEnter * ++once ++nested colorscheme toast
+	highlight Normal ctermbg=230
 endif
 
 
