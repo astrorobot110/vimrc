@@ -80,8 +80,8 @@ nnoremap ZD :<C-u>cd %:h<CR>
 " Quick help to function-list
 nnoremap Zh :<C-u>vert bo help function-list<CR>
 
-" Load current vimscript
-nnoremap Zs :<C-u>source %<CR>
+" Zsのマップは間違えることが多すぎてアレなので
+" ftpluginに移動させました。
 
 " Execute current line as shell command
 nnoremap <expr> Z! system(expand(getline('.')))

@@ -8,3 +8,6 @@ augroup vimscriptFileFormat
 	autocmd BufWritePre *.vim set fileformat=unix
 augroup END
 
+" Load current vimscript
+nnoremap <buffer> Zs :<C-u>source %<CR>
+

@@ -11,14 +11,17 @@ endfunction
 
 function! getTextWell#main(range) range abort
 	if a:range != 0
-		let startPos = getpos("'<")
-		let endPos = getpos("'>")
-		let endPos[2] = min([endPos[2], len(getline(endPos[1]))])
+		let pos = { 'start': getpos("'<"), 'end': getpos("'>") }
+		let pos.end[2] = min([pos.end[2], len(getline(pos.end[1]))])
+
 		let opts = {}
 		let opts.type = s:getModeWell()
-		let region = getregion(startPos, endPos, opts)->join(nr2char(10))
+
+		let region = getregion(pos.start, pos.end, opts)
+		call map(region, { _, val -> trim(val) })
+		let region = join(region, "\n")
 	else
-		let region = getline('.')
+		let region = getline('.')->trim()
 	endif
 
 	return region
