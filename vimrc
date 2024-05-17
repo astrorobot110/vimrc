@@ -80,11 +80,10 @@ syntax on
 
 if g:device != 'aquos'
 	set background=dark
-	autocmd VimEnter * ++once ++nested colorscheme janah
+	colorscheme janah-custom
 else
 	set background=light
-	autocmd VimEnter * ++once ++nested colorscheme toast
-	highlight Normal ctermbg=230
+	colorscheme janah-custom-light
 endif
 
 
