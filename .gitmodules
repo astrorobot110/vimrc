@@ -64,6 +64,3 @@
 [submodule "pack/toast.vim/start/toast.vim"]
 	path = pack/toast.vim/start/toast.vim
 	url = https://github.com/jsit/toast.vim
-[submodule "pack/base16-vim/start/base16-vim"]
-	path = pack/base16-vim/start/base16-vim
-	url = https://github.com/tinted-theming/base16-vim
