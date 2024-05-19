@@ -79,10 +79,8 @@ syntax on
 
 " カラースキーム関係
 
-if exists('g:gruvbox_contrast_light')
-	let g:gruvbox_contrast_light = 'hard'
-	let g:gruvbox_contrast_light = 'normal'
-endif
+let g:gruvbox_contrast_light = 'hard'
+let g:gruvbox_contrast_dark = 'normal'
 
 if g:device != 'aquos'
 	set background=dark

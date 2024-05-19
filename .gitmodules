@@ -53,7 +53,7 @@
 	path = pack/gruvbox/start/gruvbox
 	url = https://github.com/morhetz/gruvbox.git
 [submodule "pack/vim-humanoid-colorscheme/start/vim-humanoid-colorscheme"]
-	path = pack/vim-humanoid-colorscheme/start/vim-humanoid-colorscheme
+	path = pack/vim-humanoid-colorscheme/opt/vim-humanoid-colorscheme
 	url = https://github.com/humanoid-colors/vim-humanoid-colorscheme
 [submodule "pack/VimCleanColors/start/VimCleanColors"]
 	path = pack/VimCleanColors/start/VimCleanColors
@@ -62,5 +62,5 @@
 	path = pack/toast.vim/start/VimCleanColors
 	url = https://github.com/jordwalke/VimCleanColors
 [submodule "pack/toast.vim/start/toast.vim"]
-	path = pack/toast.vim/start/toast.vim
+	path = pack/toast.vim/opt/toast.vim
 	url = https://github.com/jsit/toast.vim
