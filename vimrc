@@ -78,16 +78,19 @@ filetype plugin indent on
 syntax on
 
 " カラースキーム関係
-" タイミング調整の為にオートコマンドに（わざわざautocmd.vimに書かんよ）
+
+if exists('g:gruvbox_contrast_light')
+	let g:gruvbox_contrast_light = 'hard'
+	let g:gruvbox_contrast_light = 'normal'
+endif
 
 if g:device != 'aquos'
 	set background=dark
-	colorscheme janah-custom
 else
 	set background=light
-	colorscheme janah-custom-light
 endif
 
+colorscheme gruvbox
 
 " ステータスライン関係
 " 表示用
