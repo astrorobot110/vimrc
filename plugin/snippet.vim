@@ -15,12 +15,6 @@ cabbrev regurl= 'https\?:\/\/[0-9A-Za-z_\/:%#\$&?()\~\.=+-]\+'
 cabbrev hankana= [ｦ-ﾟ]
 cabbrev gas= call append('$', '// vim: set filetype=javascript ts=2 sts=2 sw=2 expandtab :')
 
-if has('win32')
-	" いいアイデアもろた
-	cabbrev term= term pwsh
-	cabbrev pwsh= set shell=pwsh\|shell\|set shell=C:\\WINDOWS\\system32\\cmd.exe
-endif
-
 if has('unix')
 	" sudoめんどい
 	cabbrev sudowrite= write !sudo tee % > /dev/null 2>&1
@@ -39,3 +33,6 @@ for [ key, value ] in items(g:private)
 	call execute(printf('cabbrev %s= %s', key, value))
 endfor
 
+" 一向にgit覚えないので
+
+cabbrev git= !git pull --recurse-submodules
