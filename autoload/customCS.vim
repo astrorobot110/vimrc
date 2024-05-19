@@ -1,8 +1,8 @@
 scriptencoding utf-8
 
-function! customCS#main(functionName, ...) abort
-	if exists('*s:'..a:functionName)
-		let CS = function('s:'..a:functionName, a:000)
+function! customCS#main(...) abort
+	if exists('*s:'..g:colors_name)
+		let CS = function('s:'..g:colors_name, a:000)
 		call CS()
 	endif
 endfunction
@@ -23,5 +23,3 @@ function! s:janah(...) abort
 		highlight CursorIM guifg=bg guibg=#87dfaf
 	endif
 endfunction
-
-function!

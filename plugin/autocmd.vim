@@ -24,7 +24,7 @@ augroup END
 " Some trick in colorscheme.
 augroup customColorscheme
 	autocmd!
-	autocmd ColorScheme * call customCS#main(g:colors_name)
+	autocmd ColorScheme * call customCS#main()
 augroup END
 
 " backup回り
