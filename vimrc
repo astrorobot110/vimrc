@@ -16,7 +16,6 @@ endif
 if has('win32')
 	set fileformat=dos
 	set fileformats=dos,unix,mac
-	set termguicolors
 
 	" そろそろ行ける？
 	set shell=pwsh
@@ -63,6 +62,9 @@ set guioptions+=M
 
 " 結局入れといたほうがよかったので
 set t_Co=256
+if !exists('$APPBASE')
+	set termguicolors
+endif
 
 " 検索周り
 set ignorecase smartcase
