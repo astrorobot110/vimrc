@@ -91,14 +91,25 @@ else
 endif
 
 " ステータスライン関係
+" デフォルト -> set statusline=%f\ %h%w%m%r%=%-14.(%l,%c%V%)\ %P
 " 表示用
 
-function! Stl_showMode() abort
-	return printf("mode: %s", mode())
-endfunction
+let customSL = {}
+let customSL.paddingL = ''
+let customSL.bufferID = '%2(%n%):'
+let customSL.fileName = '%<%f'
+let customSL.fileFormat = '[%{&fenc.."/"..&ff}]'
+let customSL.fileFlag = '%h%w%m%r'
+let customSL.separator = '%='
+let customSL.position = '%l, %-8.(%c%V%) [%4(%P%)]'
+let customSL.mode = 'mode:%3S%{"  "..mode()}'
+let customSL.paddingR = ''
 
-" デフォルト -> set statusline=%f\ %h%w%m%r%=%-14.(%l,%c%V%)\ %P
-set statusline=%4(%n%):\ %<%f\ [%{&fenc.'/'.&ff}]%h%w%m%r%=\ %l,%-8.(%c%V%)%{%Stl_showMode()%}\ [%4(%P%)]\ 
+let customSLOrder = [ 'paddingL', 'bufferID', 'fileName', 'fileFormat', 'fileFlag', 'separator', 'position', 'mode', 'paddingR' ]
+
+let customSLStrings = map( customSLOrder, { _, val -> g:customSL[val] })->join()
+
+set statusline=%!customSLStrings
 set laststatus=2
 
 " ディレクトリ関係
