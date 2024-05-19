@@ -82,13 +82,13 @@ syntax on
 let g:gruvbox_contrast_light = 'hard'
 let g:gruvbox_contrast_dark = 'normal'
 
+colorscheme gruvbox
+
 if g:device != 'aquos'
 	set background=dark
 else
 	set background=light
 endif
-
-colorscheme gruvbox
 
 " ステータスライン関係
 " 表示用
