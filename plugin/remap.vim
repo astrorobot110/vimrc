@@ -99,8 +99,10 @@ nnoremap Ze :<C-u>!explorer %:h<CR>
 nnoremap Z# :<C-u>edit #<1<CR>
 
 " Open URL by openbrowser.vim
-
 nnoremap Zu <plug>(openbrowser-open)
+
+" toggle background mode
+nnoremap Zb :<C-u>call execute(printf('set background=%s', &background == 'dark' ? 'light' : 'dark'))<CR>
 
 " Previm用キーマップの`Zp`はftpluginに移動しました。
 
