@@ -130,7 +130,8 @@ catch /E484/
 endtry
 
 if g:device == 'astrobase'
-	let backup = expand($HOME..'/Documents/backup')
+"	let backup = expand($HOME..'/Documents/backup')
+	set backupcopy=no
 endif
 
 set backup
