@@ -14,8 +14,8 @@ nnoremap g= g+
 
 " ええこときいた
 
-nnoremap gy "+y
-vnoremap gy "+y
+nnoremap gy "*y
+vnoremap gy "*y
 
 " Insertモードが絡むremap
 

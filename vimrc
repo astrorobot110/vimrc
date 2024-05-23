@@ -129,8 +129,12 @@ try
 catch /E484/
 endtry
 
+if g:device == 'astrobase'
+	let backup = expand($HOME..'/Documents/backup')
+endif
+
 set backup
-let &backupdir = g:private.doc..'/backup'
+let &backupdir = exists('backup') ? backup : g:private.doc..'/backup'
 
 set undofile
 set undodir=$vimrc/.undo
