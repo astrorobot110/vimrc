@@ -131,7 +131,7 @@ endtry
 
 if g:device == 'astrobase'
 "	let backup = expand($HOME..'/Documents/backup')
-	set backupcopy=no
+	set backupcopy=yes
 endif
 
 set backup
