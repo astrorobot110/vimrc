@@ -1,5 +1,7 @@
 scriptencoding utf-8
 
+let s:dateFormat = '%y%m%d'
+
 function s:delta(date, delta, format = '%Y/%m/%d') abort
 python3 << EOF
 import datetime
@@ -25,14 +27,14 @@ function! dailyMover#moveRelative(delta) abort
 	try
 		let openTo = g:dailyMoverLs[b:currentMemo+a:delta]
 	catch /^Vim\%((\a\+)\)\=:E684:/
-		let openTo = s:delta(split(g:dailyMoverLs[-1], '\.')[0], 1, '%y%m%d')..'.md'
+		let openTo = s:delta(split(g:dailyMoverLs[-1], '\.')[0], 1, s:dateFormat)..'.md'
 	endtry
 
 	call dailyMover#open(openTo)
 endfunction
 
 function! dailyMover#moveAbsolute(delta) abort
-	let openTo = s:delta(expand('%:t:r'), a:delta, '%y%m%d')..'.md'
+	let openTo = s:delta(expand('%:t:r'), a:delta, s:dateFormat)..'.md'
 
 	call dailyMover#open(openTo)
 endfunction
@@ -55,3 +57,4 @@ function! dailyMover#makeURI(file) abort
 		echom printf("URI: %s", uri)
 	endif
 endfunction
+
