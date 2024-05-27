@@ -94,16 +94,17 @@ endif
 " デフォルト -> set statusline=%f\ %h%w%m%r%=%-14.(%l,%c%V%)\ %P
 " 表示用
 
-let customSL = {}
-let customSL.paddingL = ''
-let customSL.bufferID = '%2(%n%):'
-let customSL.fileName = '%<%f'
-let customSL.fileFormat = '[%{&fenc.."/"..&ff}]'
-let customSL.fileFlag = '%h%w%m%r'
-let customSL.separator = '%='
-let customSL.position = '%l, %-8.(%c%V%) [%4(%P%)]'
-let customSL.mode = 'mode:%3S%{"  "..mode()}'
-let customSL.paddingR = ''
+let customSL = {
+			\ 'paddingL':   '',
+			\ 'bufferID':   '%2(%n%):',
+			\ 'fileName':   '%<%f',
+			\ 'fileFormat': '[%{&fenc.."/"..&ff}]',
+			\ 'fileFlag':   '%h%w%m%r',
+			\ 'separator':  '%=',
+			\ 'position':   '%l, %-8.(%c%V%) [%4(%P%)]',
+			\ 'mode':       'mode:%3S%{"  "..mode()}',
+			\ 'paddingR':   ''
+			\ }
 
 let customSLOrder = [ 'paddingL', 'bufferID', 'fileName', 'fileFormat', 'fileFlag', 'separator', 'position', 'mode', 'paddingR' ]
 

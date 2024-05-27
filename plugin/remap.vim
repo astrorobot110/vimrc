@@ -104,6 +104,9 @@ nnoremap Zu <plug>(openbrowser-open)
 " toggle background mode
 nnoremap Zb :<C-u>call execute(printf('set background=%s', &background == 'dark' ? 'light' : 'dark'))<CR>
 
+" Open today's dailymamo
+nnoremap Zt :<C-u>e today=<C-]><CR>
+
 " Previm用キーマップの`Zp`はftpluginに移動しました。
 
 " }}}
