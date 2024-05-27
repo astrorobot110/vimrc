@@ -86,3 +86,10 @@ function! translator#main(range = 0, bang = '', langFrom = '', langTo = '') rang
 	endif
 endfunction
 
+function! translator#dict(...) abort
+	let text = a:1
+	let source = get(a:000, 2, match(text, '^[\x20-\x70]\+$') == 0 ? 'en' : 'ja')
+	let target = get(a:000, 3, source == 'ja' ? 'en' : 'ja')
+
+	return s:translate(text, source, target).text[0]
+endfunction

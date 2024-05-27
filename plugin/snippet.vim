@@ -15,6 +15,9 @@ cabbrev regurl= 'https\?:\/\/[0-9A-Za-z_\/:%#\$&?()\~\.=+-]\+'
 cabbrev hankana= [ｦ-ﾟ]
 cabbrev gas= call append('$', '// vim: set filetype=javascript ts=2 sts=2 sw=2 expandtab :')
 
+" translator関数の直コール
+cabbrev Dict= translator#dict(')<left>
+
 if has('unix')
 	" sudoめんどい
 	cabbrev sudowrite= write !sudo tee % > /dev/null 2>&1
