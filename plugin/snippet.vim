@@ -18,6 +18,9 @@ cabbrev gas= call append('$', '// vim: set filetype=javascript ts=2 sts=2 sw=2 e
 " translator関数の直コール
 cabbrev Dict= translator#dict(')<left>
 
+" おしごと用
+cabbrev <silent> olist= <C-u>put =map(range(1, v:count), {_, val -> printf('%s. [ ] ', val)})
+
 if has('unix')
 	" sudoめんどい
 	cabbrev sudowrite= write !sudo tee % > /dev/null 2>&1

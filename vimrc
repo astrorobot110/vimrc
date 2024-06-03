@@ -61,7 +61,6 @@ set display+=lastline
 set guioptions+=M
 
 " 結局入れといたほうがよかったので
-set t_Co=256
 if !exists('$APPBASE')
 	set termguicolors
 endif
