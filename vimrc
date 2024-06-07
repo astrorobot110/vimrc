@@ -61,7 +61,7 @@ set display+=lastline
 set guioptions+=M
 
 " 結局入れといたほうがよかったので
-if $NOTERMGUICOLOR
+if !$NOTERMGUICOLOR
 	set termguicolors
 endif
 
