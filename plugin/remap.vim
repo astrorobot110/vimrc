@@ -139,6 +139,10 @@ cnoremap <C-a> <Home>
 cnoremap <C-e> <End>
 cnoremap <C-d> <Del>
 
+" 便利そうなのでおためし
+let slash = has('win32') ? '\' : '/'
+cnoremap <expr> <C-r><C-d> expand('%:h')..slash
+
 " }}}
 
 " vim: set foldmethod=marker :
