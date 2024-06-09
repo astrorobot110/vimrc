@@ -61,3 +61,6 @@
 [submodule "pack/toast.vim/start/toast.vim"]
 	path = pack/toast.vim/opt/toast.vim
 	url = https://github.com/jsit/toast.vim
+[submodule "pack/opt/twitvim"]
+	path = pack/twitvim/opt/twitvim
+	url = https://github.com/twitvim/twitvim
