@@ -6,6 +6,18 @@ augroup autoIM
 	autocmd ModeChanged *:n set iminsert=0
 augroup END
 
+" Move mode to Normal when vim become foreground
+augroup foreground
+	autocmd!
+	autocmd FocusGained * call s:back2normal()
+
+	function s:back2normal() abort
+		if mode() != 'n'
+			call feedkeys("\<ESC>")
+		endif
+	endfunction
+augroup END
+
 " autoYank for TEA
 if has('clientserver') && v:servername =~? 'VIM_TEA\d*$'
 	augroup autoYank
@@ -16,10 +28,10 @@ if has('clientserver') && v:servername =~? 'VIM_TEA\d*$'
 endif
 
 " save state via mkview/loadview (testing)
-augroup loadviewer
-	autocmd BufWinLeave * silent! mkview
-	autocmd BufWinEnter * silent! loadview
-augroup END
+" augroup loadviewer
+" 	autocmd BufWinLeave * silent! mkview
+" 	autocmd BufWinEnter * silent! loadview
+" augroup END
 
 " Some trick in colorscheme.
 augroup customColorscheme
