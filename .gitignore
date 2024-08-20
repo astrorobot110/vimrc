@@ -6,10 +6,7 @@
 viminfo
 view
 
-/autoload/plug.vim
-/autoload/plug.vim.old
-
-/vim-plug/
-!/vim-plug/vim-plug.conf.vim
-
 /.private/
+
+/pack/jetpack/opt/
+!/pack/jetpack/opt/vim-jetpack
