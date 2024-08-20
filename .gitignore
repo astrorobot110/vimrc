@@ -7,6 +7,4 @@ viminfo
 view
 
 /.private/
-
-/pack/jetpack/opt/
-!/pack/jetpack/opt/vim-jetpack
+/pack/
