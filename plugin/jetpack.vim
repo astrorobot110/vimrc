@@ -1,12 +1,13 @@
 scriptencoding utf-8
 
-let jetpackDir = $vimrc..'/pack/jetpack'
-
-if !isdirectory(jetpackDir)
-	call printf('curl -fLo %s/opt/vim-jetpack/plugin/jetpack.vim --create-dirs https://raw.githubusercontent.com/tani/vim-jetpack/master/plugin/jetpack.vim', jetpackDir)->system()
-endif
-
-packadd vim-jetpack
+try
+	packadd vim-jetpack
+catch /^Vim\%((\a\+)\)\=:E919:/
+	let jetpackFile = $vimrc..'/pack/jetpack/opt/vim-jetpack/plugin/jetpack.vim'
+	let jetpackUrl = 'https://raw.githubusercontent.com/tani/vim-jetpack/master/plugin/jetpack.vim'
+	call printf('curl -fLo %s --create-dirs %s, jetpackFile, jetpackUrl)->system()
+	packadd vim-jetpack
+endtry
 
 " vimdoc-ja
 set helplang=ja,en
@@ -38,10 +39,11 @@ let g:previm_extra_libraries = [
 \]
 
 call jetpack#begin()
-	Jetpack 'tani/vim-jetpack', {'opt': 1} "bootstrap
+	Jetpack 'tani/vim-jetpack', { 'opt': 1 } "bootstrap
 
 	Jetpack 'mhinz/vim-janah'
 	Jetpack 'tpope/vim-fugitive'
+	packadd vim-fugitive
 	Jetpack 'vim-jp/vimdoc-ja'
 	Jetpack 'vim-jp/autofmt'
 	Jetpack 'tpope/vim-unimpaired'
@@ -50,15 +52,19 @@ call jetpack#begin()
 	Jetpack 'kana/vim-textobj-user'
 	Jetpack 'kana/vim-textobj-function'
 	Jetpack 'junegunn/vim-easy-align'
+	packadd vim-easy-align
 	Jetpack 'morhetz/gruvbox.git'
 	Jetpack 'jordwalke/VimCleanColors'
 	Jetpack 'jsit/toast.vim'
 "	Jetpack 'astrorobot110/vialarm'
 "	Jetpack 'kawarimidoll/textra.vim'
 
+	" On-demanded
 	if has('gui')
 		Jetpack 'previm/previm'
+		packadd previm
 		Jetpack 'tyru/open-browser.vim'
+		packadd open-browser.vim
 	endif
 
 	if has('win32')
@@ -68,5 +74,7 @@ call jetpack#begin()
 
 	if executable('w3m')
 		Jetpack 'yuratomo/w3m.vim'
+		packadd w3m.vim
 	endif
+
 call jetpack#end()
