@@ -5,7 +5,7 @@ try
 catch /^Vim\%((\a\+)\)\=:E919:/
 	let jetpackFile = $vimrc..'/pack/jetpack/opt/vim-jetpack/plugin/jetpack.vim'
 	let jetpackUrl = 'https://raw.githubusercontent.com/tani/vim-jetpack/master/plugin/jetpack.vim'
-	call printf('curl -fLo %s --create-dirs %s, jetpackFile, jetpackUrl)->system()
+	call printf('curl -fLo %s --create-dirs %s', jetpackFile, jetpackUrl)->system()
 	packadd vim-jetpack
 endtry
 
