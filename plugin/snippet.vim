@@ -38,7 +38,3 @@ cabbrev <expr> font= 'set guifont='..escape(&guifont, ' \')
 for [ key, value ] in items(g:private)
 	call execute(printf('cabbrev %s= %s', key, value))
 endfor
-
-" 一向にgit覚えないので
-
-cabbrev git= !git pull --recurse-submodules
