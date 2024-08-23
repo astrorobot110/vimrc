@@ -159,4 +159,4 @@ set matchpairs+=（:）,〔:〕,［:］,｛:｝,〈:〉,《:》,「:」,『:』,
 let g:netrw_liststyle = 1
 let g:netrw_mousemaps = 0
 
-source $vimrc/plugin/jetpack.vim
+source $vimrc/jetpack.vim
