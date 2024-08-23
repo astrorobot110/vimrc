@@ -43,7 +43,7 @@ call jetpack#begin()
 
 	Jetpack 'mhinz/vim-janah'
 	Jetpack 'tpope/vim-fugitive'
-	packadd vim-fugitive
+	" packadd vim-fugitive
 	Jetpack 'vim-jp/vimdoc-ja'
 	Jetpack 'vim-jp/autofmt'
 	Jetpack 'tpope/vim-unimpaired'
@@ -52,19 +52,19 @@ call jetpack#begin()
 	Jetpack 'kana/vim-textobj-user'
 	Jetpack 'kana/vim-textobj-function'
 	Jetpack 'junegunn/vim-easy-align'
-	packadd vim-easy-align
+	" packadd vim-easy-align
 	Jetpack 'morhetz/gruvbox.git'
 	Jetpack 'jordwalke/VimCleanColors'
 	Jetpack 'jsit/toast.vim'
 "	Jetpack 'astrorobot110/vialarm'
 "	Jetpack 'kawarimidoll/textra.vim'
 
-	" On-demanded
+	" Device exclusive
 	if has('gui')
 		Jetpack 'previm/previm'
-		packadd previm
+		" packadd previm
 		Jetpack 'tyru/open-browser.vim'
-		packadd open-browser.vim
+		" packadd open-browser.vim
 	endif
 
 	if has('win32')
@@ -74,7 +74,7 @@ call jetpack#begin()
 
 	if executable('w3m')
 		Jetpack 'yuratomo/w3m.vim'
-		packadd w3m.vim
+		" packadd w3m.vim
 	endif
 
 call jetpack#end()
