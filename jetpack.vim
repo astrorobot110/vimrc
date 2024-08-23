@@ -76,5 +76,4 @@ call jetpack#begin()
 		Jetpack 'yuratomo/w3m.vim'
 		" packadd w3m.vim
 	endif
-
 call jetpack#end()
