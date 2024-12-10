@@ -60,26 +60,21 @@ endfunction
 
 function! dailyReport#formatter( first = a:firstline, last = a:lastline ) range abort
 	let olist = 1
-	let prevAddress = ''
-	let formatText = [ '# 午前', '' ]
+	let urlList = []
+	let formatText = [ '# オーダー', '' ]
 	for currentLine in getline(a:first, a:last)
-		try
-			let [ address, category ] = split(currentLine, '\t')
-			if address != prevAddress
-				let addressUrl = printf('https://www.google.co.jp/maps/search/?api=1&query=%s', address)
-				call add(formatText, printf('%d. [ ] [%s](%s)', olist, address, addressUrl))
-				call printf('!start %s', addressUrl)->execute('silent')
-			else
-				call add(formatText, printf('%d. %s)', olist, address))
-			endif
+		let [ address, category ] = split(currentLine, ',')
+		if olist == 1 || address != split(urlList[0], '=')[-1]
+			let addressUrl = printf('https://www.google.co.jp/maps/search/?api=1&query=%s', address)
+			call insert(urlList, addressUrl)
+			call add(formatText, printf('%d. [ ] [%s](%s)', olist, address, addressUrl))
+		else
+			call add(formatText, printf('%d. %s', olist, address))
+		endif
 
-			call add(formatText, printf('  - %s', category))
+		call add(formatText, printf('  - %s', category))
 
-			let olist += 1
-			let prevAddress = address
-		catch /E688/
-			call extend(formatText, [ '', '# 午後', '' ])
-		endtry
+		let olist += 1
 	endfor
 
 	call extend(formatText, [ '', '# 写真' ])
@@ -88,4 +83,9 @@ function! dailyReport#formatter( first = a:firstline, last = a:lastline ) range 
 
 	call append(0, formatText)
 	call append(getbufinfo(bufnr())[0].linecount, [ '', '# リンク', '', printf('<%s>', @*), '', '```qrcode', @*, '```' ])
+
+	for url in urlList
+		call printf('!start %s', url)->execute('silent')
+		sleep 500m
+	endfor
 endfunction

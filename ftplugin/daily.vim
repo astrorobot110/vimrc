@@ -15,4 +15,7 @@ nnoremap <buffer> <silent> [<C-d> :<C-u>call dailyReport#open(g:dailyReportLs[0]
 nnoremap <buffer> <silent> ]<C-d> :<C-u>call dailyReport#open(g:dailyReportLs[-1])<CR>
 nnoremap <buffer> <expr> <silent> Zo dailyReport#makeURI(expand('%:p'))
 
-command -range -buffer Format call dailyReport#formatter(<line1>, <line2>)
+nnoremap <buffer> Zu $vi("*p
+nnoremap <buffer> Zl $ciW["](*)
+
+command -range -buffer Tsuken call dailyReport#formatter(<line1>, <line2>)
