@@ -63,16 +63,19 @@ function! dailyReport#formatter( first = a:firstline, last = a:lastline ) range 
 	let urlList = []
 	let formatText = [ '# オーダー', '' ]
 	for currentLine in getline(a:first, a:last)
-		let [ address, category ] = split(currentLine, ',')
-		if olist == 1 || address != split(urlList[0], '=')[-1]
-			let addressUrl = printf('https://www.google.co.jp/maps/search/?api=1&query=%s', address)
-			call insert(urlList, addressUrl)
-			call add(formatText, printf('%d. [ ] [%s](%s)', olist, address, addressUrl))
+		let [ address, category ] = split(currentLine, '[,\t]', v:true)
+		if address != ''
+			if ( olist == 1 || address != split(urlList[0], '=')[-1] )
+				let addressUrl = printf('https://www.google.co.jp/maps/search/?api=1&query=%s', address)
+				call insert(urlList, addressUrl)
+				call add(formatText, printf('%d. [ ] [%s](%s)', olist, address, addressUrl))
+			else
+				call add(formatText, printf('%d. %s', olist, address))
+			endif
+			call add(formatText, printf('  - %s', category))
 		else
-			call add(formatText, printf('%d. %s', olist, address))
+			call add(formatText, printf('%d. %s', olist, category))
 		endif
-
-		call add(formatText, printf('  - %s', category))
 
 		let olist += 1
 	endfor
@@ -86,6 +89,6 @@ function! dailyReport#formatter( first = a:firstline, last = a:lastline ) range 
 
 	for url in urlList
 		call printf('!start %s', url)->execute('silent')
-		sleep 500m
+		sleep 250m
 	endfor
 endfunction
