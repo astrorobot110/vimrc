@@ -73,8 +73,9 @@ set hlsearch
 set diffopt=filler
 
 " Win環境のgrep
-if system('$(get-command rg 2>&1).Source')->len() > 0
-	let &grepprg = "rg -e '$1' -g $2"
+if executable('rg')
+	let &grepprg = 'rg --vimgrep --hidden'
+	set grepformat=%f:%l:%c:%m
 endif
 
 " なんかデフォルト値かわった？
