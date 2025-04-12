@@ -5,7 +5,7 @@ try
 catch /^Vim\%((\a\+)\)\=:E919:/
 	let jetpackFile = $vimrc..'/pack/jetpack/opt/vim-jetpack/plugin/jetpack.vim'
 	let jetpackUrl = 'https://raw.githubusercontent.com/tani/vim-jetpack/master/plugin/jetpack.vim'
-	call printf('curl -fLo %s --create-dirs %s', jetpackFile, jetpackUrl)->system()
+	call printf('curl.exe -fLo %s --create-dirs %s', jetpackFile, jetpackUrl)->system()
 	packadd vim-jetpack
 endtry
 
@@ -38,6 +38,9 @@ let g:previm_extra_libraries = [
 \  },
 \]
 
+"" vim-markdown-folding
+" autocmd FileType markdown set foldexpr=NestedMarkdownFolds()
+
 call jetpack#begin()
 	Jetpack 'tani/vim-jetpack', { 'opt': 1 } "bootstrap
 
@@ -65,7 +68,7 @@ call jetpack#begin()
 
 	if has('win32')
 		Jetpack 'PProvost/vim-ps1'
-		Jetpack 'Stoozy/vimcord'
+"		Jetpack 'Stoozy/vimcord'
 	endif
 
 	if executable('w3m')

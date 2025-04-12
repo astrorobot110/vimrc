@@ -18,7 +18,7 @@ if has('win32')
 	set fileformats=dos,unix,mac
 
 	" そろそろ行ける？
-	set shell=pwsh
+	" set shell=pwsh
 elseif has('unix')
 	try
 		language ja_JP.utf8
@@ -71,6 +71,11 @@ set incsearch
 set hlsearch
 
 set diffopt=filler
+
+" Win環境のgrep
+if system('$(get-command rg 2>&1).Source')->len() > 0
+	let &grepprg = "rg -e '$1' -g $2"
+endif
 
 " なんかデフォルト値かわった？
 filetype plugin indent on
@@ -159,4 +164,9 @@ set matchpairs+=（:）,〔:〕,［:］,｛:｝,〈:〉,《:》,「:」,『:』,
 let g:netrw_liststyle = 1
 let g:netrw_mousemaps = 0
 
-source $vimrc/jetpack.vim
+" jetpack用処理
+
+if !exists('g:loaded_jetpack')
+	source $vimrc/jetpack.vim
+endif
+
