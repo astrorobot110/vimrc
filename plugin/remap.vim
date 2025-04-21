@@ -15,7 +15,6 @@ nnoremap g= g+
 " ええこときいた
 
 nnoremap gy "*y
-vnoremap gy "*y
 
 " Insertモードが絡むremap
 
@@ -104,13 +103,24 @@ nnoremap Zu <plug>(openbrowser-open)
 " toggle background mode
 nnoremap Zb :<C-u>call execute(printf('set background=%s', &background == 'dark' ? 'light' : 'dark'))<CR>
 
-" Open today's dailymamo
-nnoremap Zt :<C-u>e today=<C-]><CR>
+" TexTra Translation
+nnoremap <expr> Zt textra#main()
+nnoremap <expr> ZT textra#main('ja', 'en')
 
 " Previm用キーマップの`Zp`はftpluginに移動しました。
 
 " }}}
 
+" in Visual mode {{{
+
+vnoremap gy "*y
+
+" Zmenu
+
+vnoremap <expr> Zt textra#main()
+vnoremap <expr> ZT textra#main('ja', 'en')
+
+" }}}
 " in Insert mode {{{
 
 inoremap <Left> <nop>
