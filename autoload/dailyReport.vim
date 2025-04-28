@@ -1,6 +1,6 @@
 scriptencoding utf-8
 
-let s:dateFormat = '%y%m%d'
+let s:dateFormat = '%Y-%m-%d'
 
 function s:delta(date, delta, format = '%Y/%m/%d') abort
 python3 << EOF
