@@ -52,9 +52,8 @@ endif
 
 call jetpack#begin()
 	Jetpack 'tani/vim-jetpack', { 'opt': 1 } "bootstrap
-
 	Jetpack 'mhinz/vim-janah'
-Jetpack 'tpope/vim-fugitive'
+	Jetpack 'tpope/vim-fugitive'
 	Jetpack 'vim-jp/vimdoc-ja'
 	Jetpack 'vim-jp/autofmt'
 	Jetpack 'tpope/vim-unimpaired'
@@ -66,9 +65,9 @@ Jetpack 'tpope/vim-fugitive'
 	Jetpack 'morhetz/gruvbox.git'
 	Jetpack 'jordwalke/VimCleanColors'
 	Jetpack 'jsit/toast.vim'
+"	Jetpack 'chrisbra/csv.vim'
 "	Jetpack 'astrorobot110/vialarm'
 "	Jetpack 'kawarimidoll/textra.vim'
-
 	" Device exclusive
 	if has('gui')
 		Jetpack 'previm/previm'
