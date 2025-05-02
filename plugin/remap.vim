@@ -97,15 +97,15 @@ nnoremap Ze :<C-u>!explorer %:h<CR>
 " Open recent
 nnoremap Z# :<C-u>edit #<1<CR>
 
-" Open URL by openbrowser.vim
-nnoremap Zu <plug>(openbrowser-open)
-
 " toggle background mode
 nnoremap Zb :<C-u>call execute(printf('set background=%s', &background == 'dark' ? 'light' : 'dark'))<CR>
 
 " TexTra Translation
 nnoremap <expr> Zt textra#main()
 nnoremap <expr> ZT textra#main('ja', 'en')
+
+" urlTool
+nnoremap Zu :<C-u>call urlTool#replaceLink()<CR>
 
 " Previm用キーマップの`Zp`はftpluginに移動しました。
 
@@ -119,6 +119,7 @@ vnoremap gy "*y
 
 vnoremap <expr> Zt textra#main()
 vnoremap <expr> ZT textra#main('ja', 'en')
+vnoremap Zu :call urlTool#replaceLink(1)<CR>
 
 " }}}
 " in Insert mode {{{

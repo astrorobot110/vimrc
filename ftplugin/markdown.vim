@@ -8,10 +8,7 @@ let obsidianUri = 'obsidian://open?vault=obsidian&file='
 
 if match(path, pattern->escape('/')) == 0
 " Open with Obsidian
-	call printf('nnoremap <buffer> gx :<C-u>silent !explorer "%s"<CR>', obsidianUri..substitute(path, pattern..'/'->escape('/'), '', ''))->execute()
-else
-" Open with Previm
-	nnoremap <buffer> gx :<C-u>PrevimOpen<CR>
+	call printf('nnoremap <buffer> <C-\> :<C-u>silent !explorer "%s"<CR>', obsidianUri..substitute(path, pattern..'/'->escape('/'), '', ''))->execute()
 endif
 
 if match(path, pattern..'/daily'->escape('/')) == 0
@@ -29,9 +26,6 @@ if match(path, pattern..'/daily'->escape('/')) == 0
 	nnoremap <buffer> <silent> [<C-d> :<C-u>call dailyReport#open(g:dailyReportLs[0])<CR>
 	nnoremap <buffer> <silent> ]<C-d> :<C-u>call dailyReport#open(g:dailyReportLs[-1])<CR>
 	nnoremap <buffer> <expr> <silent> Zo dailyReport#makeURI(expand('%:p'))
-
-	nnoremap <buffer> Zu $vi("*p
-	nnoremap <buffer> Zl $ciW["](*)
 
 	command -range -buffer Tsuken call dailyReport#formatter(<line1>, <line2>)
 endif
