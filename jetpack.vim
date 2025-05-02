@@ -41,14 +41,20 @@ let g:previm_extra_libraries = [
 " jasegment
 
 if executable('mecab')
-	let g:jasegment#model = 'mecab'
+	let g:jasegment#model_word = 'mecab'
+	let g:jasegment#model = 'nonblank'
 elseif executable('C:\Program Files\MeCab\bin\mecab.exe')
 	let g:jasegment#mecab#cmd = '"C:\Program Files\MeCab\bin\mecab.exe"'
-	let g:jasegment#model = 'mecab'
 endif
 
 "" vim-markdown-folding
 " autocmd FileType markdown set foldexpr=NestedMarkdownFolds()
+
+" open-browser
+
+let g:netrw_nogx = 1
+nnoremap gx <Plug>(openbrowser-smart-search)
+vnoremap gx <Plug>(openbrowser-smart-search)
 
 call jetpack#begin()
 	Jetpack 'tani/vim-jetpack', { 'opt': 1 } "bootstrap
