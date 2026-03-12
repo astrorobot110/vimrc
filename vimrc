@@ -88,12 +88,7 @@ let g:gruvbox_contrast_light = 'hard'
 let g:gruvbox_contrast_dark = 'normal'
 
 colorscheme gruvbox
-
-if g:device != 'aquos'
-	set background=dark
-else
-	set background=light
-endif
+set background=light
 
 " ステータスライン関係
 " デフォルト -> set statusline=%f\ %h%w%m%r%=%-14.(%l,%c%V%)\ %P

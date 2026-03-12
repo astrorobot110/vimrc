@@ -33,6 +33,10 @@ cabbrev HZ= sp +/Japanese\ Description: https://raw.githubusercontent.com/koron/
 " フォント変更用
 cabbrev <expr> font= 'set guifont='..escape(&guifont, ' \')
 
+" grep用
+cabbrev gmd= grep " -g **/*.md<left><left><left><left><left><left><left><left><left><left><left><left>
+
+
 " privateから移転
 
 for [ key, value ] in items(g:private)

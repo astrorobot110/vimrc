@@ -72,7 +72,7 @@ function! dailyReport#formatter( first = a:firstline, last = a:lastline ) range 
 			else
 				call add(formatText, printf('%d. %s', olist, address))
 			endif
-			call add(formatText, printf('  - %s', category))
+			call add(formatText, printf('%s- %s',repeat(' ', &tabstop), category))
 		else
 			call add(formatText, printf('%d. %s', olist, category))
 		endif

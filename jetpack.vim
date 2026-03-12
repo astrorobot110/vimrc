@@ -40,18 +40,24 @@ let g:previm_extra_libraries = [
 
 " jasegment
 
-if executable('mecab')
-	let g:jasegment#model_word = 'mecab'
-	let g:jasegment#model = 'nonblank'
-elseif executable('C:\Program Files\MeCab\bin\mecab.exe')
-	let g:jasegment#mecab#cmd = '"C:\Program Files\MeCab\bin\mecab.exe"'
-endif
+" if has('win32')
+" 	let externalCmd = {
+" 				\ 'mecab': 'C:\Program Files\MeCab\bin\mecab.exe',
+" 				\ 'cabocha': 'C:\Program Files (x86)\CaboCha\bin\cabocha.exe'
+" 				\ }
+" 	let g:jasegment#mecab#cmd = printf('"%s"', externalCmd.mecab)
+" 	let g:jasegment#model_word = 'mecab'
+" 	let g:jasegment#model = 'nonblank'
+" else
+" 	let g:jasegment#mecab#cmd = 'mecab'
+" 	let g:jasegment#model_word = 'mecab'
+" 	let g:jasegment#model = 'endhira_mbb'
+" endif
 
 "" vim-markdown-folding
 " autocmd FileType markdown set foldexpr=NestedMarkdownFolds()
 
 " open-browser
-
 let g:netrw_nogx = 1
 nnoremap gx <Plug>(openbrowser-smart-search)
 vnoremap gx <Plug>(openbrowser-smart-search)
