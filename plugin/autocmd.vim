@@ -7,13 +7,13 @@ augroup autoIM
 augroup END
 
 " autoYank for TEA
-if has('clientserver') && v:servername =~? 'VIM_TEA\d*$'
-	augroup autoYank
-		autocmd!
-		autocmd ExitPre * normal ggVG"+y
-		autocmd ExitPre * write! ~/Desktop/TEAbackup
-	augroup END
-endif
+"if has('clientserver') && v:servername =~? 'VIM_TEA\d*$'
+"	augroup autoYank
+"		autocmd!
+"		autocmd ExitPre * normal ggVG"+y
+"		autocmd ExitPre * write! ~/Desktop/TEAbackup
+"	augroup END
+"endif
 
 " save state via mkview/loadview (testing)
 " augroup loadviewer

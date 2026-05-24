@@ -70,7 +70,7 @@ set ignorecase smartcase
 set incsearch
 set hlsearch
 
-set diffopt=filler
+set diffopt+=followwrap
 
 " Win環境のgrep
 if executable('rg')
