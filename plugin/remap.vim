@@ -88,6 +88,11 @@ nnoremap <expr> Z! system(expand(getline('.')))
 " CalcIt
 nnoremap Z= :<C-u>put =eval(getline('.'))<CR>$
 
+" クリップボード連動
+
+nnoremap <expr> Z" execute('let @" = @+')
+nnoremap <expr> Z+ execute('let @+ = @"')
+
 " Open current buffer's directory
 nnoremap Z% :<C-u>edit %:h<CR>
 
