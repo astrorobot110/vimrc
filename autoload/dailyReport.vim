@@ -61,15 +61,21 @@ endfunction
 function! dailyReport#formatter( first = a:firstline, last = a:lastline ) range abort
 	let olist = 1
 	let urlList = []
+	let addressList = []
+	let postNote = [ '    - 設備: ', '    - [ ] 済']
 	let formatText = [ '# オーダー', '' ]
 	for currentLine in getline(a:first, a:last)
 		let [ address, category ] = split(currentLine, '[,\t]', v:true)
+		let postNoteIndex = match(category, '\%((M)\|CDN\|フリー\|残置廃\)') < 0 ? 0 : 1
 		if address != ''
+			call add(addressList, address)
 			if ( olist == 1 || address != split(urlList[0], '=')[-1] )
+				let postNoteFlag = 1
 				let addressUrl = printf('https://www.google.co.jp/maps/search/?api=1&query=%s', address)
 				call insert(urlList, addressUrl)
 				call add(formatText, printf('%d. [ ] [%s](%s)', olist, address, addressUrl))
 			else
+				let postNoteFlag = 0
 				call add(formatText, printf('%d. %s', olist, address))
 			endif
 			call add(formatText, printf('%s- %s',repeat(' ', &tabstop), category))
@@ -77,8 +83,14 @@ function! dailyReport#formatter( first = a:firstline, last = a:lastline ) range 
 			call add(formatText, printf('%d. %s', olist, category))
 		endif
 
+		if postNoteFlag > 0
+			call extend(formatText, postNote[postNoteIndex:1])
+		endif
+
 		let olist += 1
 	endfor
+
+	call extend(formatText, [ '', '# コピペ用', ''] + addressList)
 
 	call extend(formatText, [ '', '# 写真' ])
 
@@ -87,8 +99,8 @@ function! dailyReport#formatter( first = a:firstline, last = a:lastline ) range 
 	call append(0, formatText)
 	call append(getbufinfo(bufnr())[0].linecount, [ '', '# リンク', '', printf('<%s>', @*), '', '```qrcode', @*, '```' ])
 
-	for url in urlList
-		call printf('!start %s', url)->execute('silent')
-		sleep 250m
-	endfor
+"	for url in urlList
+"		call printf('!start %s', url)->execute('silent')
+"		sleep 250m
+"	endfor
 endfunction
