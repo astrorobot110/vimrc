@@ -68,8 +68,8 @@ function! dailyReport#formatter( first = a:firstline, last = a:lastline ) range 
 		let [ address, category ] = split(currentLine, '[,\t]', v:true)
 		let postNoteIndex = match(category, '\%((M)\|CDN\|フリー\|残置廃\)') < 0 ? 0 : 1
 		if address != ''
-			call add(addressList, address)
 			if ( olist == 1 || address != split(urlList[0], '=')[-1] )
+				call add(addressList, address)
 				let postNoteFlag = 1
 				let addressUrl = printf('https://www.google.co.jp/maps/search/?api=1&query=%s', address)
 				call insert(urlList, addressUrl)
@@ -99,8 +99,10 @@ function! dailyReport#formatter( first = a:firstline, last = a:lastline ) range 
 	call append(0, formatText)
 	call append(getbufinfo(bufnr())[0].linecount, [ '', '# リンク', '', printf('<%s>', @*), '', '```qrcode', @*, '```' ])
 
-	for url in urlList
-		call printf('!start %s', url)->execute('silent')
-		sleep 250m
-	endfor
+	if !exists('g:dailyReport_block_urlOpen')
+		for url in urlList
+			call printf('!start %s', url)->execute('silent')
+			sleep 250m
+		endfor
+	endif
 endfunction
