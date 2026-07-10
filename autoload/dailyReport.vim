@@ -99,8 +99,8 @@ function! dailyReport#formatter( first = a:firstline, last = a:lastline ) range 
 	call append(0, formatText)
 	call append(getbufinfo(bufnr())[0].linecount, [ '', '# リンク', '', printf('<%s>', @*), '', '```qrcode', @*, '```' ])
 
-"	for url in urlList
-"		call printf('!start %s', url)->execute('silent')
-"		sleep 250m
-"	endfor
+	for url in urlList
+		call printf('!start %s', url)->execute('silent')
+		sleep 250m
+	endfor
 endfunction
